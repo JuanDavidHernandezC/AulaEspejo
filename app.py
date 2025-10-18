@@ -30,7 +30,7 @@ class User(db.Model):
 with app.app_context():
     db.create_all()
 
-# ------------------ Decorador ------------------ #
+# -------- Decorador ------- #
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -59,6 +59,10 @@ def inicio():
 def products():
     return render_template('products.html', user=g.user)
 
+@app.route('/about')
+def about():
+    return render_template('about.html', user=g.user)
+
 @app.route('/contact')
 def contact():
     return render_template('contact.html', user=g.user)
@@ -69,14 +73,14 @@ def register():
     if request.method == 'POST':
         nombre = request.form['nombre'].strip()
         email = request.form['email'].strip().lower()
-        contraseña = request.form['contraseña']
+        password = request.form['password']
 
         if User.query.filter_by(email=email).first():
             flash('El correo ya está registrado', 'danger')
             return redirect(url_for('register'))
 
         nuevo_usuario = User(nombre=nombre, email=email)
-        nuevo_usuario.set_password(contraseña)
+        nuevo_usuario.set_password(password)
         db.session.add(nuevo_usuario)
         db.session.commit()
 
@@ -89,11 +93,11 @@ def register():
 def login():
     if request.method == 'POST':
         email = request.form['email'].strip().lower()
-        contraseña = request.form['contraseña']
+        password = request.form['password']
 
         user = User.query.filter_by(email=email).first()
 
-        if user and user.check_password(contraseña):
+        if user and user.check_password(password):
             session.clear()
             session['user_id'] = user.id
             flash(f'¡Bienvenido, {user.nombre}!', 'success')

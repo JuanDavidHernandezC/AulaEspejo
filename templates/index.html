@@ -6,11 +6,12 @@
 
 {% block content %}
 
-<!-- Sección Hero -->
+<!-- HERO PRINCIPAL -->
 <section class="hero">
+  <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1>🌿 Bienvenido a <span class="brand">Hampite</span></h1>
-    <p>El té natural que cuida de ti, de tu bienestar y del planeta 🌎</p>
+    <p>Descubre el placer del té natural, creado con amor por la salud y el planeta 🌎</p>
     <div class="buttons">
       <a href="{{ url_for('products') }}" class="btn primary">Explorar productos</a>
       <a href="{{ url_for('register') }}" class="btn secondary">Únete gratis</a>
@@ -18,57 +19,70 @@
   </div>
 </section>
 
-<!-- Sección Beneficios -->
+<!-- BENEFICIOS -->
 <section class="features">
   <h2>✨ ¿Por qué elegir Hampite?</h2>
-  <p class="subtitle">Cada sorbo es una experiencia de equilibrio, sabor y sostenibilidad.</p>
+  <p class="subtitle">Cada taza cuenta una historia de equilibrio, sabor y sostenibilidad.</p>
 
   <div class="cards">
     <div class="card">
       <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png" alt="natural">
       <h3>100% Natural</h3>
-      <p>Hecho con ingredientes puros, sin conservantes ni aditivos.</p>
+      <p>Ingredientes puros, sin conservantes, cultivados con respeto por la tierra.</p>
     </div>
+
     <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/992/992703.png" alt="instantáneo">
+      <img src="https://cdn-icons-png.flaticon.com/512/2909/2909767.png" alt="fácil">
       <h3>Fácil e Instantáneo</h3>
-      <p>Listo en segundos. Solo agua caliente y tu Hampite favorito.</p>
+      <p>Solo añade agua caliente y disfruta de un momento de paz.</p>
     </div>
+
     <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="sostenible">
+      <img src="https://cdn-icons-png.flaticon.com/512/3779/3779288.png" alt="eco">
       <h3>Eco-friendly</h3>
-      <p>Usamos empaques biodegradables y apoyamos el comercio justo.</p>
+      <p>Empaques biodegradables y apoyo al comercio justo.</p>
     </div>
   </div>
 </section>
 
-<!-- Sección de Productos destacados -->
+<!-- PRODUCTOS DESTACADOS -->
 <section class="products-preview">
-  <h2>🍵 Nuestros tés más populares</h2>
+  <h2>🍵 Nuestros tés favoritos</h2>
+
   <div class="product-grid">
     <div class="product">
-      <img src="https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?w=500" alt="Té verde">
-      <h3>Té Verde Matcha</h3>
-      <p>Rico en antioxidantes, energía natural y sabor suave.</p>
+      <img src="https://www.mundiario.com/asset/thumbnail,1280,720,center,center/media/mundiario/images/2019/03/24/2019032421535718130.png" alt="Té verde">
+      <div class="info">
+        <h3>Té Verde Menta</h3>
+        <p>Energía natural y antioxidantes para comenzar el día.</p>
+      </div>
     </div>
+
     <div class="product">
-      <img src="https://images.unsplash.com/photo-1607958996333-3be527b4e0f9?w=500" alt="Té de manzanilla">
-      <h3>Té de Manzanilla</h3>
-      <p>Relajante y perfecto para el descanso nocturno.</p>
+      <img src="https://th.bing.com/th/id/R.c4585c3b3ee938c35df00f7a47c27c68?rik=bSqbqjUO55pmEw&riu=http%3a%2f%2fwww.telemundo.com%2fsites%2fnbcutelemundo%2ffiles%2fimages%2farticle%2fcover%2f2015%2f05%2f26%2fte-y-flores-de-manzanilla.jpg&ehk=vB8xAKWbSr4pTeYQhmD78eG0DrjJPiRJWtgR9huk15A%3d&risl=&pid=ImgRaw&r=0" alt="Manzanilla">
+      <div class="info">
+        <h3>Té de Manzanilla</h3>
+        <p>Relajante y suave, ideal para tus noches tranquilas.</p>
+      </div>
     </div>
+
     <div class="product">
-      <img src="https://images.unsplash.com/photo-1584270354949-1b1b79b9b57e?w=500" alt="Té de hibisco">
-      <h3>Té de Hibisco</h3>
-      <p>Refrescante, colorido y con un toque cítrico natural.</p>
+      <img src="https://imagenes.heraldo.es/files/image_990_556/uploads/imagenes/2024/08/08/te-de-hibisco-gsc1.jpeg" alt="Hibisco">
+      <div class="info">
+        <h3>Té de Hibisco</h3>
+        <p>Refrescante, colorido y lleno de antioxidantes naturales.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Sección CTA final -->
+<!-- CTA FINAL -->
 <section class="cta">
-  <h2>🌸 Vive la experiencia Hampite</h2>
-  <p>Únete a miles de personas que ya disfrutan de una taza más saludable y sostenible.</p>
-  <a href="{{ url_for('register') }}" class="btn primary large">Comienza tu viaje</a>
+  <div class="cta-content">
+    <h2>🌸 Vive la experiencia Hampite</h2>
+    <p>Únete a miles de personas que ya disfrutan de un bienestar natural.</p>
+    <a href="{{ url_for('register') }}" class="btn primary large">Comienza tu viaje</a>
+  </div>
 </section>
 
 {% endblock %}
