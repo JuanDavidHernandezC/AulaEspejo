@@ -1,0 +1,106 @@
+from flask import Flask, render_template, request, redirect, url_for, flash, session, g
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+from functools import wraps
+import pymysql
+pymysql.install_as_MySQLdb()
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'Contraseña2025' 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@localhost/hampite'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+# Modelo de usuario (con password hashed)
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password_hash = db.Column(db.String(200), nullable=False)
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+# Crear tablas si no existen
+with app.app_context():
+    db.create_all()
+
+# --- helper: login_required decorator ---
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user_id' not in session:
+            flash('Por favor inicia sesión para acceder a esa página.', 'warning')
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated_function
+
+# --- before_request: cargar usuario en "g" para usar en templates ---
+@app.before_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = User.query.get(user_id)
+
+# Rutas
+@app.route('/')
+def index():
+    return render_template('index.html', user=g.user)
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        nombre = request.form['nombre'].strip()
+        email = request.form['email'].strip().lower()
+        contraseña = request.form['contraseña']
+
+        if User.query.filter_by(email=email).first():
+            flash('El correo ya está registrado', 'danger')
+            return redirect(url_for('register'))
+
+        nuevo_usuario = User(nombre=nombre, email=email)
+        nuevo_usuario.set_password(contraseña)
+        db.session.add(nuevo_usuario)
+        db.session.commit()
+        flash('¡Registro exitoso! Ahora puedes iniciar sesión.', 'success')
+        return redirect(url_for('login'))
+
+    return render_template('register.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email'].strip().lower()
+        contraseña = request.form['contraseña']
+        user = User.query.filter_by(email=email).first()
+        if user and user.check_password(contraseña):
+            session.clear()
+            session['user_id'] = user.id
+            flash(f'¡Bienvenido, {user.nombre}!', 'success')
+            return redirect(url_for('inicio'))  # o a la página que prefieras
+        else:
+            flash('Correo o contraseña incorrectos', 'danger')
+            return redirect(url_for('login'))
+
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash('Has cerrado sesión correctamente.', 'info')
+    return redirect(url_for('index'))
+
+# Ruta de ejemplo protegida
+@app.route('/inicio')
+@login_required
+def inicio():
+    return render_template('inicio.html', user=g.user)
+
+if __name__ == '__main__':
+    app.run(debug=True)

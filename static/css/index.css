@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #c8f7c5, #b0eac2);
+    font-family: 'Poppins', sans-serif;
+    color: #235b2a;
+}
+
+.container {
+    text-align: center;
+}
+
+.logo {
+    width: 70px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+span {
+    color: #2d7d32;
+    font-weight: 700;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #2e8b57;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #256b45;
+}

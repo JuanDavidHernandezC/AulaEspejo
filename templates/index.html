@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="text-center mt-5">
+    <h1 class="display-4">🍃 Bienvenido a <b>Hampite</b></h1>
+    <p class="lead">El té instantáneo natural que cuida de ti 🌿</p>
+    {% if not g.user %}
+      <a href="{{ url_for('login') }}" class="btn btn-success btn-lg mt-3">Iniciar sesión / Registrarse</a>
+    {% else %}
+      <a href="{{ url_for('inicio') }}" class="btn btn-success btn-lg mt-3">Ir al panel</a>
+    {% endif %}
+  </div>
+{% endblock %}
