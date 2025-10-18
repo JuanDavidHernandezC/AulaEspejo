@@ -1,12 +1,74 @@
 {% extends "base.html" %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
 {% block content %}
-  <div class="text-center mt-5">
-    <h1 class="display-4">🍃 Bienvenido a <b>Hampite</b></h1>
-    <p class="lead">El té instantáneo natural que cuida de ti 🌿</p>
-    {% if not g.user %}
-      <a href="{{ url_for('login') }}" class="btn btn-success btn-lg mt-3">Iniciar sesión / Registrarse</a>
-    {% else %}
-      <a href="{{ url_for('inicio') }}" class="btn btn-success btn-lg mt-3">Ir al panel</a>
-    {% endif %}
+
+<!-- Sección Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>🌿 Bienvenido a <span class="brand">Hampite</span></h1>
+    <p>El té natural que cuida de ti, de tu bienestar y del planeta 🌎</p>
+    <div class="buttons">
+      <a href="{{ url_for('products') }}" class="btn primary">Explorar productos</a>
+      <a href="{{ url_for('register') }}" class="btn secondary">Únete gratis</a>
+    </div>
   </div>
+</section>
+
+<!-- Sección Beneficios -->
+<section class="features">
+  <h2>✨ ¿Por qué elegir Hampite?</h2>
+  <p class="subtitle">Cada sorbo es una experiencia de equilibrio, sabor y sostenibilidad.</p>
+
+  <div class="cards">
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png" alt="natural">
+      <h3>100% Natural</h3>
+      <p>Hecho con ingredientes puros, sin conservantes ni aditivos.</p>
+    </div>
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/992/992703.png" alt="instantáneo">
+      <h3>Fácil e Instantáneo</h3>
+      <p>Listo en segundos. Solo agua caliente y tu Hampite favorito.</p>
+    </div>
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="sostenible">
+      <h3>Eco-friendly</h3>
+      <p>Usamos empaques biodegradables y apoyamos el comercio justo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Sección de Productos destacados -->
+<section class="products-preview">
+  <h2>🍵 Nuestros tés más populares</h2>
+  <div class="product-grid">
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?w=500" alt="Té verde">
+      <h3>Té Verde Matcha</h3>
+      <p>Rico en antioxidantes, energía natural y sabor suave.</p>
+    </div>
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1607958996333-3be527b4e0f9?w=500" alt="Té de manzanilla">
+      <h3>Té de Manzanilla</h3>
+      <p>Relajante y perfecto para el descanso nocturno.</p>
+    </div>
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1584270354949-1b1b79b9b57e?w=500" alt="Té de hibisco">
+      <h3>Té de Hibisco</h3>
+      <p>Refrescante, colorido y con un toque cítrico natural.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Sección CTA final -->
+<section class="cta">
+  <h2>🌸 Vive la experiencia Hampite</h2>
+  <p>Únete a miles de personas que ya disfrutan de una taza más saludable y sostenible.</p>
+  <a href="{{ url_for('register') }}" class="btn primary large">Comienza tu viaje</a>
+</section>
+
 {% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
+
+<section class="productos-hero">
+  <div class="hero-content">
+    <h1>🌿 Nuestros Productos</h1>
+    <p>Descubre la variedad de tés naturales instantáneos que Hampite tiene para ti 🍵</p>
+  </div>
+</section>
+
+<section class="productos-grid">
+  <div class="producto">
+    <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Té Verde">
+    <h3>Té Verde Energizante</h3>
+    <p>Refrescante y natural. Ideal para revitalizar cuerpo y mente.</p>
+    <button class="btn">Comprar</button>
+  </div>
+
+  <div class="producto">
+    <img src="https://cdn-icons-png.flaticon.com/512/2909/2909761.png" alt="Té Frutal">
+    <h3>Té Frutal Antioxidante</h3>
+    <p>Combinación de frutas tropicales que llenan tu día de sabor y energía.</p>
+    <button class="btn">Comprar</button>
+  </div>
+
+  <div class="producto">
+    <img src="https://cdn-icons-png.flaticon.com/512/415/415682.png" alt="Té Relax">
+    <h3>Té Relax Nocturno</h3>
+    <p>Una mezcla suave que te ayuda a relajarte y dormir mejor 🌙</p>
+    <button class="btn">Comprar</button>
+  </div>
+</section>
+
+<section class="cta-final">
+  <h2>🌸 Encuentra tu sabor favorito</h2>
+  <p>Hampite te acompaña en cada momento del día.</p>
+  <a href="{{ url_for('register') }}" class="btn large">Unirme a Hampite</a>
+</section>
+
+{% endblock %}

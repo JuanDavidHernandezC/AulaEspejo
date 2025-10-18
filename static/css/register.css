@@ -1,47 +1,87 @@
+/* ===== Hampite - Register Page (azul) ===== */
+
 body {
-    background: linear-gradient(135deg, #b2f0b2, #a7e3a1);
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  background: linear-gradient(to bottom right, #dbeafe, #bfdbfe);
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.register-container {
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    text-align: center;
+/* Navbar (solo para diferenciar visualmente) */
+nav {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Contenedor del formulario */
+form {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+  margin: 4rem auto;
+}
+
+/* Título */
 h2 {
-    color: #2f7d32;
+  color: #1e40af; /* azul fuerte */
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
 }
 
-input {
-    width: 100%;
-    margin: 10px 0;
-    padding: 12px;
-    border: 1px solid #9ed39e;
-    border-radius: 8px;
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid #93c5fd;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
+input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
+}
+
+/* Botón principal */
 button {
-    background-color: #2e8b57;
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: 0.3s;
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  padding: 0.7rem;
+  width: 100%;
+  border: none;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-    background-color: #256b45;
+  background: #1e3a8a;
 }
 
-a {
-    color: #2e8b57;
-    text-decoration: none;
+/* Enlace inferior */
+p {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #1e40af;
+}
+
+p a {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+p a:hover {
+  text-decoration: underline;
 }

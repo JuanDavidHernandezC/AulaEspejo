@@ -3,16 +3,17 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 import pymysql
+
 pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'Contraseña2025' 
+app.config['SECRET_KEY'] = 'Contraseña2025'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@localhost/hampite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# Modelo de usuario (con password hashed)
+# ------------------ MODELO DE USUARIO ------------------ #
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
@@ -25,11 +26,11 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-# Crear tablas si no existen
+# Crear las tablas si no existen
 with app.app_context():
     db.create_all()
 
-# --- helper: login_required decorator ---
+# ------------------ Decorador ------------------ #
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -39,20 +40,30 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-# --- before_request: cargar usuario en "g" para usar en templates ---
 @app.before_request
 def load_logged_in_user():
     user_id = session.get('user_id')
-    if user_id is None:
-        g.user = None
-    else:
-        g.user = User.query.get(user_id)
+    g.user = User.query.get(user_id) if user_id else None
 
-# Rutas
+# ------- Rutas principales ---------- #
 @app.route('/')
 def index():
     return render_template('index.html', user=g.user)
 
+@app.route('/inicio')
+@login_required
+def inicio():
+    return render_template('inicio.html', user=g.user)
+
+@app.route('/products')
+def products():
+    return render_template('products.html', user=g.user)
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html', user=g.user)
+
+# ----- Regitro y login ------- #
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -68,6 +79,7 @@ def register():
         nuevo_usuario.set_password(contraseña)
         db.session.add(nuevo_usuario)
         db.session.commit()
+
         flash('¡Registro exitoso! Ahora puedes iniciar sesión.', 'success')
         return redirect(url_for('login'))
 
@@ -78,12 +90,14 @@ def login():
     if request.method == 'POST':
         email = request.form['email'].strip().lower()
         contraseña = request.form['contraseña']
+
         user = User.query.filter_by(email=email).first()
+
         if user and user.check_password(contraseña):
             session.clear()
             session['user_id'] = user.id
             flash(f'¡Bienvenido, {user.nombre}!', 'success')
-            return redirect(url_for('inicio'))  # o a la página que prefieras
+            return redirect(url_for('inicio'))
         else:
             flash('Correo o contraseña incorrectos', 'danger')
             return redirect(url_for('login'))
@@ -95,12 +109,6 @@ def logout():
     session.clear()
     flash('Has cerrado sesión correctamente.', 'info')
     return redirect(url_for('index'))
-
-# Ruta de ejemplo protegida
-@app.route('/inicio')
-@login_required
-def inicio():
-    return render_template('inicio.html', user=g.user)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,47 +1,80 @@
 body {
-    background: linear-gradient(135deg, #d6f8d6, #a7e3a1);
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  font-family: 'Nunito', sans-serif;
 }
 
-.login-container {
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    text-align: center;
+/* Animación de entrada suave */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-h2 {
-    color: #2f7d32;
+form {
+  animation: fadeInUp 0.8s ease-out;
 }
 
-input {
-    width: 100%;
-    margin: 10px 0;
-    padding: 12px;
-    border: 1px solid #9ed39e;
-    border-radius: 8px;
+/* Fondo con textura de hojas sutiles */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://www.transparenttextures.com/patterns/leaf.png');
+  opacity: 0.05;
+  z-index: -1;
 }
 
-button {
-    background-color: #2e8b57;
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: 0.3s;
+/* Estilo para inputs */
+input[type="email"],
+input[type="password"] {
+  transition: box-shadow 0.3s ease;
 }
 
-button:hover {
-    background-color: #256b45;
+input[type="email"]:focus,
+input[type="password"]:focus {
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.3);
 }
 
-a {
-    color: #2e8b57;
-    text-decoration: none;
+/* Botón con efecto de brillo */
+button[type="submit"] {
+  position: relative;
+  overflow: hidden;
+}
+
+button[type="submit"]::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+button[type="submit"]:hover::after {
+  left: 100%;
+}
+
+/* Enlace de registro con efecto delicado */
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Sombra suave para el contenedor */
+.shadow-lg {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Transiciones suaves */
+* {
+  transition: all 0.3s ease;
 }

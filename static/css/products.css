@@ -1,0 +1,92 @@
+/* Sección Hero */
+.productos-hero {
+  background: linear-gradient(120deg, #d2f8d2, #c0f0d2);
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.productos-hero h1 {
+  font-size: 2.8rem;
+  color: #047857;
+  margin-bottom: 10px;
+}
+
+.productos-hero p {
+  font-size: 1.2rem;
+  color: #2f3e46;
+}
+
+/* Grid de productos */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  padding: 60px 10%;
+  text-align: center;
+}
+
+.producto {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  padding: 25px;
+  transition: all 0.3s ease;
+}
+
+.producto:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.producto img {
+  width: 90px;
+  margin-bottom: 15px;
+}
+
+.producto h3 {
+  color: #047857;
+  margin-bottom: 8px;
+}
+
+.producto p {
+  color: #444;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+.btn {
+  background-color: #16a34a;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #15803d;
+}
+
+/* CTA Final */
+.cta-final {
+  text-align: center;
+  padding: 70px 20px;
+  background: linear-gradient(90deg, #bbf7d0, #a7f3d0);
+}
+
+.cta-final h2 {
+  color: #065f46;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.cta-final p {
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.btn.large {
+  padding: 12px 35px;
+  font-size: 1.1rem;
+}
