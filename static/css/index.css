@@ -1,0 +1,253 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: #1f2937;
+  background: linear-gradient(180deg, #f8fff9 0%, #eafff2 100%);
+  overflow-x: hidden;
+}
+
+h2 {
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-left: 10%;
+  background: url('https://images.unsplash.com/photo-1507914372368-b9e0bd7e5d3d?w=1600')
+    center/cover no-repeat;
+  color: #fff;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 60, 40, 0.55);
+  z-index: 1;
+  backdrop-filter: blur(2px);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.hero .brand {
+  color: #a7f3d0;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 14px 34px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn.primary {
+  background-color: #059669;
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background-color: #047857;
+}
+
+.btn.secondary {
+  border: 2px solid #a7f3d0;
+  color: #a7f3d0;
+}
+
+.btn.secondary:hover {
+  background-color: #a7f3d0;
+  color: #065f46;
+}
+
+.features {
+  padding: 100px 10%;
+  background-color: #ffffff;
+}
+
+.features h2 {
+  font-size: 2.5rem;
+  color: #065f46;
+  margin-bottom: 0.5rem;
+}
+
+.features .subtitle {
+  color: #6b7280;
+  margin-bottom: 3rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 70px;
+  margin-bottom: 1.2rem;
+}
+
+.card h3 {
+  color: #047857;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.products-preview {
+  padding: 100px 10%;
+  background: #ecfdf5;
+  border-radius: 60px;
+}
+
+.products-preview h2 {
+  font-size: 2.5rem;
+  color: #065f46;
+  margin-bottom: 3rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.product {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.product:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.product .info {
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.product h3 {
+  color: #047857;
+  margin-bottom: 0.4rem;
+}
+
+.product p {
+  color: #4b5563;
+}
+
+.cta {
+  position: relative;
+  background: linear-gradient(135deg, #6ee7b7, #34d399);
+  margin: 120px 0 0;
+  padding: 120px 10%;
+  color: #064e3b;
+}
+
+.cta-content {
+  max-width: 700px;
+}
+
+.cta h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.cta p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.btn.large {
+  font-size: 1.1rem;
+  padding: 16px 40px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    justify-content: center;
+    padding: 0 5%;
+    text-align: center;
+  }
+  .hero-content {
+    max-width: 90%;
+  }
+  .features,
+  .products-preview,
+  .cta {
+    padding: 70px 5%;
+  }
+  .hero h1 {
+    font-size: 2.3rem;
+  }
+  .features h2,
+  .products-preview h2,
+  .cta h2 {
+    font-size: 2rem;
+  }
+}

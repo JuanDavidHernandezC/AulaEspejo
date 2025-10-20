@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO DE ABOUT -->
+<section class="about-hero">
+  <div class="overlay"></div>
+  <div class="about-hero-content">
+    <h1>🌱 Conoce <span class="brand">Hampite</span></h1>
+    <p>Más que té, una experiencia natural de bienestar y sostenibilidad.</p>
+  </div>
+</section>
+
+<!-- QUIÉNES SOMOS -->
+<section class="about-section">
+  <div class="about-container">
+    <div class="about-text">
+      <h2>¿Quiénes somos?</h2>
+      <p>
+        En <strong>Hampite</strong> creemos que cada taza de té puede ser un pequeño acto de amor por uno mismo y por el planeta. 
+        Nacimos con la idea de ofrecer una alternativa saludable, deliciosa y consciente, elaborada con ingredientes 100% naturales y sostenibles.
+      </p>
+      <p>
+        Desde nuestros inicios, trabajamos junto a productores locales que comparten nuestros valores de respeto por la tierra, el comercio justo y la calidad auténtica.
+      </p>
+    </div>
+    <div class="about-image">
+      <img src="https://i.ytimg.com/vi/GofZDTkWbP8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAvZPJ6snS--qJoMzocdu_diFrjoQ" alt="Campo de té">
+    </div>
+  </div>
+</section>
+
+<!-- MISIÓN Y VISIÓN -->
+<section class="mission-vision">
+  <div class="mission">
+    <img src="https://centerhealthyminds.org/assets/images-news/_horizontalHalf/ACIP-framework-illustration-of-brain.jpg" alt="Misión Hampite">
+    <div class="text">
+      <h3>Nuestra misión</h3>
+      <p>
+        Promover el bienestar integral de las personas a través de productos naturales y responsables, que inspiran una vida más equilibrada y sostenible.
+      </p>
+    </div>
+  </div>
+
+  <div class="vision">
+    <div class="text">
+      <h3>Nuestra visión</h3>
+      <p>
+        Ser una marca líder en el mundo del té natural, reconocida por su compromiso con el medio ambiente, la salud y las comunidades agrícolas.
+      </p>
+    </div>
+    <img src="https://hegel.edu.pe/blog/wp-content/uploads/2021/06/objetivos-estrategicos-ejemplos.jpeg" alt="Visión Hampite">
+  </div>
+</section>
+
+<!-- VALORES -->
+<section class="values">
+  <h2>🌿 Nuestros valores</h2>
+  <div class="value-cards">
+    <div class="value-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/477/477406.png" alt="Sostenibilidad">
+      <h4>Sostenibilidad</h4>
+      <p>Cuidamos de cada paso para reducir nuestro impacto ambiental.</p>
+    </div>
+
+    <div class="value-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3063/3063820.png" alt="Bienestar">
+      <h4>Bienestar</h4>
+      <p>Promovemos una vida sana, consciente y equilibrada.</p>
+    </div>
+
+    <div class="value-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Comunidad">
+      <h4>Comunidad</h4>
+      <p>Apoyamos a los pequeños productores y al comercio justo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="about-cta">
+  <h2>🍵 Únete a la comunidad Hampite</h2>
+  <p>Forma parte de nuestro viaje hacia un futuro más verde, consciente y delicioso.</p>
+  <a href="{{ url_for('register') }}" class="btn primary large">Comenzar</a>
+</section>
+
+{% endblock %}
