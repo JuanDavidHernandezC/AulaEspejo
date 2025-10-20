@@ -7,7 +7,7 @@
 {% block content %}
 
 <!-- HERO DE ABOUT -->
-<section class="about-hero">
+<section class="about-hero fade-section">
   <div class="overlay"></div>
   <div class="about-hero-content">
     <h1>🌱 Conoce <span class="brand">Hampite</span></h1>
@@ -16,7 +16,7 @@
 </section>
 
 <!-- QUIÉNES SOMOS -->
-<section class="about-section">
+<section class="about-section fade-section">
   <div class="about-container">
     <div class="about-text">
       <h2>¿Quiénes somos?</h2>
@@ -35,7 +35,7 @@
 </section>
 
 <!-- MISIÓN Y VISIÓN -->
-<section class="mission-vision">
+<section class="mission-vision fade-section">
   <div class="mission card">
     <img src="https://centerhealthyminds.org/assets/images-news/_horizontalHalf/ACIP-framework-illustration-of-brain.jpg" alt="Misión Hampite">
     <div class="text">
@@ -58,7 +58,7 @@
 </section>
 
 <!-- VALORES -->
-<section class="values">
+<section class="values fade-section">
   <h2>🌿 Nuestros valores</h2>
   <div class="value-cards">
     <div class="value-card">
@@ -82,10 +82,14 @@
 </section>
 
 <!-- CTA FINAL -->
-<section class="about-cta">
+<section class="about-cta fade-section">
   <h2>🍵 Únete a la comunidad Hampite</h2>
   <p>Forma parte de nuestro viaje hacia un futuro más verde, consciente y delicioso.</p>
   <a href="{{ url_for('register') }}" class="btn primary large">Comenzar</a>
 </section>
 
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{{ url_for('static', filename='js/about.js') }}"></script>
 {% endblock %}

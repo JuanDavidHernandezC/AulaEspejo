@@ -206,3 +206,14 @@ h1, h2, h3, h4 {
     flex-direction: column;
   }
 }
+
+.fade-section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
