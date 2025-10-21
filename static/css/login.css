@@ -1,126 +1,289 @@
-/* Fondo general del login */
+/* login.css - Tema HAMPITE TEA */
+:root {
+  --tea-green: #2d5016;
+  --tea-light: #4a7c59;
+  --tea-gold: #d4a017;
+  --tea-cream: #fef7e5;
+  --tea-brown: #8b4513;
+  --tea-dark: #1a3310;
+}
+
+/* Fondo con textura de hojas de té */
 body {
-  background: linear-gradient(135deg, #e6fff3, #b2f2bb, #a5f3fc);
+  background: 
+    linear-gradient(135deg, #f8fdf8 0%, #e8f5e8 50%, #d4edda 100%),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><path fill="%232d5016" d="M30,20 Q40,10 50,20 T70,20 Q80,30 70,40 T70,60 Q60,70 50,60 T30,60 Q20,50 30,40 Z"/></svg>');
+  background-size: cover, 200px 200px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: "Poppins", sans-serif;
-  animation: fadeIn 1.2s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: gentleAppear 1.2s ease-out;
 }
 
-/* Animación de aparición suave */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes gentleAppear {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px) scale(0.98);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1);
+  }
 }
 
-/* Contenedor del formulario */
+/* Contenedor principal con efecto vidrio */
 .bg-white {
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  box-shadow: 
+    0 20px 40px rgba(45, 80, 22, 0.15),
+    0 8px 25px rgba(212, 160, 23, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  z-index: 1;
 }
 
-/* Bordes animados tipo “resplandor” */
+/* Efecto de borde sutil */
 .bg-white::before {
-  content: "";
+  content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.2));
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--tea-green), var(--tea-gold), var(--tea-light));
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
 }
 
-.bg-white:hover::before {
-  opacity: 1;
+@keyframes shimmer {
+  0%, 100% { background-position: -200% 0; }
+  50% { background-position: 200% 0; }
 }
 
-/* Título principal */
+/* Título con gradiente natural */
 h2 {
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 4px rgba(16, 185, 129, 0.15);
-}
-
-/* Inputs */
-input {
-  background-color: #f8fafc;
-  border: 1px solid #d1d5db;
-  transition: all 0.3s ease;
-}
-
-input:focus {
-  background-color: #ffffff;
-  border-color: #34d399;
-  box-shadow: 0 0 10px rgba(52, 211, 153, 0.3);
-}
-
-/* Botón principal */
-button {
+  background: linear-gradient(135deg, var(--tea-green), var(--tea-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  font-size: 2.5rem;
+  letter-spacing: -0.5px;
+  text-align: center;
+  margin-bottom: 2rem;
   position: relative;
-  background: linear-gradient(135deg, #10b981, #059669);
-  border: none;
+  padding-bottom: 15px;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--tea-gold), var(--tea-brown));
+  border-radius: 2px;
+}
+
+/* Labels elegantes */
+label {
+  color: var(--tea-dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  display: block;
   transition: all 0.3s ease;
   letter-spacing: 0.3px;
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
 }
 
-button:hover {
+/* Inputs con diseño de té */
+input {
+  background: rgba(248, 252, 248, 0.9) !important;
+  border: 2px solid #e8f5e8 !important;
+  border-radius: 12px !important;
+  padding: 14px 16px !important;
+  font-size: 16px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--tea-dark) !important;
+  box-shadow: 
+    inset 0 2px 4px rgba(45, 80, 22, 0.05),
+    0 2px 8px rgba(45, 80, 22, 0.03);
+  position: relative;
+  z-index: 10;
+}
+
+input::placeholder {
+  color: #94a38f !important;
+  font-style: italic;
+  opacity: 0.7 !important;
+}
+
+/* Efecto focus mejorado */
+input:focus {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: var(--tea-light) !important;
+  box-shadow: 
+    0 0 0 4px rgba(74, 124, 89, 0.15),
+    inset 0 2px 4px rgba(45, 80, 22, 0.05) !important;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  outline: none;
 }
 
-/* Texto inferior (“¿No tienes cuenta?”) */
+/* Botón con gradiente de té */
+button {
+  background: linear-gradient(135deg, var(--tea-green), var(--tea-light)) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 16px 24px !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  letter-spacing: 0.5px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 25px rgba(45, 80, 22, 0.3),
+    0 4px 12px rgba(212, 160, 23, 0.2);
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* Efecto hover del botón */
+button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 12px 35px rgba(45, 80, 22, 0.4),
+    0 6px 18px rgba(212, 160, 23, 0.25);
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+  transition: left 0.6s;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+/* Texto del enlace */
 p {
-  color: #374151;
+  color: var(--tea-dark);
+  font-size: 0.95rem;
+  text-align: center;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 2;
 }
 
 p a {
-  color: #047857;
-  transition: color 0.3s ease;
+  color: var(--tea-light);
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+p a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--tea-gold);
+  transition: width 0.3s ease;
 }
 
 p a:hover {
-  color: #065f46;
+  color: var(--tea-green);
 }
 
-/* Sombras suaves y esquinas redondeadas más “modernas” */
+p a:hover::after {
+  width: 100%;
+}
+
+/* Efectos de partículas de té sutiles */
+.bg-white::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(212, 160, 23, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(74, 124, 89, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.bg-white:hover::after {
+  opacity: 1;
+}
+
+/* Asegurar que los inputs sean completamente funcionales */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  z-index: 20 !important;
+  position: relative !important;
+  -webkit-text-fill-color: var(--tea-dark) !important;
+  opacity: 1 !important;
+}
+
+/* Estilos para autofill del navegador */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--tea-dark) !important;
+  -webkit-box-shadow: 0 0 0px 1000px #f8fcf8 inset !important;
+  border: 2px solid #e8f5e8 !important;
+  border-radius: 12px !important;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .bg-white {
+    margin: 1rem;
+    padding: 2rem 1.5rem !important;
+    border-radius: 20px;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  input {
+    padding: 12px 14px !important;
+  }
+}
+
+/* Animación sutil al cargar */
+@keyframes leafFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
 .bg-white {
-  border-radius: 1.5rem;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
-}
-
-/* Animación flotante del card */
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-  100% { transform: translateY(0); }
-}
-
-.bg-white:hover {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Efecto sutil en los labels */
-label {
-  font-weight: 600;
-  color: #065f46;
-  transition: color 0.3s ease;
-}
-
-input:focus + label,
-label:hover {
-  color: #10b981;
-}
-/* --- FIX: Evita que el resplandor bloquee los clics --- */
-.bg-white {
-  position: relative;
-  z-index: 1; /* el contenido queda por encima */
-}
-
-.bg-white::before {
-  pointer-events: none; /* permite clics a través */
-  z-index: 0; /* pseudo-elemento por debajo */
+  animation: leafFloat 8s ease-in-out infinite;
 }
