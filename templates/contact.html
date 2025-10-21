@@ -3,11 +3,11 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
 
 <section class="contact-hero">
-  <h1>📬 Contáctanos</h1>
+  <h1>🌿 Contáctanos</h1>
   <p>Nos encanta escuchar a nuestros clientes. Envíanos tus dudas o sugerencias.</p>
 </section>
 
-<section class="contact-form">
+<section class="contact-form tea-background">
   <form>
     <div class="form-group">
       <label>Nombre</label>
@@ -28,19 +28,62 @@
   </form>
 </section>
 
-<section class="contact-info">
-  <div class="info-card">
-    <h3>📍 Dirección</h3>
-    <p>	Av. Pío Jaramillo Alvarado y Reinaldo Espinosa​ Loja, Loja, Ecuador</p>
+<footer class="footer tea-background">
+  <div class="footer-container">
+
+    <!-- Columna 1 -->
+    <div class="footer-info">
+      <h3>🌱 Hampite</h3>
+      <p>Tienda online de tés, infusiones y bienestar natural.</p>
+      <p>Promovemos el bienestar y la conexión con la naturaleza.</p>
+    </div>
+
+    <!-- Columna 2 -->
+    <div class="footer-details">
+      <div class="info-card">
+        <h3>📍 Dirección</h3>
+        <p>Av. Pío Jaramillo Alvarado y Reinaldo Espinosa Loja, Loja, Ecuador</p>
+      </div>
+      <div class="info-card">
+        <h3>📞 Teléfono</h3>
+        <p>+593 55 1234 5678</p>
+      </div>
+      <div class="info-card">
+        <h3>📧 Correo</h3>
+        <p>contacto@hampite.com</p>
+      </div>
+    </div>
+
+    <!-- Columna 3 -->
+    <div class="social-section">
+      <h3>🌸 Síguenos</h3>
+
+      <!-- RUEDA DE ICONOS -->
+      <div class="main fade-in">
+        <div class="up">
+          <button class="card card1">
+            <i class="fa-brands fa-instagram"></i>
+          </button>
+          <button class="card card2">
+            <i class="fa-brands fa-twitter"></i>
+          </button>
+        </div>
+        <div class="down">
+          <button class="card card3">
+            <i class="fa-brands fa-facebook-f"></i>
+          </button>
+          <button class="card card4">
+            <i class="fa-brands fa-tiktok"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
   </div>
-  <div class="info-card">
-    <h3>📞 Teléfono</h3>
-    <p>+593 55 1234 5678</p>
+
+  <div class="footer-bottom">
+    © 2025 Hampite — Todos los derechos reservados.
   </div>
-  <div class="info-card">
-    <h3>📧 Correo</h3>
-    <p>contacto@hampite.com</p>
-  </div>
-</section>
+</footer>
 
 {% endblock %}

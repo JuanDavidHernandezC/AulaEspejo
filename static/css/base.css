@@ -1,0 +1,128 @@
+body {
+  background-color: #022b23;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar con fondo más oscuro y brillo sutil */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  background: linear-gradient(90deg, #014d3b 0%, #026b52 100%);
+  backdrop-filter: blur(6px);
+  border-radius: 0 0 15px 15px;
+  box-shadow: 0 4px 15px rgba(0, 255, 180, 0.25);
+}
+
+/* Logo */
+.nav-logo {
+  font-weight: 700;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffffff;
+}
+
+/* Contenedor de botones */
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 25px;
+}
+
+/* Botones con mejor contraste */
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(145deg, #45ffb8, #1bd48e);
+  color: #004a36;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 50px;
+  transition: all 0.4s ease;
+  font-size: 1.05rem;
+  box-shadow: 0 4px 10px rgba(0, 255, 180, 0.25);
+}
+
+.nav-btn .icon {
+  width: 26px;
+  height: 26px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover más oscuro y definido */
+.nav-btn:hover {
+  background: linear-gradient(145deg, #00c27d, #009e6e);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 255, 160, 0.4),
+              0 0 40px rgba(0, 255, 180, 0.3);
+  transform: translateY(-4px);
+}
+
+.nav-btn:hover .icon {
+  transform: scale(1.2);
+  color: #ffffff;
+}
+
+/* Sección usuario / login / registro */
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.auth-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #eafff7;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.auth-icon {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  transition: transform 0.3s ease;
+}
+
+/* Hover en login / registro */
+.auth-link.login:hover {
+  color: #5effc5;
+  transform: scale(1.1);
+}
+
+.auth-link.register:hover {
+  color: #47f0b3;
+  transform: scale(1.1);
+}
+
+.auth-link.logout:hover {
+  color: #ff5555;
+  transform: scale(1.1);
+}
+
+.auth-link:hover .auth-icon {
+  transform: translateY(-3px);
+}
+
+.welcome {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* Contenido principal */
+.main-container {
+  margin-top: 40px;
+  padding: 20px;
+}
