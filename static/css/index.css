@@ -1,3 +1,7 @@
+/* ----------------------------
+   ESTILO PROFESIONAL EMPRESA DE TÉ
+----------------------------- */
+
 * {
   margin: 0;
   padding: 0;
@@ -6,58 +10,58 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  color: #1f2937;
-  background: linear-gradient(180deg, #f8fff9 0%, #eafff2 100%);
+  color: #1a2e25;
+  background: linear-gradient(180deg, #f9fff9 0%, #eefaf3 100%);
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
-h2 {
-  font-weight: 700;
-}
-
-p {
-  line-height: 1.6;
-}
-
+/* ----------------------------
+   HERO PRINCIPAL
+----------------------------- */
 .hero {
   position: relative;
   height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   padding-left: 10%;
-  background: url('https://images.unsplash.com/photo-1507914372368-b9e0bd7e5d3d?w=1600')
-    center/cover no-repeat;
+  background: url('https://images.unsplash.com/photo-1507914372368-b9e0bd7e5d3d?w=1600&q=80') center/cover no-repeat;
   color: #fff;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 60, 40, 0.55);
+  background: rgba(5, 45, 25, 0.65);
+  backdrop-filter: blur(3px);
   z-index: 1;
-  backdrop-filter: blur(2px);
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 600px;
+  max-width: 650px;
   animation: fadeIn 1.5s ease forwards;
 }
 
 .hero h1 {
-  font-size: 3.5rem;
+  font-size: 3.8rem;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  line-height: 1.2;
 }
 
 .hero .brand {
-  color: #a7f3d0;
+  background: linear-gradient(90deg, #25b36b, #79f2a2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero p {
-  font-size: 1.3rem;
-  margin-bottom: 30px;
+  font-size: 1.25rem;
+  margin-bottom: 40px;
+  color: #e7fbee;
 }
 
 .buttons {
@@ -66,7 +70,7 @@ p {
 }
 
 .btn {
-  padding: 14px 34px;
+  padding: 14px 36px;
   border-radius: 50px;
   font-weight: 600;
   text-decoration: none;
@@ -74,100 +78,117 @@ p {
 }
 
 .btn.primary {
-  background-color: #059669;
+  background: linear-gradient(90deg, #25b36b, #059669);
   color: #fff;
+  box-shadow: 0 4px 20px rgba(5, 150, 105, 0.4);
 }
 
 .btn.primary:hover {
-  background-color: #047857;
+  background: linear-gradient(90deg, #047857, #065f46);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(4, 120, 87, 0.5);
 }
 
 .btn.secondary {
-  border: 2px solid #a7f3d0;
-  color: #a7f3d0;
+  border: 2px solid #34d399;
+  color: #34d399;
 }
 
 .btn.secondary:hover {
-  background-color: #a7f3d0;
-  color: #065f46;
+  background: linear-gradient(90deg, #34d399, #10b981);
+  color: #fff;
+  transform: translateY(-3px);
 }
 
+/* ----------------------------
+   SECCIÓN DE VALORES / FEATURES
+----------------------------- */
 .features {
-  padding: 100px 10%;
+  padding: 120px 10%;
   background-color: #ffffff;
+  text-align: center;
 }
 
 .features h2 {
-  font-size: 2.5rem;
-  color: #065f46;
+  font-size: 2.6rem;
+  color: #064e3b;
   margin-bottom: 0.5rem;
 }
 
 .features .subtitle {
-  color: #6b7280;
-  margin-bottom: 3rem;
+  color: #64748b;
+  margin-bottom: 3.5rem;
+  font-size: 1.1rem;
 }
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2.5rem;
 }
 
 .card {
   background: #ffffff;
   border-radius: 20px;
-  padding: 2.5rem 2rem;
+  padding: 3rem 2rem;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
+  border-top: 4px solid transparent;
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(5, 150, 105, 0.15);
+  border-top: 4px solid #34d399;
 }
 
 .card img {
-  width: 70px;
-  margin-bottom: 1.2rem;
+  width: 80px;
+  margin-bottom: 1.5rem;
 }
 
 .card h3 {
   color: #047857;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   margin-bottom: 0.5rem;
 }
 
+/* ----------------------------
+   PRODUCTOS DESTACADOS
+----------------------------- */
 .products-preview {
   padding: 100px 10%;
-  background: #ecfdf5;
+  background: #f0fdf4;
   border-radius: 60px;
+  text-align: center;
 }
 
 .products-preview h2 {
   font-size: 2.5rem;
-  color: #065f46;
+  color: #064e3b;
   margin-bottom: 3rem;
 }
 
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .product {
   background: white;
-  border-radius: 20px;
+  border-radius: 25px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
 }
 
 .product:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(5, 150, 105, 0.15);
+  border-color: #34d399;
 }
 
 .product img {
@@ -177,46 +198,69 @@ p {
 }
 
 .product .info {
-  padding: 1.5rem;
+  padding: 1.8rem;
   text-align: left;
 }
 
 .product h3 {
   color: #047857;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
 }
 
 .product p {
-  color: #4b5563;
+  color: #475569;
+  font-size: 0.95rem;
 }
 
+/* ----------------------------
+   CTA FINAL
+----------------------------- */
 .cta {
   position: relative;
-  background: linear-gradient(135deg, #6ee7b7, #34d399);
-  margin: 120px 0 0;
+  background: linear-gradient(135deg, #34d399, #059669);
+  margin-top: 120px;
   padding: 120px 10%;
-  color: #064e3b;
+  color: #f0fdf4;
+  text-align: center;
+  border-radius: 40px 40px 0 0;
+  overflow: hidden;
 }
 
-.cta-content {
-  max-width: 700px;
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent 70%);
 }
 
 .cta h2 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   margin-bottom: 15px;
 }
 
 .cta p {
   font-size: 1.2rem;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .btn.large {
   font-size: 1.1rem;
-  padding: 16px 40px;
+  padding: 18px 45px;
+  background: #fff;
+  color: #065f46;
+  border: none;
+  transition: all 0.3s ease;
 }
 
+.btn.large:hover {
+  background: #d1fae5;
+  transform: scale(1.05);
+}
+
+/* ----------------------------
+   ANIMACIÓN GLOBAL
+----------------------------- */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -228,11 +272,14 @@ p {
   }
 }
 
+/* ----------------------------
+   RESPONSIVE
+----------------------------- */
 @media (max-width: 768px) {
   .hero {
     justify-content: center;
-    padding: 0 5%;
     text-align: center;
+    padding: 0 5%;
   }
   .hero-content {
     max-width: 90%;
@@ -243,7 +290,7 @@ p {
     padding: 70px 5%;
   }
   .hero h1 {
-    font-size: 2.3rem;
+    font-size: 2.5rem;
   }
   .features h2,
   .products-preview h2,
