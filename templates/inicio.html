@@ -1,7 +1,111 @@
 {% extends "base.html" %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
+{% endblock %}
 {% block content %}
-  <div class="card p-4">
-    <h3>Panel de {{ user.nombre }}</h3>
-    <p>Bienvenido a tu espacio. Aquí incorporaremos los formularios de encuesta y los modelos ML.</p>
+<div class="card p-4 shadow-sm">
+  <h3>Panel de {{ user.nombre }}</h3>
+  <p>Bienvenido a tu espacio. Aquí puedes usar los modelos inteligentes del sistema.</p>
+
+  <hr>
+
+  <!-- === Formulario: Recomendador de Té === -->
+  <div class="mt-4">
+    <h4>🍵 Recomendador de Té</h4>
+    <p>Completa los siguientes campos para recibir una recomendación personalizada de té.</p>
+
+    <form method="POST" class="mt-3">
+      <input type="hidden" name="form_type" value="te">
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Tipo de té</label>
+          <input type="text" name="tipo" class="form-control" placeholder="Ej: verde, negro, herbal" required>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label>Efecto deseado</label>
+          <input type="text" name="efecto" class="form-control" placeholder="Ej: relajante, energizante" required>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label>Sabor preferido</label>
+          <input type="text" name="sabor" class="form-control" placeholder="Ej: dulce, amargo, mentolado" required>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <label>Tiempo de disolución del té (segundos)</label>
+          <input type="number" name="tiempo_infusion" class="form-control"
+            step="1" min="30" max="90"
+            placeholder="Ej: 45" required>
+          <small class="text-muted">
+            Indica cuántos segundos quieres que tarde el té en disolverse (entre 30 y 90 segundos).
+          </small>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <label>Temperatura del agua (°C)</label>
+          <input type="number" name="temperatura" class="form-control" placeholder="Ej: 80-90 grados" step="0.1" required>
+        </div>
+      </div>
+
+      <button class="btn btn-success mt-2">Obtener Recomendación</button>
+    </form>
+
+    {% if recomendacion is not none %}
+    <div class="alert alert-success mt-4">
+      <h5>✨ Recomendaciones:</h5>
+      <pre>{{ recomendacion }}</pre>
+    </div>
+    {% endif %}
   </div>
+
+  <hr class="my-5">
+
+  <!-- === Formulario: Segmentador de Clientes === -->
+  <div>
+    <h4>👥 Segmentador de Clientes</h4>
+    <p>Completa los datos del cliente para predecir a qué segmento pertenece.</p>
+
+    <form method="POST" class="mt-3">
+      <input type="hidden" name="form_type" value="cliente">
+
+      <div class="row">
+        <div class="col-md-3 mb-3">
+          <label>Edad</label>
+          <input type="number" name="edad" class="form-control" placeholder="Ej: 25" required>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <label>Ingreso mensual (USD)</label>
+          <input type="number" name="ingreso" class="form-control" step="0.01" placeholder="Ej: 800" required>
+        </div>
+
+        <div class="col-md-2 mb-3">
+          <label>Salud (1-5)</label>
+          <input type="number" name="salud" class="form-control" min="1" max="5" required>
+        </div>
+
+        <div class="col-md-2 mb-3">
+          <label>Actividad (1-5)</label>
+          <input type="number" name="actividad" class="form-control" min="1" max="5" required>
+        </div>
+
+        <div class="col-md-2 mb-3">
+          <label>Frecuencia consumo (1-5)</label>
+          <input type="number" name="frecuencia" class="form-control" min="1" max="5" required>
+        </div>
+      </div>
+
+      <button class="btn btn-primary mt-2">Predecir Segmento</button>
+    </form>
+
+    {% if segmento %}
+    <div class="alert alert-info mt-4">
+      <h5>🧩 Segmento al cual perteneces:</h5>
+      <strong>{{ segmento }}</strong>
+    </div>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}

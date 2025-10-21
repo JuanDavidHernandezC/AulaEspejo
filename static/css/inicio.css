@@ -1,0 +1,473 @@
+/* inicio.css - Estilos para HAMPITE TEA - Té Efervescente Natural */
+/* Versión corregida con overlays que no bloquean interacción */
+
+:root {
+  --neon-green: #0DF205;
+  --olive-green: #448C30;
+  --strong-yellow: #F2E205;
+  --mustard: #D9A71B;
+  --black: #0D0D0D;
+  --cream: #FFFDF0;
+  --light-green: #F0FFEE;
+  --dark-olive: #2A5A1E;
+  
+  /* Gradientes personalizados */
+  --natural-gradient: linear-gradient(135deg, var(--olive-green) 0%, var(--neon-green) 100%);
+  --gold-gradient: linear-gradient(135deg, var(--mustard) 0%, var(--strong-yellow) 100%);
+  --earth-gradient: linear-gradient(135deg, var(--black) 0%, var(--olive-green) 100%);
+  
+  --card-shadow: 0 8px 30px rgba(68, 140, 48, 0.15);
+  --hover-shadow: 0 15px 40px rgba(13, 242, 5, 0.2);
+}
+
+/* Estilos generales con temática natural y moderna */
+body {
+  background: linear-gradient(135deg, var(--cream) 0%, var(--light-green) 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Efecto de hojas de té sutiles en el fondo */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(13, 242, 5, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(217, 167, 27, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(68, 140, 48, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Card principal con diseño orgánico */
+.card {
+  border: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(13, 242, 5, 0.1);
+  box-shadow: var(--card-shadow);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--natural-gradient);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--hover-shadow);
+}
+
+/* Títulos con estilo HAMPITE */
+h3 {
+  background: var(--earth-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: var(--gold-gradient);
+  border-radius: 10px;
+}
+
+h4 {
+  color: var(--dark-olive);
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  position: relative;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+h4::before {
+  content: "";
+  width: 6px;
+  height: 25px;
+  background: var(--natural-gradient);
+  border-radius: 10px;
+  display: inline-block;
+}
+
+/* Iconos decorativos */
+h4::after {
+  font-size: 1.3em;
+  margin-left: 5px;
+}
+
+/* Formularios con estilo natural */
+.form-control {
+  border: 2px solid #e8f5e8;
+  border-radius: 12px;
+  padding: 14px 18px;
+  transition: all 0.3s ease;
+  background: var(--light-green);
+  font-size: 15px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 2;
+}
+
+.form-control:focus {
+  border-color: var(--neon-green);
+  box-shadow: 0 0 0 3px rgba(13, 242, 5, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  background: white;
+  transform: translateY(-2px);
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Botones con gradientes vibrantes */
+.btn {
+  border: none;
+  border-radius: 12px;
+  padding: 14px 35px;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.btn-success {
+  background: var(--natural-gradient);
+  color: white;
+  box-shadow: 0 6px 20px rgba(68, 140, 48, 0.4);
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(13, 242, 5, 0.5);
+  color: white;
+}
+
+.btn-primary {
+  background: var(--gold-gradient);
+  color: var(--black);
+  box-shadow: 0 6px 20px rgba(242, 226, 5, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(217, 167, 27, 0.5);
+  color: var(--black);
+}
+
+/* Alertas con temática de té */
+.alert {
+  border: none;
+  border-radius: 16px;
+  padding: 25px;
+  margin-top: 25px;
+  box-shadow: var(--card-shadow);
+  border-left: 5px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+.alert::before {
+  content: "🍃";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5em;
+  opacity: 0.3;
+}
+
+.alert-success {
+  background: linear-gradient(135deg, #f0ffe8 0%, #e8f5e8 100%);
+  border-left-color: var(--neon-green);
+  color: var(--dark-olive);
+}
+
+.alert-info {
+  background: linear-gradient(135deg, #fff9e8 0%, #fef7e5 100%);
+  border-left-color: var(--mustard);
+  color: var(--black);
+}
+
+.alert h5 {
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: var(--dark-olive);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alert pre {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 18px;
+  border-radius: 12px;
+  border-left: 4px solid var(--olive-green);
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  margin-bottom: 0;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Separadores con estilo orgánico */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--olive-green), transparent);
+  margin: 3rem 0;
+  position: relative;
+}
+
+hr::before {
+  content: "🍵";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--cream);
+  padding: 0 15px;
+  font-size: 1.2em;
+}
+
+/* Efectos de hover en secciones */
+.mt-4, .mt-5 {
+  transition: all 0.3s ease;
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.mt-4:hover, .mt-5:hover {
+  transform: translateX(8px);
+  background: linear-gradient(90deg, transparent, rgba(13, 242, 5, 0.05), transparent);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .card {
+    margin: 10px;
+    border-radius: 16px;
+  }
+  
+  .btn {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 16px 25px;
+  }
+  
+  .row {
+    margin: 0 -5px;
+  }
+  
+  .col-md-6, .col-md-3, .col-md-2 {
+    padding: 0 8px;
+  }
+  
+  h3 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Animaciones sutiles */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.card {
+  animation: fadeInUp 0.8s ease;
+}
+
+.mt-4 {
+  animation: fadeInUp 1s ease;
+}
+
+.mt-5 {
+  animation: fadeInUp 1.2s ease;
+}
+
+/* Efectos de placeholder mejorados */
+.form-control::placeholder {
+  color: #a8c8a0;
+  font-style: italic;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus::placeholder {
+  transform: translateX(10px);
+  opacity: 0.5;
+}
+
+/* Estilo para inputs numéricos */
+input[type="number"] {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  background: white !important;
+}
+
+/* Badges y elementos destacados */
+.alert strong {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.3em;
+  padding: 5px 0;
+  display: inline-block;
+}
+
+/* Efecto de partículas efervescentes */
+.card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(13, 242, 5, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+/* ===== REPARACIÓN: EVITAR OVERLAYS QUE BLOQUEEN INPUTS/BOTONES ===== */
+
+/* Aseguramos que las decoraciones de fondo no capten clicks */
+body::before,
+.card::before,
+.card::after,
+.btn::before,
+.alert::before,
+hr::before {
+  pointer-events: none;
+}
+
+/* Forzar que los campos y botones estén encima de las decoraciones */
+.card,
+.card * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Pero dejar los pseudo-elementos decorativos visuales en un z-index inferior */
+body::before,
+.card::before,
+.card::after {
+  z-index: 0;
+}
+
+/* Aseguramos que los elementos interactivos (inputs y botones) acepten foco */
+.form-control,
+button,
+.btn {
+  z-index: 2;
+  position: relative;
+}
+
+/* Opcional: evitar que transformaciones drásticas en hover impidan clicks en móvil.
+   Si notas comportamiento raro en mobile, puedes reducir la traducción. */
+.card:hover {
+  transform: translateY(-6px);
+}
+
+/* Garantizar que los elementos de formulario sean completamente interactivos */
+form,
+form * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Asegurar que los inputs puedan recibir focus y clicks */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  z-index: 3 !important;
+  position: relative !important;
+}
+
+/* Botones siempre clickeables */
+button,
+.btn,
+input[type="submit"],
+input[type="button"] {
+  z-index: 3 !important;
+  position: relative !important;
+  cursor: pointer !important;
+}
+
+/* Remover cualquier posible overlay que bloquee interacción */
+.overlay-blocker {
+  display: none !important;
+}
+
+/* Asegurar que los pseudo-elementos no interfieran con la interacción */
+*::before,
+*::after {
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* Contenedor de formulario con máxima prioridad de interacción */
+.form-container {
+  position: relative;
+  z-index: 10;
+}
+
+/* Forzar que los elementos de entrada estén siempre por encima */
+.form-control:focus {
+  z-index: 4 !important;
+}

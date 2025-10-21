@@ -3,6 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 import pymysql
+import pandas as pd
+
+from models.recomendador_te import recomendar_te
+from models.segmentador_clientes import predecir_segmento
 
 pymysql.install_as_MySQLdb()
 
@@ -26,11 +30,9 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-# Crear las tablas si no existen
 with app.app_context():
     db.create_all()
 
-# -------- Decorador ------- #
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -50,10 +52,44 @@ def load_logged_in_user():
 def index():
     return render_template('index.html', user=g.user)
 
-@app.route('/inicio')
+@app.route('/inicio', methods=['GET', 'POST'])
 @login_required
 def inicio():
-    return render_template('inicio.html', user=g.user)
+    recomendacion = None
+    segmento = None
+
+    if request.method == 'POST':
+        form_type = request.form.get('form_type')
+
+        # --- Formulario del recomendador de té ---
+        if form_type == 'te':
+            preferencias = {
+                'Tipo': request.form['tipo'],
+                'Efecto': request.form['efecto'],
+                'Sabor': request.form['sabor'],
+                'TiempoInfusion': float(request.form['tiempo_infusion']),
+                'Temperatura': float(request.form['temperatura'])
+            }
+            recomendacion = recomendar_te(preferencias)
+            flash('Recomendación generada con éxito 🍵', 'success')
+
+        # --- Formulario del segmentador de clientes ---
+        elif form_type == 'cliente':
+            cliente = {
+                'Edad': int(request.form['edad']),
+                'Ingreso': float(request.form['ingreso']),
+                'Salud': int(request.form['salud']),
+                'Actividad': int(request.form['actividad']),
+                'FrecuenciaConsumo': int(request.form['frecuencia']),
+                'Ciudad': 'Bogotá',
+                'Educacion': 'universitario',
+                'EstiloVida': 'activo',
+                'PreferenciaSabor': 'dulce'
+            }
+            segmento = predecir_segmento(cliente)
+            flash('Segmento identificado correctamente 👥', 'info')
+
+    return render_template('inicio.html', user=g.user, recomendacion=recomendacion, segmento=segmento)
 
 @app.route('/products')
 def products():
@@ -67,7 +103,7 @@ def about():
 def contact():
     return render_template('contact.html', user=g.user)
 
-# ----- Regitro y login ------- #
+# ----- Registro y login ------- #
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
