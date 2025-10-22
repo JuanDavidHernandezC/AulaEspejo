@@ -6,33 +6,288 @@
 {% endblock %}
 
 {% block content %}
-  <div class="flex-grow flex items-center justify-center py-5">
-    <div class="bg-white p-10 rounded-2xl shadow-lg w-full max-w-md">
-      <h2 class="text-2xl font-bold text-center text-green-700 mb-6">Iniciar sesión</h2>
+<div class="split-layout">
+  <!-- Lado izquierdo: Nueva taza de té kawaii mejorada -->
+  <div class="tea-side">
+    <div class="tea-scene">
+      <!-- Fondo decorativo con hojas y burbujas -->
+      <div class="floating-elements">
+        <div class="floating-leaf">🌿</div>
+        <div class="floating-bubble">💚</div>
+        <div class="floating-leaf">🍃</div>
+        <div class="floating-bubble">💫</div>
+        <div class="floating-leaf">✨</div>
+      </div>
+      
+      <!-- Nueva taza de té kawaii mejorada -->
+      <div class="cute-teacup">
+        <!-- Plato -->
+        <div class="teacup-saucer">
+          <div class="saucer-design"></div>
+        </div>
+        
+        <!-- Cuerpo de la taza con diseño kawaii mejorado -->
+        <div class="teacup-body">
+          <div class="cup-rim"></div>
+          <div class="tea-liquid">
+            <!-- Burbujas animadas -->
+            <div class="tea-bubbles">
+              <div class="bubble bubble-1"></div>
+              <div class="bubble bubble-2"></div>
+              <div class="bubble bubble-3"></div>
+              <div class="bubble bubble-4"></div>
+            </div>
+            <!-- Cara kawaii en el líquido -->
+            <div class="liquid-face">
+              <div class="liquid-eyes">
+                <div class="liquid-eye"></div>
+                <div class="liquid-eye"></div>
+              </div>
+              <div class="liquid-smile"></div>
+            </div>
+          </div>
+          <!-- Diseño decorativo en la taza -->
+          <div class="cup-design">
+            <div class="cup-sparkle"></div>
+          </div>
+        </div>
+        
+        <!-- Asa decorativa -->
+        <div class="teacup-handle">
+          <div class="handle-sparkle"></div>
+        </div>
+        
+        <!-- Elementos adicionales kawaii -->
+        <div class="teacup-accessories">
+          <!-- Bolsita de té flotante -->
+          <div class="floating-teabag">
+            <div class="teabag-string"></div>
+            <div class="teabag-body"></div>
+          </div>
+          <!-- Pequeñas hojas flotantes -->
+          <div class="floating-mini-leaf leaf-1">🍃</div>
+          <div class="floating-mini-leaf leaf-2">🌿</div>
+        </div>
+      </div>
 
-      <form action="{{ url_for('login') }}" method="POST" class="space-y-4">
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">Correo electrónico</label>
-          <input type="email" name="email" required placeholder="tucorreo@ejemplo.com"
-            class="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-green-400 focus:outline-none">
+      <!-- Vapor cute mejorado -->
+      <div class="cute-steam">
+        <div class="steam-puff puff-1">💭</div>
+        <div class="steam-puff puff-2">💭</div>
+        <div class="steam-puff puff-3">💭</div>
+      </div>
+    </div>
+    
+    <!-- Texto decorativo -->
+    <div class="tea-side-text">
+      <div class="text-container">
+        <h2 class="cute-title">¡Hola Tea-migo! 🍵</h2>
+        <p class="cute-subtitle">Tu momento de paz comienza aquí</p>
+        <div class="sparkle-effects">
+          <div class="sparkle">🌱</div>
+          <div class="sparkle">🍃</div>
+          <div class="sparkle">💚</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lado derecho: Formulario (sin cambios) -->
+  <div class="login-side">
+    <div class="login-box-cute">
+      <div class="login-header-cute">
+        <div class="header-icon">🫖</div>
+        <h1 class="welcome-title-cute">¡Bienvenido a tu espacio de té!</h1>
+        <p class="welcome-subtitle-cute">Estamos encantados de verte</p>
+      </div>
+
+      <form action="{{ url_for('login') }}" method="POST" class="login-form-cute">
+        <div class="input-group-cute">
+          <label class="input-label-cute">
+            <span class="label-icon">👤</span>
+            <span class="label-text">Nombre de usuario o email</span>
+          </label>
+          <div class="input-container-cute">
+            <input type="text" name="email" required 
+                   class="login-input-cute" 
+                   placeholder="ingresa tu usuario o email"
+                   id="usernameInput">
+            <div class="input-rainbow"></div>
+          </div>
         </div>
 
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">Contraseña</label>
-          <input type="password" name="password" required placeholder="********"
-            class="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-green-400 focus:outline-none">
+        <div class="input-group-cute">
+          <label class="input-label-cute">
+            <span class="label-icon">🔐</span>
+            <span class="label-text">Tu contraseña segura</span>
+          </label>
+          <div class="input-container-cute">
+            <input type="password" name="password" required 
+                   class="login-input-cute password-input" 
+                   placeholder="escribe tu contraseña"
+                   id="passwordInput">
+            <div class="input-rainbow"></div>
+          </div>
         </div>
 
-        <button type="submit"
-          class="w-full bg-green-600 text-white font-semibold py-2 rounded-md hover:bg-green-700 transition">
-          Entrar
+        <div class="form-options">
+          <label class="remember-me">
+            <input type="checkbox" name="remember">
+            <span class="checkmark"></span>
+            Recordar mi sesión
+          </label>
+          <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <div class="security-notice-cute">
+          <span class="security-icon">🛡️</span>
+          <span class="security-text">Tu información está protegida con encriptación</span>
+        </div>
+
+        <button type="submit" class="login-button-cute">
+          <span class="button-icon">🚀</span>
+          <span class="button-text">Iniciar mi experiencia de té</span>
+          <div class="button-magic"></div>
         </button>
       </form>
 
-      <p class="text-center text-sm text-gray-600 mt-4">
-        ¿No tienes cuenta?
-        <a href="{{ url_for('register') }}" class="text-green-700 font-medium hover:underline">Regístrate</a>
-      </p>
+      <div class="login-footer-cute">
+        <p class="footer-text">¿No tienes una cuenta? 
+          <a href="{{ url_for('register') }}" class="signup-link-cute">
+            <span class="link-icon">🎉</span>
+            <span>Regístrate ahora</span>
+          </a>
+        </p>
+        <div class="social-login">
+          <p>O inicia sesión con:</p>
+          <div class="social-buttons">
+            <button class="social-btn google-btn">
+              <span>Google</span>
+            </button>
+            <button class="social-btn github-btn">
+              <span>GitHub</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const teaScene = document.querySelector('.tea-scene');
+  const teacup = document.querySelector('.cute-teacup');
+  const liquidEyes = document.querySelectorAll('.liquid-eye');
+  const liquidSmile = document.querySelector('.liquid-smile');
+  const teabag = document.querySelector('.floating-teabag');
+  const usernameInput = document.getElementById('usernameInput');
+  const passwordInput = document.getElementById('passwordInput');
+  
+  // Sistema de seguimiento ocular mejorado
+  teaScene.addEventListener('mousemove', (e) => {
+    const rect = teaScene.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    
+    // Movimiento ocular suave para los ojos del líquido
+    const moveX = (x - 50) * 0.08;
+    const moveY = (y - 50) * 0.06;
+    
+    liquidEyes.forEach(eye => {
+      eye.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
+    
+    // Expresiones según posición del mouse
+    teacup.classList.remove('look-happy', 'look-curious', 'look-surprised', 'look-love');
+    
+    if (x > 35 && x < 65 && y > 35 && y < 65) {
+      teacup.classList.add('look-love');
+      liquidSmile.style.transform = 'scaleY(1.2)';
+    } else if (x < 30) {
+      teacup.classList.add('look-curious');
+      liquidSmile.style.transform = 'scaleY(0.8)';
+    } else if (x > 70) {
+      teacup.classList.add('look-surprised');
+      liquidSmile.style.transform = 'scaleY(1.1)';
+    } else {
+      teacup.classList.add('look-happy');
+      liquidSmile.style.transform = 'scaleY(1)';
+    }
+  });
+  
+  // Interacciones con el formulario
+  usernameInput.addEventListener('focus', () => {
+    teacup.classList.add('excited');
+    teabag.style.animationDuration = '1.5s';
+  });
+  
+  usernameInput.addEventListener('blur', () => {
+    teacup.classList.remove('excited');
+    teabag.style.animationDuration = '3s';
+  });
+  
+  passwordInput.addEventListener('focus', () => {
+    teacup.classList.add('shy');
+    liquidSmile.style.transform = 'scaleY(0.7)';
+  });
+  
+  passwordInput.addEventListener('blur', () => {
+    teacup.classList.remove('shy');
+    liquidSmile.style.transform = 'scaleY(1)';
+  });
+  
+  // Efectos de escritura
+  let typingTimer;
+  usernameInput.addEventListener('input', () => {
+    teacup.classList.add('typing-dance');
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(() => {
+      teacup.classList.remove('typing-dance');
+    }, 1000);
+  });
+  
+  // Efectos de hover
+  teacup.addEventListener('mouseenter', () => {
+    teacup.classList.add('hover-bounce');
+  });
+  
+  teacup.addEventListener('mouseleave', () => {
+    teacup.classList.remove('hover-bounce');
+  });
+  
+  // Click especial
+  teacup.addEventListener('click', () => {
+    teacup.classList.add('click-spin');
+    setTimeout(() => {
+      teacup.classList.remove('click-spin');
+    }, 800);
+    
+    // Efecto de hojas mejorado
+    const leaves = ['🌿', '🍃', '💚', '🌱', '✨'];
+    for (let i = 0; i < 5; i++) {
+      createFloatingLeaf(leaves[i]);
+    }
+  });
+  
+  function createFloatingLeaf(leaf) {
+    const floatingLeaf = document.createElement('div');
+    floatingLeaf.className = 'floating-leaf-click';
+    floatingLeaf.textContent = leaf;
+    floatingLeaf.style.left = Math.random() * 100 + 'px';
+    floatingLeaf.style.animationDelay = Math.random() * 0.5 + 's';
+    teaScene.appendChild(floatingLeaf);
+    
+    setTimeout(() => {
+      floatingLeaf.remove();
+    }, 2000);
+  }
+  
+  // Animación de elementos flotantes
+  const floatingElements = document.querySelectorAll('.floating-leaf, .floating-bubble');
+  floatingElements.forEach((element, index) => {
+    element.style.animationDelay = `${index * 1.2}s`;
+  });
+});
+</script>
 {% endblock %}
