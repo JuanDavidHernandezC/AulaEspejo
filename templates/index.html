@@ -2,86 +2,269 @@
 
 {% block extra_css %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 
-<!-- HERO PRINCIPAL -->
+<!-- HERO CON IMAGEN DE FONDO DE TÉ -->
 <section class="hero">
-  <div class="hero-overlay"></div>
+  <div class="hero-background">
+    <div class="background-overlay"></div>
+    <img src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="Té efervescente HAMPITE" class="bg-image">
+  </div>
+  <div class="bubble-container"></div>
   <div class="hero-content">
-    <h1>🌿 Bienvenido a <span class="brand">Hampite</span></h1>
-    <p>Descubre el placer del té natural, creado con amor por la salud y el planeta 🌎</p>
+    <div class="logo-container">
+      <span class="logo-icon">🌿</span>
+      <h1 class="brand-name">HAMPITE</h1>
+    </div>
+    <p class="hero-tagline">Té efervescente: bienestar natural en cada tableta</p>
+    <p class="hero-description">Combinamos la sabiduría ancestral andina con innovación moderna para ofrecerte una experiencia única de bienestar.</p>
     <div class="buttons">
-      <a href="{{ url_for('products') }}" class="btn primary">Explorar productos</a>
-      <a href="{{ url_for('register') }}" class="btn secondary">Únete gratis</a>
+      <a href="{{ url_for('products') }}" class="btn primary">Descubrir productos</a>
+      <a href="{{ url_for('register') }}" class="btn secondary">Unirse a Hampite</a>
     </div>
-  </div>
-</section>
-
-<!-- BENEFICIOS -->
-<section class="features">
-  <h2>✨ ¿Por qué elegir Hampite?</h2>
-  <p class="subtitle">Cada taza cuenta una historia de equilibrio, sabor y sostenibilidad.</p>
-
-  <div class="cards">
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png" alt="natural">
-      <h3>100% Natural</h3>
-      <p>Ingredientes puros, sin conservantes, cultivados con respeto por la tierra.</p>
-    </div>
-
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/2909/2909767.png" alt="fácil">
-      <h3>Fácil e Instantáneo</h3>
-      <p>Solo añade agua caliente y disfruta de un momento de paz.</p>
-    </div>
-
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/3779/3779288.png" alt="eco">
-      <h3>Eco-friendly</h3>
-      <p>Empaques biodegradables y apoyo al comercio justo.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUCTOS DESTACADOS -->
-<section class="products-preview">
-  <h2>🍵 Nuestros tés favoritos</h2>
-
-  <div class="product-grid">
-    <div class="product">
-      <img src="https://www.mundiario.com/asset/thumbnail,1280,720,center,center/media/mundiario/images/2019/03/24/2019032421535718130.png" alt="Té verde">
-      <div class="info">
-        <h3>Té Verde Menta</h3>
-        <p>Energía natural y antioxidantes para comenzar el día.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Natural</span>
       </div>
-    </div>
-
-    <div class="product">
-      <img src="https://th.bing.com/th/id/R.c4585c3b3ee938c35df00f7a47c27c68?rik=bSqbqjUO55pmEw&riu=http%3a%2f%2fwww.telemundo.com%2fsites%2fnbcutelemundo%2ffiles%2fimages%2farticle%2fcover%2f2015%2f05%2f26%2fte-y-flores-de-manzanilla.jpg&ehk=vB8xAKWbSr4pTeYQhmD78eG0DrjJPiRJWtgR9huk15A%3d&risl=&pid=ImgRaw&r=0" alt="Manzanilla">
-      <div class="info">
-        <h3>Té de Manzanilla</h3>
-        <p>Relajante y suave, ideal para tus noches tranquilas.</p>
+      <div class="stat">
+        <span class="stat-number">0%</span>
+        <span class="stat-label">Conservantes</span>
       </div>
-    </div>
-
-    <div class="product">
-      <img src="https://imagenes.heraldo.es/files/image_990_556/uploads/imagenes/2024/08/08/te-de-hibisco-gsc1.jpeg" alt="Hibisco">
-      <div class="info">
-        <h3>Té de Hibisco</h3>
-        <p>Refrescante, colorido y lleno de antioxidantes naturales.</p>
+      <div class="stat">
+        <span class="stat-number">♻️</span>
+        <span class="stat-label">Eco-friendly</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
-<section class="cta">
-  <div class="cta-content">
-    <h2>🌸 Vive la experiencia Hampite</h2>
-    <p>Únete a miles de personas que ya disfrutan de un bienestar natural.</p>
-    <a href="{{ url_for('register') }}" class="btn primary large">Comienza tu viaje</a>
+<!-- SECCIÓN DE VALORES EMPRESARIALES CON IMÁGENES -->
+<section class="values">
+  <div class="container">
+    <h2 class="section-title">Nuestro Compromiso</h2>
+    <div class="values-grid">
+      <div class="value-item">
+        <div class="value-image" style="background-image: url('https://images.unsplash.com/photo-1597318378731-186b8b2c8c85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+          <div class="image-overlay"></div>
+        </div>
+        <div class="value-content">
+          <h3>Calidad Natural</h3>
+          <p>Ingredientes 100% naturales seleccionados de los Andes, sin conservantes ni aditivos artificiales.</p>
+        </div>
+      </div>
+      
+      <div class="value-item">
+        <div class="value-image" style="background-image: url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+          <div class="image-overlay"></div>
+        </div>
+        <div class="value-content">
+          <h3>Sostenibilidad</h3>
+          <p>Empaques biodegradables y comercio justo con comunidades locales para un impacto positivo.</p>
+        </div>
+      </div>
+      
+      <div class="value-item">
+        <div class="value-image" style="background-image: url('https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+          <div class="image-overlay"></div>
+        </div>
+        <div class="value-content">
+          <h3>Innovación</h3>
+          <p>Tecnología efervescente que preserva nutrientes y sabores para una experiencia superior.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN DE PRESENTACIÓN CON NUEVA IMAGEN -->
+<section class="about">
+  <div class="container">
+    <div class="about-content">
+      <div class="text">
+        <h2>La Revolución del Té Efervescente</h2>
+        <p>Hampite nace de la fusión entre la riqueza natural de los Andes y la innovación tecnológica. Nuestro té efervescente libera sabor, bienestar y energía natural de forma instantánea, manteniendo todas las propiedades de las hierbas tradicionales.</p>
+        <div class="benefits">
+          <div class="benefit">
+            <span class="benefit-icon">🌿</span>
+            <div class="benefit-text">
+              <h4>Ingredientes Andinos</h4>
+              <p>Seleccionados de cultivos sostenibles en los Andes</p>
+            </div>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon">💧</span>
+            <div class="benefit-text">
+              <h4>Disolución Instantánea</h4>
+              <p>Preparación rápida sin perder propiedades naturales</p>
+            </div>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon">♻️</span>
+            <div class="benefit-text">
+              <h4>Empaque Ecológico</h4>
+              <p>Materiales biodegradables que respetan el planeta</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="image">
+        <div class="image-container">
+          <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Té efervescente Hampite">
+          <div class="image-badge">
+            <span>Novedad 2023</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS DESTACADOS MEJORADOS -->
+<section class="featured-products">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Nuestra Colección</h2>
+      <p class="section-subtitle">Descubre nuestros blends exclusivos diseñados para cada momento del día</p>
+    </div>
+    <div class="product-grid">
+      <!-- Té de Manzanilla - IMAGEN CORREGIDA -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1597481499750-3e11b15b53e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Té de Manzanilla Hampite">
+          <div class="product-overlay">
+            <a href="{{ url_for('products') }}" class="btn product-btn">Ver detalles</a>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Relajación & Calma</span>
+          <h3 class="product-name">Té de Manzanilla</h3>
+          <p class="product-description">Infusión suave y relajante perfecta para momentos de tranquilidad y descanso reparador.</p>
+          <div class="product-features">
+            <span class="feature">Relajante</span>
+            <span class="feature">Digestivo</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Té de Hibisco - IMAGEN DIFERENTE -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Té de Hibisco Hampite">
+          <div class="product-overlay">
+            <a href="{{ url_for('products') }}" class="btn product-btn">Ver detalles</a>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Vitalidad & Bienestar</span>
+          <h3 class="product-name">Té de Hibisco</h3>
+          <p class="product-description">Explosión de color y sabor con notas cítricas que revitalizan y aportan vitalidad natural.</p>
+          <div class="product-features">
+            <span class="feature">Antioxidante</span>
+            <span class="feature">Vitalidad</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Té Verde Menta - IMAGEN DIFERENTE -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Té Verde Menta Hampite">
+          <div class="product-overlay">
+            <a href="{{ url_for('products') }}" class="btn product-btn">Ver detalles</a>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Energía & Concentración</span>
+          <h3 class="product-name">Té Verde Menta</h3>
+          <p class="product-description">Combinación revitalizante de té verde antioxidante con frescura de menta para activar cuerpo y mente.</p>
+          <div class="product-features">
+            <span class="feature">Antioxidante</span>
+            <span class="feature">Energizante</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="products-cta">
+      <a href="{{ url_for('products') }}" class="btn outline">Ver todos los productos</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO DE ELABORACIÓN -->
+<section class="process">
+  <div class="container">
+    <h2 class="section-title">Nuestro Proceso Artesanal</h2>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Selección de Ingredientes</h3>
+        <p>Recolección manual de hierbas andinas en su punto óptimo de maduración.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Secado Natural</h3>
+        <p>Preservación de propiedades mediante técnicas de secado a baja temperatura.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Formulación Efervescente</h3>
+        <p>Creación de tabletas que liberan todo el sabor y nutrientes al contacto con agua.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>Empaque Sostenible</h3>
+        <p>Envases biodegradables que protegen el producto y el medio ambiente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonials">
+  <div class="container">
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="testimonial-content">
+          <p>"La practicidad de Hampite cambió mi rutina. El sabor es increíble y me encanta saber que estoy consumiendo productos 100% naturales."</p>
+        </div>
+        <div class="testimonial-author">
+          <span class="author-name">María González</span>
+          <span class="author-title">Cliente frecuente</span>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-content">
+          <p>"Como amante del té, me sorprendió la calidad y profundidad de sabor de las tabletas efervescentes. ¡Superaron mis expectativas!"</p>
+        </div>
+        <div class="testimonial-author">
+          <span class="author-name">Carlos Rodríguez</span>
+          <span class="author-title">Sommelier de té</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL MEJORADO -->
+<section class="cta-final">
+  <div class="cta-background">
+    <div class="background-overlay"></div>
+    <img src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="Té HAMPITE" class="bg-image">
+  </div>
+  <div class="container">
+    <div class="cta-content">
+      <h2>Únete a la Revolución del Bienestar Natural</h2>
+      <p>Descubre cómo Hampite puede transformar tu día a día con nuestros tés efervescentes naturales.</p>
+      <div class="cta-buttons">
+        <a href="{{ url_for('register') }}" class="btn primary large">Comenzar ahora</a>
+        <a href="{{ url_for('products') }}" class="btn secondary large">Ver catálogo</a>
+      </div>
+    </div>
   </div>
 </section>
 
