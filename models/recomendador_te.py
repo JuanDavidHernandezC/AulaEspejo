@@ -4,7 +4,7 @@ from sklearn.neighbors import NearestNeighbors
 
 data = pd.read_csv('data/hampite_tes.csv')
 data.columns = data.columns.str.lower()  
-
+ 
 mapeos = {
     'muy bajo': 0,
     'bajo': 1,
