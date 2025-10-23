@@ -67,7 +67,6 @@ def inicio():
                 'Tipo': request.form['tipo'],
                 'Efecto': request.form['efecto'],
                 'Sabor': request.form['sabor'],
-                'TiempoInfusion': float(request.form['tiempo_infusion']),
                 'Temperatura': float(request.form['temperatura']),
                 'Edad': int(request.form['edad'])
             }

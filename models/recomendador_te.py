@@ -52,7 +52,6 @@ def recomendar_te(preferencias):
       'Tipo': ...,
       'Efecto': ...,
       'Sabor': ...,
-      'TiempoInfusion': ...,
       'Temperatura': ...,
       'Edad': ...
     }
@@ -109,7 +108,6 @@ def recomendar_te(preferencias):
     elif "digest" in efecto:
         habitos.append("🍽️ Mastica lentamente y evita comidas pesadas en la noche.")
 
-    # FORMATO MEJORADO - Opción 1: Markdown con emojis
     texto_final = "✨ Tés Recomendados\n\n"
     
     for _, row in recomendaciones.iterrows():
