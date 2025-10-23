@@ -3,8 +3,8 @@ from sklearn.preprocessing import LabelEncoder, MinMaxScaler
 from sklearn.neighbors import NearestNeighbors
 
 data = pd.read_csv('data/hampite_tes.csv')
-data.columns = data.columns.str.lower()  
- 
+data.columns = data.columns.str.lower()
+
 mapeos = {
     'muy bajo': 0,
     'bajo': 1,
@@ -20,9 +20,8 @@ for col in ['nivel_acidez', 'intensidad_sabor', 'nivel_quimico']:
 label_cols = [
     'tipo', 'categoria', 'ingredientes',
     'uso_recomendado', 'target_principal',
-    'preferencia_publico', 'beneficios'
+    'edad_recomendada', 'preferencia_publico', 'beneficios'
 ]
-
 label_encoders = {}
 for col in label_cols:
     le = LabelEncoder()
@@ -37,16 +36,28 @@ num_cols = [
     'precio_estimado_usd',
     'calificacion_consumidor'
 ]
-
 scaler = MinMaxScaler()
 data[num_cols] = scaler.fit_transform(data[num_cols])
 
+# Entrenamiento del modelo de vecinos más cercanos
 features = label_cols + num_cols
 X = data[features]
 knn = NearestNeighbors(n_neighbors=3, metric='euclidean')
 knn.fit(X)
 
 def recomendar_te(preferencias):
+    """
+    Recibe:
+    {
+      'Tipo': ...,
+      'Efecto': ...,
+      'Sabor': ...,
+      'TiempoInfusion': ...,
+      'Temperatura': ...,
+      'Edad': ...
+    }
+    Retorna recomendaciones de tés y hábitos saludables.
+    """
     entrada = pd.DataFrame([preferencias])
     entrada.columns = entrada.columns.str.lower()
 
@@ -69,6 +80,49 @@ def recomendar_te(preferencias):
     entrada[num_cols] = scaler.transform(entrada[num_cols])
 
     distancias, indices = knn.kneighbors(entrada[features])
-    recomendaciones = data.iloc[indices[0]]
+    recomendaciones = data.iloc[indices[0]][['nombre', 'tipo', 'categoria', 'beneficios', 'precio_estimado_usd']].copy()
 
-    return recomendaciones[['nombre', 'tipo', 'categoria', 'beneficios', 'precio_estimado_usd']]
+    for col in ['tipo', 'categoria', 'beneficios']:
+        le = label_encoders[col]
+        recomendaciones[col] = le.inverse_transform(recomendaciones[col])
+
+    recomendaciones = recomendaciones[['nombre', 'beneficios', 'precio_estimado_usd']]
+
+    edad = int(preferencias.get('Edad', 30))
+    efecto = preferencias.get('Efecto', '').lower()
+
+    habitos = []
+    if edad < 25:
+        habitos.append("💧 Mantén buena hidratación (8 vasos de agua al día).")
+        habitos.append("🥦 Añade frutas y verduras frescas en cada comida.")
+    elif edad < 45:
+        habitos.append("🚶 Realiza caminatas diarias de 30 minutos.")
+        habitos.append("🧘 Prueba meditación o yoga si buscas equilibrio mental.")
+    else:
+        habitos.append("❤️ Controla tu presión y azúcar periódicamente.")
+        habitos.append("🕊️ Consume infusiones suaves antes de dormir.")
+
+    if "energ" in efecto:
+        habitos.append("☀️ Aprovecha la luz solar matutina para activar tu energía.")
+    elif "relaj" in efecto:
+        habitos.append("🌙 Evita pantallas brillantes 1 hora antes de dormir.")
+    elif "digest" in efecto:
+        habitos.append("🍽️ Mastica lentamente y evita comidas pesadas en la noche.")
+
+    # FORMATO MEJORADO - Opción 1: Markdown con emojis
+    texto_final = "✨ Tés Recomendados\n\n"
+    
+    for _, row in recomendaciones.iterrows():
+        nombre = row['nombre']
+        beneficios = row['beneficios']
+        precio = f"${row['precio_estimado_usd']:.2f}"
+        
+        texto_final += f"🍃 {nombre}\n"
+        texto_final += f"   💚 Beneficios: {beneficios}\n"
+        texto_final += f"   💰 Precio: {precio}\n\n"
+    
+    texto_final += "🌟 Hábitos Saludables Sugeridos\n\n"
+    for habito in habitos:
+        texto_final += f"• {habito}\n"
+
+    return texto_final
