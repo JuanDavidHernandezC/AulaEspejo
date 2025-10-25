@@ -7,10 +7,10 @@
 
 {% block content %}
 <div class="split-layout">
-  <!-- Lado izquierdo: Nueva taza de té kawaii mejorada -->
+
   <div class="tea-side">
     <div class="tea-scene">
-      <!-- Fondo decorativo con hojas y burbujas -->
+
       <div class="floating-elements">
         <div class="floating-leaf">🌿</div>
         <div class="floating-bubble">💚</div>
@@ -19,25 +19,25 @@
         <div class="floating-leaf">✨</div>
       </div>
       
-      <!-- Nueva taza de té kawaii mejorada -->
+
       <div class="cute-teacup">
-        <!-- Plato -->
+
         <div class="teacup-saucer">
           <div class="saucer-design"></div>
         </div>
         
-        <!-- Cuerpo de la taza con diseño kawaii mejorado -->
+      
         <div class="teacup-body">
           <div class="cup-rim"></div>
           <div class="tea-liquid">
-            <!-- Burbujas animadas -->
+          
             <div class="tea-bubbles">
               <div class="bubble bubble-1"></div>
               <div class="bubble bubble-2"></div>
               <div class="bubble bubble-3"></div>
               <div class="bubble bubble-4"></div>
             </div>
-            <!-- Cara kawaii en el líquido -->
+          
             <div class="liquid-face">
               <div class="liquid-eyes">
                 <div class="liquid-eye"></div>
@@ -46,18 +46,18 @@
               <div class="liquid-smile"></div>
             </div>
           </div>
-          <!-- Diseño decorativo en la taza -->
+         
           <div class="cup-design">
             <div class="cup-sparkle"></div>
           </div>
         </div>
         
-        <!-- Asa decorativa -->
+        
         <div class="teacup-handle">
           <div class="handle-sparkle"></div>
         </div>
         
-        <!-- Elementos adicionales kawaii -->
+        <!-- Elementos adicionales -->
         <div class="teacup-accessories">
           <!-- Bolsita de té flotante -->
           <div class="floating-teabag">
@@ -70,7 +70,7 @@
         </div>
       </div>
 
-      <!-- Vapor cute mejorado -->
+      <!-- Vapor  -->
       <div class="cute-steam">
         <div class="steam-puff puff-1">💭</div>
         <div class="steam-puff puff-2">💭</div>
@@ -92,7 +92,7 @@
     </div>
   </div>
 
-  <!-- Lado derecho: Formulario (sin cambios) -->
+  <!-- Lado derecho -->
   <div class="login-side">
     <div class="login-box-cute">
       <div class="login-header-cute">
@@ -184,13 +184,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const usernameInput = document.getElementById('usernameInput');
   const passwordInput = document.getElementById('passwordInput');
   
-  // Sistema de seguimiento ocular mejorado
+  // Sistema de seguimiento 
   teaScene.addEventListener('mousemove', (e) => {
     const rect = teaScene.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     
-    // Movimiento ocular suave para los ojos del líquido
+    // Movimiento ocular 
     const moveX = (x - 50) * 0.08;
     const moveY = (y - 50) * 0.06;
     
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
       teacup.classList.remove('click-spin');
     }, 800);
     
-    // Efecto de hojas mejorado
+    // Efecto de hojas 
     const leaves = ['🌿', '🍃', '💚', '🌱', '✨'];
     for (let i = 0; i < 5; i++) {
       createFloatingLeaf(leaves[i]);
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 2000);
   }
   
-  // Animación de elementos flotantes
+  // Animación 
   const floatingElements = document.querySelectorAll('.floating-leaf, .floating-bubble');
   floatingElements.forEach((element, index) => {
     element.style.animationDelay = `${index * 1.2}s`;

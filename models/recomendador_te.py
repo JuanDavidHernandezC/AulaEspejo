@@ -79,13 +79,13 @@ def recomendar_te(preferencias):
     entrada[num_cols] = scaler.transform(entrada[num_cols])
 
     distancias, indices = knn.kneighbors(entrada[features])
-    recomendaciones = data.iloc[indices[0]][['nombre', 'tipo', 'categoria', 'beneficios', 'precio_estimado_usd']].copy()
+    recomendaciones = data.iloc[indices[0]][['nombre', 'tipo', 'categoria', 'beneficios', 'uso_recomendado']].copy()
 
-    for col in ['tipo', 'categoria', 'beneficios']:
+    for col in ['tipo', 'categoria', 'beneficios', 'uso_recomendado']:
         le = label_encoders[col]
         recomendaciones[col] = le.inverse_transform(recomendaciones[col])
 
-    recomendaciones = recomendaciones[['nombre', 'beneficios', 'precio_estimado_usd']]
+    recomendaciones = recomendaciones[['nombre', 'beneficios', 'uso_recomendado']]
 
     edad = int(preferencias.get('Edad', 30))
     efecto = preferencias.get('Efecto', '').lower()
@@ -122,11 +122,11 @@ def recomendar_te(preferencias):
     for _, row in recomendaciones.iterrows():
         nombre = row['nombre']
         beneficios = row['beneficios']
-        precio = f"${row['precio_estimado_usd']:.2f}"
+        uso = row['uso_recomendado']
         
         texto_final += f"🍃 {nombre}\n"
         texto_final += f"   💚 Beneficios: {beneficios}\n"
-        texto_final += f"   💰 Precio: {precio}\n\n"
+        texto_final += f"   🕒 Uso recomendado: {uso}\n\n"
 
     texto_final += "🌟 Hábitos Saludables Sugeridos\n\n"
     for habito in habitos:

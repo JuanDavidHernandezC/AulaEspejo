@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Estilos adicionales para la etiqueta Próximamente */
+    /* Estilos */
     .coming-soon-badge {
       position: absolute;
       top: 20px;
@@ -27,8 +27,8 @@
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
-    
-    /* Deshabilitar hover para productos próximamente */
+
+    /* Próximamente */
     .product-card.coming-soon:hover {
       transform: none;
       box-shadow: var(--shadow);
@@ -46,7 +46,7 @@
 
 {% block content %}
 
-<!-- HERO CON IMAGEN DE FONDO DE TÉ -->
+<!-- Hero -->
 <section class="hero">
   <div class="hero-background">
     <div class="background-overlay"></div>
@@ -81,7 +81,7 @@
   </div>
 </section>
 
-<!-- SECCIÓN DE VALORES EMPRESARIALES CON IMÁGENES -->
+<!-- Valores -->
 <section class="values">
   <div class="container">
     <h2 class="section-title">Nuestro Compromiso</h2>
@@ -92,7 +92,7 @@
         </div>
         <div class="value-content">
           <h3>Calidad Natural</h3>
-          <p>Ingredientes 100% naturales seleccionados de los Andes, sin conservantes ni aditivos artificiales.</p>
+          <p>Ingredientes 100% naturales seleccionados meticulosamente, sin conservantes ni aditivos artificiales.</p>
         </div>
       </div>
       
@@ -119,19 +119,19 @@
   </div>
 </section>
 
-<!-- SECCIÓN DE PRESENTACIÓN CON NUEVA IMAGEN -->
+<!-- Presentacion -->
 <section class="about">
   <div class="container">
     <div class="about-content">
       <div class="text">
         <h2>La Revolución del Té Efervescente</h2>
-        <p>Hampite nace de la fusión entre la riqueza natural de los Andes y la innovación tecnológica. Nuestras tabletas efervescentes liberan sabor, bienestar y energía natural de forma instantánea, manteniendo todas las propiedades de las hierbas tradicionales.</p>
+        <p>Hampite nace de la fusión entre la riqueza natural y la innovación tecnológica. Nuestras tabletas efervescentes liberan sabor, bienestar y energía natural de forma instantánea, manteniendo todas las propiedades de las hierbas tradicionales.</p>
         <div class="benefits">
           <div class="benefit">
             <span class="benefit-icon">🌿</span>
             <div class="benefit-text">
-              <h4>Ingredientes Andinos</h4>
-              <p>Seleccionados de cultivos sostenibles en los Andes</p>
+              <h4>Ingredientes</h4>
+              <p>Seleccionados de cultivos sostenibles</p>
             </div>
           </div>
           <div class="benefit">
@@ -162,7 +162,7 @@
   </div>
 </section>
 
-<!-- PRODUCTOS DESTACADOS - IMÁGENES CORREGIDAS DEFINITIVAMENTE -->
+<!-- Productos -->
 <section class="featured-products">
   <div class="container">
     <div class="section-header">
@@ -170,7 +170,7 @@
       <p class="section-subtitle">Descubre nuestros blends exclusivos diseñados para cada momento del día</p>
     </div>
     <div class="product-grid">
-      <!-- Té de Cedrón - NUEVO PRODUCTO CON ETIQUETA PRÓXIMAMENTE -->
+      <!-- Té de Cedrón -->
       <div class="product-card coming-soon">
         <div class="product-image">
           <img src="https://resizer.glanacion.com/resizer/v2/el-te-de-cedron-y-sus-beneficios-para-la-SAZUKBBYTNGH5J3OCLPEQVLURQ.jpg?auth=db2a01a6799c53e35c478baaa4f9becd059f1afa56e29a142d05eb984bed5588&width=1280&height=854&quality=70&smart=true" alt="Té de Cedrón Hampite">
@@ -190,7 +190,7 @@
         </div>
       </div>
       
-      <!-- Té de Hierba Luisa - NUEVO PRODUCTO CON ETIQUETA PRÓXIMAMENTE -->
+      <!-- Té de Hierba Luisa -->
       <div class="product-card coming-soon">
         <div class="product-image">
           <img src="https://www.pompadour.es/modules/ph_simpleblog/featured/96.png" alt="Té de Hierba Luisa Hampite">
@@ -210,7 +210,7 @@
         </div>
       </div>
       
-      <!-- Té Verde Menta - PRODUCTO DISPONIBLE -->
+      <!-- Té Verde Menta -->
       <div class="product-card">
         <div class="product-image">
          <img src="{{ url_for('static', filename='images/Té_menta.jpg') }}" alt="Té Verde Menta">
@@ -235,7 +235,7 @@
   </div>
 </section>
 
-<!-- PROCESO DE ELABORACIÓN -->
+<!-- Proceso de elaboracion -->
 <section class="process">
   <div class="container">
     <h2 class="section-title">Nuestro Proceso Artesanal</h2>
@@ -264,7 +264,7 @@
   </div>
 </section>
 
-<!-- TESTIMONIOS -->
+<!-- Opiniones -->
 <section class="testimonials">
   <div class="container">
     <h2 class="section-title">Lo que dicen nuestros clientes</h2>
@@ -274,7 +274,7 @@
           <p>"La practicidad de Hampite cambió mi rutina. El sabor es increíble y me encanta saber que estoy consumiendo productos 100% naturales."</p>
         </div>
         <div class="testimonial-author">
-          <span class="author-name">María González</span>
+          <span class="author-name">Juan Hernández</span>
           <span class="author-title">Cliente frecuente</span>
         </div>
       </div>
@@ -283,15 +283,15 @@
           <p>"Como amante del té, me sorprendió la calidad y profundidad de sabor de las tabletas efervescentes. ¡Superaron mis expectativas!"</p>
         </div>
         <div class="testimonial-author">
-          <span class="author-name">Carlos Rodríguez</span>
-          <span class="author-title">Sommelier de té</span>
+          <span class="author-name">Carlos Romero</span>
+          <span class="author-title">Degustador de té</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA FINAL MEJORADO -->
+<!-- CTA -->
 <section class="cta-final">
   <div class="cta-background">
     <div class="background-overlay"></div>

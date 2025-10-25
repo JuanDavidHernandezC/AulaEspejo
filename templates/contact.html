@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- AGREGAR FONT AWESOME DIRECTAMENTE EN ESTE ARCHIVO -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
 
@@ -9,7 +9,7 @@
   <p>Nos encanta escuchar a nuestros clientes. Envíanos tus dudas o sugerencias.</p>
 </section>
 
-<!-- Nueva sección con imagen horizontal -->
+
 <section class="image-content-section">
   <div class="image-content-container">
     <div class="content-image">
@@ -105,7 +105,7 @@
       </div>
     </div>
 
-    <!-- Columna 3 - REDES SOCIALES VISIBLES Y FUNCIONALES -->
+    <!-- Columna 3 -->
     <div class="social-section">
       <h3>🌸 Síguenos</h3>
 
@@ -146,7 +146,7 @@
 </footer>
 
 <style>
-/* === NUEVOS ESTILOS PARA LA SECCIÓN CON IMAGEN HORIZONTAL === */
+
 .image-content-section {
   padding: 80px 20px;
   background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%);
@@ -283,7 +283,7 @@
   line-height: 1.5;
 }
 
-/* === ESTILOS NUEVOS PARA REDES SOCIALES VISIBLES === */
+/* === ESTILOS === */
 .social-section {
   background: rgba(255, 255, 255, 0.1);
   padding: 30px;
@@ -366,7 +366,7 @@
   transition: all 0.3s ease;
 }
 
-/* Colores específicos para cada red social al hacer hover */
+/* Colores específicos para cada red social */
 .instagram:hover {
   background: linear-gradient(135deg, #E1306C, #F77737) !important;
   transform: translateY(-8px) scale(1.1);
@@ -423,7 +423,7 @@
   animation: bounceIn 0.6s ease-out;
 }
 
-/* === MEJORAS PARA EL FOOTER === */
+
 .footer {
   background: linear-gradient(135deg, #047857 0%, #059669 100%);
   color: white;
@@ -560,7 +560,7 @@
   }
 }
 
-/* === RESPONSIVE DESIGN === */
+
 @media (max-width: 1024px) {
   .image-content-container {
     gap: 40px;

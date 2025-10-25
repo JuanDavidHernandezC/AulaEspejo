@@ -20,8 +20,16 @@
 
       <div class="row">
         <div class="col-md-6 mb-3">
-          <label>Tipo de té</label>
-          <input type="text" name="tipo" class="form-control" placeholder="Ej: verde, negro, herbal" required>
+          <label for="tipo">Tipo de té</label>
+          <select name="tipo" id="tipo" class="form-control" required>
+            <option value="" disabled selected>Selecciona un tipo de té</option>
+            <option value="verde">🍃 Té Verde</option>
+            <option value="negro">☕ Té Negro</option>
+            <option value="blanco">🤍 Té Blanco</option>
+            <option value="rojo">🍂 Té Rojo </option>
+            <option value="herbal">🌿 Té Herbal </option>
+          </select>
+          <small class="text-muted">Elige el tipo de té que prefieras.</small>
         </div>
 
         <div class="col-md-6 mb-3">
@@ -38,8 +46,16 @@
         </div>
 
         <div class="col-md-6 mb-3">
-          <label>Sabor preferido</label>
-          <input type="text" name="sabor" class="form-control" placeholder="Ej: dulce, amargo, mentolado" required>
+          <label for="sabor">Sabor preferido</label>
+          <select name="sabor" id="sabor" class="form-control" required>
+            <option value="" disabled selected>Selecciona un sabor</option>
+            <option value="dulce">🍯 Dulce</option>
+            <option value="amargo">🍫 Amargo</option>
+            <option value="mentolado">🌿 Mentolado</option>
+            <option value="cítrico">🍋 Cítrico</option>
+            <option value="afrutado">🍓 Afrutado</option>
+          </select>
+          <small class="text-muted">Selecciona el tipo de sabor que más disfrutas.</small>
         </div>
 
         <div class="col-md-3 mb-3">
@@ -51,9 +67,27 @@
           </small>
         </div>
 
-        <div class="col-md-3 mb-3">
-          <label>Temperatura del agua (°C)</label>
-          <input type="number" name="temperatura" class="form-control" placeholder="Ej: 80" step="0.1" required>
+        <div class="col-md-6 mb-3">
+          <label for="temperatura">Temperatura del agua (°C)</label>
+          <div class="d-flex align-items-center">
+            <span class="me-2">❄️ Fría</span>
+            <input 
+              type="range" 
+              id="temperatura" 
+              name="temperatura" 
+              class="form-range flex-grow-1 mx-2"
+              min="20" 
+              max="100" 
+              step="1" 
+              value="80"
+              oninput="document.getElementById('valorTemp').textContent = this.value"
+              required
+            >
+            <span class="ms-2">🔥 Caliente</span>
+          </div>
+          <small class="text-muted">
+            Temperatura seleccionada: <strong><span id="valorTemp">80</span> °C</strong>
+          </small>
         </div>
       </div>
 
@@ -87,24 +121,47 @@
         <div class="col-md-3 mb-3">
           <label>Ingreso mensual (USD)</label>
           <input type="number" name="ingreso" class="form-control" step="0.01" placeholder="Ej: 800" required>
+          <small class="text-muted">
+            Ingreso promedio mensual en dólares estadounidenses 💵.
+          </small>
         </div>
 
         <div class="col-md-2 mb-3">
-          <label>Salud (1-5)</label>
+          <label>
+            Salud (1-5)
+            <i class="bi bi-info-circle" title="Evalúa tu estado general de salud: 1 = Muy mala · 5 = Excelente"></i>
+          </label>
           <input type="number" name="salud" class="form-control" min="1" max="5" required>
+          <small class="text-muted">
+            Estado general de salud o bienestar físico.<br>
+            1 = Muy mala 🩺 · 5 = Excelente 💪
+          </small>
         </div>
 
         <div class="col-md-2 mb-3">
-          <label>Actividad (1-5)</label>
+          <label>
+            Actividad (1-5)
+            <i class="bi bi-info-circle" title="Nivel de actividad física: 1 = Sedentario · 5 = Muy activo"></i>
+          </label>
           <input type="number" name="actividad" class="form-control" min="1" max="5" required>
+          <small class="text-muted">
+            Nivel de actividad física o ejercicio habitual.<br>
+            1 = Sedentario 🛋️ · 5 = Muy activo 🏃‍♂️
+          </small>
         </div>
 
         <div class="col-md-2 mb-3">
-          <label>Frecuencia consumo (1-5)</label>
+          <label>
+            Frecuencia consumo (1-5)
+            <i class="bi bi-info-circle" title="Frecuencia con la que consumes té: 1 = Rara vez · 5 = Diario"></i>
+          </label>
           <input type="number" name="frecuencia" class="form-control" min="1" max="5" required>
+          <small class="text-muted">
+            Qué tan seguido consumes té durante la semana.<br>
+            1 = Rara vez ☕ · 5 = Diario ☀️
+          </small>
         </div>
       </div>
-
       <button class="btn btn-primary mt-2">Predecir Segmento</button>
     </form>
 

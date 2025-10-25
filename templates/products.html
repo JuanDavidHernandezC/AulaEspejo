@@ -15,7 +15,7 @@
 </section>
 
 <section class="productos-grid">
-  <!-- Té de Cedrón - PRÓXIMAMENTE -->
+  <!-- Té de Cedrón -->
   <div class="producto">
     <div class="producto-badge proximamente">PRÓXIMAMENTE</div>
     <img src="https://resizer.glanacion.com/resizer/v2/el-te-de-cedron-y-sus-beneficios-para-la-SAZUKBBYTNGH5J3OCLPEQVLURQ.jpg?auth=db2a01a6799c53e35c478baaa4f9becd059f1afa56e29a142d05eb984bed5588&width=1280&height=854&quality=70&smart=true" alt="Té de Cedrón">
@@ -47,7 +47,7 @@
     </button>
   </div>
 
-  <!-- Té de Hierba Luisa - PRÓXIMAMENTE -->
+  <!-- Té de Hierba Luisa -->
   <div class="producto">
     <div class="producto-badge proximamente">PRÓXIMAMENTE</div>
     <img src="https://www.pompadour.es/modules/ph_simpleblog/featured/96.png" alt="Té de Hierba Luisa">
@@ -79,7 +79,7 @@
     </button>
   </div>
 
-  <!-- Té Verde Menta - PRODUCTO DISPONIBLE CON PROMOCIÓN -->
+  <!-- Té Verde Menta -->
   <div class="producto">
     <div class="producto-badge">OFERTA ESPECIAL</div>
     <img src="{{ url_for('static', filename='images/Té_menta.jpg') }}" alt="Té Verde Menta">
@@ -117,7 +117,7 @@
   </div>
 </section>
 
-<!-- Modal del Carrito Mejorado -->
+<!-- Carrito -->
 <div id="modalCarrito" class="modal">
   <div class="modal-content">
     <div class="modal-header">
@@ -149,10 +149,10 @@
       </div>
     </div>
     
-    <!-- Paso 1: Carrito -->
+    <!-- Carrito -->
     <div id="paso-carrito-contenido" class="paso-contenido activo">
       <div id="carritoItems" class="carrito-items">
-        <!-- Los productos se agregarán aquí dinámicamente -->
+        <!-- Se agregarán aquí -->
       </div>
       
       <div class="carrito-resumen">
@@ -182,7 +182,7 @@
       </div>
     </div>
     
-    <!-- Paso 2: Pago -->
+    <!-- Pago -->
     <div id="paso-pago-contenido" class="paso-contenido">
       <div class="metodos-pago">
         <h3 class="metodos-pago-titulo">
@@ -319,7 +319,7 @@
       </div>
     </div>
     
-    <!-- Paso 3: Confirmación -->
+    <!-- Confirmación -->
     <div id="paso-confirmacion-contenido" class="paso-contenido">
       <div class="confirmacion-resumen">
         <div class="confirmacion-icono">
@@ -332,7 +332,7 @@
           <div class="confirmacion-productos">
             <h4>Tu Pedido:</h4>
             <div id="confirmacionItems" class="confirmacion-items">
-              <!-- Los productos se agregarán aquí dinámicamente -->
+              <!-- Se agregarán aquí -->
             </div>
           </div>
           
@@ -383,11 +383,11 @@
 </section>
 
 <script>
-  // Variables globales
+
   let carrito = [];
   let pasoActual = 'carrito';
   
-  // Funciones para manejar la cantidad de productos
+
   function incrementarCantidad(id) {
     const input = document.getElementById(id);
     if (parseInt(input.value) < parseInt(input.max)) {
@@ -408,7 +408,7 @@
     const input = document.getElementById(id);
     const cantidad = parseInt(input.value);
     
-    // Precios base por producto
+ 
     const precios = {
       'te-cedron': 0.50,
       'te-luisa': 0.50,
@@ -419,31 +419,31 @@
     document.getElementById(`precio-${id}`).textContent = precioTotal;
   }
   
-  // Funciones para el carrito
+
   function agregarAlCarrito(nombre, precio, id) {
     const input = document.getElementById(id);
     const cantidad = parseInt(input.value);
     const total = (precio * cantidad).toFixed(2);
     
-    // Obtener la imagen del producto
+
     const productoElement = input.closest('.producto');
     const imagenSrc = productoElement.querySelector('img').src;
     
-    // Verificar si el producto ya está en el carrito
+
     const productoExistente = carrito.find(item => item.nombre === nombre);
     
     if (productoExistente) {
-      // Si ya existe, actualizar la cantidad y el total
+
       productoExistente.cantidad += cantidad;
       productoExistente.total = (productoExistente.precio * productoExistente.cantidad).toFixed(2);
     } else {
-      // Si no existe, agregar nuevo producto al carrito
+
       const producto = {
         nombre: nombre,
         precio: precio,
         cantidad: cantidad,
         total: total,
-        imagen: imagenSrc  // Agregar la imagen aquí
+        imagen: imagenSrc  
       };
       
       carrito.push(producto);
@@ -451,10 +451,10 @@
     
     actualizarContadorCarrito();
     
-    // Mostrar modal del carrito
+
     mostrarCarrito();
     
-    // Mostrar mensaje de confirmación
+
     alert(`¡${nombre} agregado al carrito!\nCantidad: ${cantidad}\nTotal: $${total}`);
   }
   
@@ -463,11 +463,11 @@
     const cantidad = parseInt(input.value);
     const total = (precio * cantidad).toFixed(2);
     
-    // Obtener la imagen del producto
+
     const productoElement = input.closest('.producto');
     const imagenSrc = productoElement.querySelector('img').src;
     
-    // Limpiar carrito actual y agregar solo este producto
+
     carrito = [{
       nombre: nombre,
       precio: precio,
@@ -478,7 +478,7 @@
     
     actualizarContadorCarrito();
     mostrarCarrito();
-    irAPaso('pago'); // Ir directamente al paso de pago
+    irAPaso('pago'); 
   }
   
   function actualizarContadorCarrito() {
@@ -495,7 +495,7 @@
     const carritoTotal = document.getElementById('carritoTotal');
     const btnPrecioTotal = document.getElementById('btnPrecioTotal');
     
-    // Limpiar carrito
+
     carritoItems.innerHTML = '';
     
     if (carrito.length === 0) {
@@ -535,7 +535,7 @@
         carritoItems.appendChild(item);
       });
       
-      // Calcular envío (gratis para compras mayores a $10)
+
       const envio = subtotal >= 10 ? 0 : 2.50;
       const total = subtotal + envio;
       
@@ -545,10 +545,10 @@
       btnPrecioTotal.textContent = `$${total.toFixed(2)}`;
     }
     
-    // Actualizar también los valores en el paso de confirmación
+
     actualizarConfirmacion();
     
-    // Mostrar modal
+
     modal.style.display = 'flex';
   }
   
@@ -557,31 +557,31 @@
     modal.style.display = 'none';
   }
   
-  // Nueva función para reiniciar completamente el carrito
+
   function reiniciarCarritoCompleto() {
-    // Limpiar carrito
+
     carrito = [];
     actualizarContadorCarrito();
     
-    // Limpiar cantidades
+
     document.querySelectorAll('.cantidad-input').forEach(input => {
       input.value = 1;
       actualizarPrecio(input.id);
     });
     
-    // Resetear método de pago a "Contraentrega"
+
     document.getElementById('pago-efectivo').checked = true;
     
-    // Volver al paso 1 (Carrito)
+
     irAPaso('carrito');
     
-    // Cerrar modal
+
     cerrarModal();
   }
   
   // Funciones para navegar entre pasos
   function irAPaso(paso) {
-    // Validaciones antes de cambiar de paso
+
     if (paso === 'pago' && carrito.length === 0) {
       alert('Tu carrito está vacío. Agrega algunos productos antes de continuar.');
       return;
@@ -596,21 +596,21 @@
       actualizarConfirmacion();
     }
     
-    // Ocultar todos los pasos
+
     document.querySelectorAll('.paso-contenido').forEach(paso => {
       paso.classList.remove('activo');
     });
     
-    // Desactivar todos los pasos en la barra de progreso
+
     document.querySelectorAll('.progreso-paso').forEach(paso => {
       paso.classList.remove('activo');
     });
     
-    // Mostrar el paso seleccionado
+
     document.getElementById(`paso-${paso}-contenido`).classList.add('activo');
     document.getElementById(`paso-${paso}`).classList.add('activo');
     
-    // Actualizar paso actual
+
     pasoActual = paso;
   }
   
@@ -622,7 +622,7 @@
     const metodoPagoSeleccionado = document.getElementById('metodoPagoSeleccionado');
     const btnPrecioFinal = document.getElementById('btnPrecioFinal');
     
-    // Actualizar productos en confirmación
+
     confirmacionItems.innerHTML = '';
     
     if (carrito.length === 0) {
@@ -642,8 +642,8 @@
         
         confirmacionItems.appendChild(item);
       });
-      
-      // Calcular envío (gratis para compras mayores a $10)
+
+      // Calcular envío
       const envio = subtotal >= 10 ? 0 : 2.50;
       const total = subtotal + envio;
       
@@ -653,7 +653,7 @@
       btnPrecioFinal.textContent = `$${total.toFixed(2)}`;
     }
     
-    // Actualizar método de pago seleccionado
+
     const metodoPago = document.querySelector('input[name="metodo-pago"]:checked');
     if (metodoPago) {
       const nombreMetodo = obtenerNombreMetodoPago(metodoPago.value);
@@ -674,10 +674,10 @@
     const metodoPago = document.querySelector('input[name="metodo-pago"]:checked').value;
     const total = document.getElementById('confirmacionTotal').textContent;
     
-    // Simular procesamiento de pago
+
     alert(`¡Compra realizada con éxito!\n\nTotal: ${total}\nMétodo de pago: ${obtenerNombreMetodoPago(metodoPago)}\n\nGracias por tu compra. Tu pedido será procesado inmediatamente.`);
     
-    // LIMPIAR COMPLETAMENTE Y REINICIAR
+
     reiniciarCarritoCompleto();
   }
   
@@ -698,7 +698,7 @@
     return metodos[metodo] || 'Desconocido';
   }
   
-  // Cerrar modal al hacer clic fuera de él
+
   window.onclick = function(event) {
     const modal = document.getElementById('modalCarrito');
     if (event.target === modal) {
@@ -706,29 +706,29 @@
     }
   }
   
-  // Inicializar precios y contador
+
   document.addEventListener('DOMContentLoaded', function() {
     actualizarPrecio('te-cedron');
     actualizarPrecio('te-luisa');
     actualizarPrecio('te-menta');
     actualizarContadorCarrito();
     
-    // Agregar evento para cambiar estilos de métodos de pago seleccionados
+
     document.querySelectorAll('input[name="metodo-pago"]').forEach(radio => {
       radio.addEventListener('change', function() {
-        // Remover clase activa de todos los métodos
+
         document.querySelectorAll('.metodo-pago').forEach(metodo => {
           metodo.classList.remove('activo');
         });
         
-        // Agregar clase activa al método seleccionado
+
         if (this.checked) {
           this.closest('.metodo-pago').classList.add('activo');
         }
       });
     });
     
-    // Inicializar el método por defecto como activo
+    
     document.querySelector('input[name="metodo-pago"]:checked')
       .closest('.metodo-pago')
       .classList.add('activo');
@@ -736,7 +736,7 @@
 </script>
 
 <style>
-  /* Estilos adicionales para los pasos */
+
   .paso-contenido {
     display: none;
   }
@@ -770,7 +770,7 @@
     border-top: 1px solid #e8f5f0;
   }
   
-  /* Estilos para la confirmación */
+
   .confirmacion-resumen {
     padding: 20px 30px;
   }
@@ -847,7 +847,7 @@
     color: #047857;
   }
   
-  /* Estilos para métodos de pago seleccionados */
+  
   .metodo-pago {
     transition: all 0.3s ease;
     border: 2px solid transparent;
@@ -907,7 +907,7 @@
     object-fit: contain;
   }
   
-  /* Indicador de selección */
+
   .metodo-pago.activo::before {
     content: "✓";
     position: absolute;
