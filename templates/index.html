@@ -3,6 +3,45 @@
 {% block extra_css %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Estilos adicionales para la etiqueta Próximamente */
+    .coming-soon-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--secondary), #ff8c00);
+      color: var(--white);
+      padding: 10px 18px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 3;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Deshabilitar hover para productos próximamente */
+    .product-card.coming-soon:hover {
+      transform: none;
+      box-shadow: var(--shadow);
+    }
+    
+    .product-card.coming-soon:hover .product-image img {
+      transform: none;
+    }
+    
+    .product-card.coming-soon .product-overlay {
+      display: none;
+    }
+  </style>
 {% endblock %}
 
 {% block content %}
@@ -131,45 +170,47 @@
       <p class="section-subtitle">Descubre nuestros blends exclusivos diseñados para cada momento del día</p>
     </div>
     <div class="product-grid">
-      <!-- Té de Manzanilla - IMAGEN NUEVA Y VERIFICADA -->
-      <div class="product-card">
+      <!-- Té de Cedrón - NUEVO PRODUCTO CON ETIQUETA PRÓXIMAMENTE -->
+      <div class="product-card coming-soon">
         <div class="product-image">
-          <img src="https://image.tuasaude.com/media/article/l4/4r/beneficios-do-cha-de-camomila_13768.jpg" alt="Té de Manzanilla Hampite">
+          <img src="https://resizer.glanacion.com/resizer/v2/el-te-de-cedron-y-sus-beneficios-para-la-SAZUKBBYTNGH5J3OCLPEQVLURQ.jpg?auth=db2a01a6799c53e35c478baaa4f9becd059f1afa56e29a142d05eb984bed5588&width=1280&height=854&quality=70&smart=true" alt="Té de Cedrón Hampite">
+          <div class="coming-soon-badge">PRÓXIMAMENTE</div>
           <div class="product-overlay">
             <a href="{{ url_for('products') }}" class="btn product-btn">Ver detalles</a>
           </div>
         </div>
         <div class="product-info">
-          <span class="product-category">Relajación & Calma</span>
-          <h3 class="product-name">Té de Manzanilla</h3>
-          <p class="product-description">Infusión suave y relajante perfecta para momentos de tranquilidad y descanso reparador.</p>
+          <span class="product-category">Digestión & Calma</span>
+          <h3 class="product-name">Té de Cedrón</h3>
+          <p class="product-description">Infusión con aroma cítrico y propiedades digestivas, ideal para después de las comidas y momentos de relajación.</p>
           <div class="product-features">
-            <span class="feature">Relajante</span>
             <span class="feature">Digestivo</span>
+            <span class="feature">Relajante</span>
           </div>
         </div>
       </div>
       
-      <!-- Té de Hibisco - IMAGEN COMPLETAMENTE DIFERENTE -->
-      <div class="product-card">
+      <!-- Té de Hierba Luisa - NUEVO PRODUCTO CON ETIQUETA PRÓXIMAMENTE -->
+      <div class="product-card coming-soon">
         <div class="product-image">
-          <img src="https://www.bupasalud.com/sites/default/files/styles/640_x_400/public/articulos/2024-10/fotos/te-hibisco-propiedades-1.jpg?itok=ixuhOcII" alt="Té de Hibisco Hampite">
+          <img src="https://www.pompadour.es/modules/ph_simpleblog/featured/96.png" alt="Té de Hierba Luisa Hampite">
+          <div class="coming-soon-badge">PRÓXIMAMENTE</div>
           <div class="product-overlay">
             <a href="{{ url_for('products') }}" class="btn product-btn">Ver detalles</a>
           </div>
         </div>
         <div class="product-info">
-          <span class="product-category">Vitalidad & Bienestar</span>
-          <h3 class="product-name">Té de Hibisco</h3>
-          <p class="product-description">Explosión de color y sabor con notas cítricas que revitalizan y aportan vitalidad natural.</p>
+          <span class="product-category">Bienestar & Frescura</span>
+          <h3 class="product-name">Té de Hierba Luisa</h3>
+          <p class="product-description">Notas frescas y cítricas que calman el sistema digestivo y aportan una sensación de bienestar general.</p>
           <div class="product-features">
-            <span class="feature">Antioxidante</span>
-            <span class="feature">Vitalidad</span>
+            <span class="feature">Frescura</span>
+            <span class="feature">Bienestar</span>
           </div>
         </div>
       </div>
       
-      <!-- Té Verde Menta - IMAGEN COMPLETAMENTE DIFERENTE -->
+      <!-- Té Verde Menta - PRODUCTO DISPONIBLE -->
       <div class="product-card">
         <div class="product-image">
           <img src="https://www.occident.com/blog/assets/multimedia/2025/03/beneficios-del-te-de-menta_banner.webp" alt="Té Verde Menta Hampite">

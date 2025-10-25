@@ -1,10 +1,61 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- AGREGAR FONT AWESOME DIRECTAMENTE EN ESTE ARCHIVO -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
 
 <section class="contact-hero">
   <h1>🌿 Contáctanos</h1>
   <p>Nos encanta escuchar a nuestros clientes. Envíanos tus dudas o sugerencias.</p>
+</section>
+
+<!-- Nueva sección con imagen horizontal -->
+<section class="image-content-section">
+  <div class="image-content-container">
+    <div class="content-image">
+      <img src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
+           alt="Té premium Hampite - Experiencia única" 
+           loading="lazy">
+      <div class="image-overlay">
+        <div class="overlay-content">
+          <h3>🌱 Nuestra Pasión</h3>
+          <p>Seleccionamos los mejores tés para tu bienestar</p>
+        </div>
+      </div>
+    </div>
+    <div class="content-text">
+      <div class="text-content">
+        <h2>Una Experiencia de Té Única</h2>
+        <p>En Hampite, nos dedicamos a brindarte no solo los mejores tés e infusiones, sino una experiencia completa de bienestar y conexión con la naturaleza.</p>
+        
+        <div class="features-grid">
+          <div class="feature-item">
+            <i class="fas fa-leaf"></i>
+            <div>
+              <h4>Ingredientes Naturales</h4>
+              <p>Selección premium de hojas y hierbas</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <i class="fas fa-seedling"></i>
+            <div>
+              <h4>Cultivo Sostenible</h4>
+              <p>Comprometidos con el medio ambiente</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <i class="fas fa-heart"></i>
+            <div>
+              <h4>Bienestar Integral</h4>
+              <p>Cada taza pensada para tu salud</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="contact-form tea-background">
@@ -54,33 +105,34 @@
       </div>
     </div>
 
-    <!-- Columna 3 -->
+    <!-- Columna 3 - REDES SOCIALES VISIBLES Y FUNCIONALES -->
     <div class="social-section">
       <h3>🌸 Síguenos</h3>
 
-      <div class="main fade-in">
-        <div class="up">
-          <a href="https://instagram.com/tu-usuario" target="_blank" class="card-link">
-            <button class="card card1">
-              <i class="fa-brands fa-instagram"></i>
-            </button>
+      <div class="social-icons-container">
+        <div class="social-icons-grid">
+          <a href="https://instagram.com/hampite" target="_blank" class="social-icon-link">
+            <div class="social-icon instagram">
+              <i class="fab fa-instagram"></i>
+            </div>
           </a>
-          <a href="https://twitter.com/tu-usuario" target="_blank" class="card-link">
-            <button class="card card2">
-              <i class="fa-brands fa-twitter"></i>
-            </button>
+          
+          <a href="https://twitter.com/hampite_tea" target="_blank" class="social-icon-link">
+            <div class="social-icon twitter">
+              <i class="fab fa-twitter"></i>
+            </div>
           </a>
-        </div>
-        <div class="down">
-          <a href="https://facebook.com/tu-usuario" target="_blank" class="card-link">
-            <button class="card card3">
-              <i class="fa-brands fa-facebook-f"></i>
-            </button>
+          
+          <a href="https://facebook.com/hampite" target="_blank" class="social-icon-link">
+            <div class="social-icon facebook">
+              <i class="fab fa-facebook-f"></i>
+            </div>
           </a>
-          <a href="https://tiktok.com/@tu-usuario" target="_blank" class="card-link">
-            <button class="card card4">
-              <i class="fa-brands fa-tiktok"></i>
-            </button>
+          
+          <a href="https://tiktok.com/@hampite" target="_blank" class="social-icon-link">
+            <div class="social-icon tiktok">
+              <i class="fab fa-tiktok"></i>
+            </div>
           </a>
         </div>
       </div>
@@ -92,5 +144,540 @@
     © 2025 Hampite — Todos los derechos reservados.
   </div>
 </footer>
+
+<style>
+/* === NUEVOS ESTILOS PARA LA SECCIÓN CON IMAGEN HORIZONTAL === */
+.image-content-section {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%);
+}
+
+.image-content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(16, 185, 129, 0.1);
+  animation: slideInUp 0.8s ease-out;
+}
+
+.content-image {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+}
+
+.content-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.content-image:hover img {
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.8) 0%, rgba(4, 120, 87, 0.7) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 40px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.content-image:hover .image-overlay {
+  opacity: 1;
+}
+
+.overlay-content h3 {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-family: 'Playfair Display', serif;
+}
+
+.overlay-content p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+}
+
+.content-text {
+  padding: 50px 40px;
+}
+
+.text-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #047857;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.text-content > p {
+  font-size: 1.1rem;
+  color: #4b5563;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.features-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(254, 247, 237, 0.5);
+  border-radius: 16px;
+  border-left: 4px solid #d97706;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.feature-item:nth-child(1) { animation-delay: 0.1s; }
+.feature-item:nth-child(2) { animation-delay: 0.2s; }
+.feature-item:nth-child(3) { animation-delay: 0.3s; }
+
+.feature-item:hover {
+  transform: translateX(10px);
+  background: rgba(254, 247, 237, 0.8);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-item i {
+  font-size: 1.5rem;
+  color: #d97706;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.feature-item h4 {
+  color: #047857;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.feature-item p {
+  color: #6b7280;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* === ESTILOS NUEVOS PARA REDES SOCIALES VISIBLES === */
+.social-section {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.social-section:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.social-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  color: white;
+}
+
+.social-icons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  justify-items: center;
+  align-items: center;
+}
+
+.social-icon-link {
+  text-decoration: none;
+  display: block;
+}
+
+.social-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-icon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.social-icon:hover::before {
+  left: 100%;
+}
+
+/* Asegurar que los iconos sean visibles */
+.social-icon i {
+  color: white !important;
+  z-index: 2;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Colores específicos para cada red social al hacer hover */
+.instagram:hover {
+  background: linear-gradient(135deg, #E1306C, #F77737) !important;
+  transform: translateY(-8px) scale(1.1);
+  border-color: transparent;
+  box-shadow: 0 15px 30px rgba(225, 48, 108, 0.4);
+}
+
+.twitter:hover {
+  background: linear-gradient(135deg, #1DA1F2, #0c7abf) !important;
+  transform: translateY(-8px) scale(1.1);
+  border-color: transparent;
+  box-shadow: 0 15px 30px rgba(29, 161, 242, 0.4);
+}
+
+.facebook:hover {
+  background: linear-gradient(135deg, #4267B2, #365899) !important;
+  transform: translateY(-8px) scale(1.1);
+  border-color: transparent;
+  box-shadow: 0 15px 30px rgba(66, 103, 178, 0.4);
+}
+
+.tiktok:hover {
+  background: linear-gradient(135deg, #000000, #333333) !important;
+  transform: translateY(-8px) scale(1.1);
+  border-color: transparent;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.social-icon:hover i {
+  transform: scale(1.2);
+  color: white !important;
+}
+
+/* Animación de entrada para los iconos */
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.social-icon i {
+  animation: bounceIn 0.6s ease-out;
+}
+
+/* === MEJORAS PARA EL FOOTER === */
+.footer {
+  background: linear-gradient(135deg, #047857 0%, #059669 100%);
+  color: white;
+  padding: 60px 20px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-info {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.footer-info:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.footer-info h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  font-family: 'Playfair Display', serif;
+  color: white;
+}
+
+.footer-info p {
+  margin-bottom: 10px;
+  opacity: 0.9;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.7s ease;
+}
+
+.info-card:hover::before {
+  left: 100%;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.info-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+}
+
+.info-card p {
+  opacity: 0.9;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  opacity: 0.8;
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* === ANIMACIONES === */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 1024px) {
+  .image-content-container {
+    gap: 40px;
+  }
+  
+  .content-text {
+    padding: 40px 30px;
+  }
+  
+  .text-content h2 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-content-section {
+    padding: 60px 20px;
+  }
+  
+  .image-content-container {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .content-image {
+    height: 300px;
+  }
+  
+  .content-text {
+    padding: 40px 30px;
+  }
+  
+  .text-content h2 {
+    font-size: 2rem;
+  }
+  
+  .feature-item {
+    padding: 15px;
+  }
+  
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .social-icons-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .social-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .image-content-section {
+    padding: 40px 15px;
+  }
+  
+  .content-text {
+    padding: 30px 20px;
+  }
+  
+  .text-content h2 {
+    font-size: 1.8rem;
+  }
+  
+  .feature-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .feature-item i {
+    margin-top: 0;
+  }
+  
+  .social-icons-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .footer-info,
+  .social-section,
+  .info-card {
+    padding: 20px;
+  }
+  
+  .social-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+}
+</style>
+
+<script>
+// Animación de entrada para los elementos
+document.addEventListener('DOMContentLoaded', function() {
+  const featureItems = document.querySelectorAll('.feature-item');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  featureItems.forEach(item => {
+    item.style.animationPlayState = 'paused';
+    observer.observe(item);
+  });
+});
+</script>
 
 {% endblock %}
