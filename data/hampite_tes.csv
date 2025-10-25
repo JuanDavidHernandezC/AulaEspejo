@@ -1,11 +1,21 @@
 nombre,tipo,categoria,ingredientes,nivel_acidez,intensidad_sabor,tiempo_secado_horas,nivel_quimico,uso_recomendado,target_principal,edad_recomendada,preferencia_publico,beneficios,precio_estimado_usd,calificacion_consumidor
-Té Menta Efervescente,Frío,Energizante,"extracto de menta, ácido cítrico, bicarbonato, goma arábiga",Medio,Media,3,Medio,Mañana,Adulto joven,18-35,Alta,"Refrescante, digestivo, energizante",0.75,4.8
-Té Frutos Rojos Natural,Frío,Antioxidante,"frambuesa, arándano, mora, ácido cítrico, goma arábiga",Medio,Suave,3,Bajo,Tarde,Adolescente,13-25,Alta,"Antioxidante, revitalizante, mejora piel",0.50,4.6
-Té Manzanilla Herbal,Caliente,Relajante,"flor de manzanilla, extracto natural, bicarbonato, goma arábiga",Bajo,Suave,3,Bajo,Noche,Adulto ,20-40,Alta,"Relajante, antiestrés, digestivo",0.50,4.7
-Té Limón Jengibre,Frío,Energizante,"extracto de limón, jengibre, ácido cítrico, bicarbonato, goma arábiga",Alto,Fuerte,3,Medio,Mañana,Adulto joven,18-45,Alta,"Energizante, antioxidante, mejora inmunidad",0.75,4.5
-Té Hierbabuena Citrus,Frío,Refrescante,"hierbabuena, ácido cítrico, goma arábiga, goma arábiga",Medio,Media,3,Medio,Tarde,Adolescente,15-30,Media,"Refrescante, digestivo, calmante",0.75,4.4
-Té Canelón Natural,Caliente,Antiinflamatorio,"canela, clavo, esencia natural, goma arábiga",Bajo,Fuerte,3,Bajo,Noche,Adulto ,25-50,Media,"Antiinflamatorio, mejora circulación",0.50,4.3
-Té Verde Tropical,Frío,Antioxidante,"té verde, piña, mango, ácido cítrico, goma arábiga",Medio,Media,3,Medio,Mañana,Adulto joven,20-40,Alta,"Antioxidante, energizante, mejora concentración",0.75,4.6
-Té Lavanda Relax,Caliente,Relajante,"lavanda, flor de azahar, extracto natural, goma arábiga",Bajo,Suave,3,Bajo,Noche,Adulto,30-55,Alta,"Calma ansiedad, mejora el sueño",0.50,4.8
-Té Cítrico Vital,Frío,Energizante,"naranja, toronja, ácido cítrico, bicarbonato, goma arábiga",Alto,Fuerte,3,Medio,Mañana,Adolescente,15-30,Media,"Energizante, refrescante, desintoxicante",0.75,4.5
-Té Herbal Digest,Caliente,Digestivo,"anís, hinojo, menta natural, goma arábiga",Bajo,Media,3,Bajo,Tarde,Adulto joven,25-50,Alta,"Digestivo, reduce hinchazón",0.50,4.7
+Té Menta Efervescente,Frío,Energizante,"Esencia de menta, goma arábica, acido cítrico y
+bicarbonato",Medio,Media,2,Medio,Mañana,Adulto joven,18-35,Alta,"Refrescante, digestivo, energizante",1.20,4.8
+Té Frutos Rojos Natural,Frío,Antioxidante,"Esencia natural de frutos rojos, goma arábica,
+acido cítrico y bicarbonato",Medio,Suave,2,Bajo,Tarde,Adolescente,13-25,Alta,"Antioxidante, revitalizante, mejora piel",1.20,4.6
+Té Manzanilla Herbal,Caliente,Relajante,"Esencia de manzanilla , goma arábica, acido
+cítrico y bicarbonato",Bajo,Suave,2,Bajo,Noche,Adulto ,20-40,Alta,"Relajante, antiestrés, digestivo",1.20,4.7
+Té Limón ,Frío,Energizante,"Esencia natural de limon, goma arábica,
+acido cítrico y bicarbonato",Alto,Fuerte,3,Medio,Mañana,Adulto joven,18-45,Alta,"Energizante, antioxidante, mejora inmunidad",1.75,4.5
+Té Hierbabuena Citrus,Frío,Refrescante,"Esencia natural de hierbabuena, goma arábica,
+acido cítrico y bicarbonato",Medio,Media,3,Medio,Tarde,Adolescente,15-30,Media,"Refrescante, digestivo, calmante",0.75,4.4
+Té Cedrón  Natural,Caliente,Antiinflamatorio,"Esencia de cedrón, goma arábica, acido cítrico y
+bicarbonato",Bajo,Fuerte,2,Bajo,Noche,Adulto ,25-50,Media,"Antiinflamatorio, mejora circulación",1.20,4.3
+Té Verde Tropical,Frío,Antioxidante,"Esencia natural de piña y mango, goma arábica,
+acido cítrico y bicarbonato",Medio,Media,3,Medio,Mañana,Adulto joven,20-40,Alta,"Antioxidante, energizante, mejora concentración",1.75,4.6
+Té Lavanda Relax,Caliente,Relajante,"Esencia natural de lavanda, goma arábica,
+acido cítrico y bicarbonato",Bajo,Suave,3,Bajo,Noche,Adulto,30-55,Alta,"Calma ansiedad, mejora el sueño",1.50,4.8
+Té Cítrico Vital,Frío,Energizante,"Esencia natural de naranja y toronja, goma arábica,
+acido cítrico y bicarbonato",Alto,Fuerte,3,Medio,Mañana,Adolescente,15-30,Media,"Energizante, refrescante, desintoxicante",1.75,4.5
+Té Herbal Digest,Caliente,Digestivo,"Esencia natural de anis, goma arábica,
+acido cítrico y bicarbonato",Bajo,Media,3,Bajo,Tarde,Adulto joven,25-50,Alta,"Digestivo, reduce hinchazón",1.50,4.7
