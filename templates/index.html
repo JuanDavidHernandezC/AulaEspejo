@@ -152,7 +152,7 @@
       </div>
       <div class="image">
         <div class="image-container">
-          <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Té efervescente Hampite">
+          <img src="{{ url_for('static', filename='images/Té_menta.jpg') }}" alt="Té Verde Menta">
           <div class="image-badge">
             <span>Novedad 2023</span>
           </div>
@@ -213,7 +213,7 @@
       <!-- Té Verde Menta - PRODUCTO DISPONIBLE -->
       <div class="product-card">
         <div class="product-image">
-          <img src="https://www.occident.com/blog/assets/multimedia/2025/03/beneficios-del-te-de-menta_banner.webp" alt="Té Verde Menta Hampite">
+         <img src="{{ url_for('static', filename='images/Té_menta.jpg') }}" alt="Té Verde Menta">
           <div class="product-overlay">
             <a href="{{ url_for('products') }}" class="btn product-btn">Ver detalles</a>
           </div>
