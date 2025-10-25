@@ -91,16 +91,25 @@ def recomendar_te(preferencias):
     efecto = preferencias.get('Efecto', '').lower()
 
     habitos = []
-    if edad < 25:
+
+    if edad < 18:
+        habitos.append("🥗 Incluye frutas y verduras todos los días para crecer fuerte.")
+        habitos.append("🏃 Realiza al menos 1 hora de actividad física diaria.")
+        habitos.append("😴 Duerme entre 8 y 10 horas para mantener tu energía y concentración.")
+    elif edad < 25:
         habitos.append("💧 Mantén buena hidratación (8 vasos de agua al día).")
         habitos.append("🥦 Añade frutas y verduras frescas en cada comida.")
+        habitos.append("🧠 Evita trasnochar y regula tu tiempo frente a pantallas.")
     elif edad < 45:
         habitos.append("🚶 Realiza caminatas diarias de 30 minutos.")
         habitos.append("🧘 Prueba meditación o yoga si buscas equilibrio mental.")
+        habitos.append("🍎 Mantén una dieta balanceada con bajo consumo de azúcares procesados.")
     else:
         habitos.append("❤️ Controla tu presión y azúcar periódicamente.")
         habitos.append("🕊️ Consume infusiones suaves antes de dormir.")
+        habitos.append("💪 Realiza ejercicios de bajo impacto para mantener la movilidad.")
 
+    # Hábitos adicionales según el tipo de efecto del té
     if "energ" in efecto:
         habitos.append("☀️ Aprovecha la luz solar matutina para activar tu energía.")
     elif "relaj" in efecto:
@@ -109,7 +118,7 @@ def recomendar_te(preferencias):
         habitos.append("🍽️ Mastica lentamente y evita comidas pesadas en la noche.")
 
     texto_final = "✨ Tés Recomendados\n\n"
-    
+
     for _, row in recomendaciones.iterrows():
         nombre = row['nombre']
         beneficios = row['beneficios']
@@ -118,9 +127,8 @@ def recomendar_te(preferencias):
         texto_final += f"🍃 {nombre}\n"
         texto_final += f"   💚 Beneficios: {beneficios}\n"
         texto_final += f"   💰 Precio: {precio}\n\n"
-    
+
     texto_final += "🌟 Hábitos Saludables Sugeridos\n\n"
     for habito in habitos:
         texto_final += f"• {habito}\n"
-
     return texto_final
