@@ -4,38 +4,954 @@
 
 <section class="productos-hero">
   <div class="hero-content">
-    <h1>🌿 Nuestros Productos</h1>
-    <p>Descubre la variedad de tés naturales instantáneos que Hampite tiene para ti 🍵</p>
+    <h1>Nuestros Productos</h1>
+    <p>Descubre la excelencia de nuestros tés naturales instantáneos Hampite 😊</p>
+    <button class="boton-carrito-hero" onclick="mostrarCarrito()">
+      <span class="carrito-icono-hero">🛒</span>
+      Ver Mi Carrito
+      <span class="carrito-contador-hero" id="carritoContadorHero">0</span>
+    </button>
   </div>
 </section>
 
 <section class="productos-grid">
+  <!-- Té de Cedrón - PRÓXIMAMENTE -->
   <div class="producto">
-    <img src="https://cdn-icons-png.flaticon.com/512/4264/4264512.png" alt="Té Verde">
-    <h3>Té Verde Energizante</h3>
-    <p>Refrescante y natural. Ideal para revitalizar cuerpo y mente.</p>
-    <button class="btn">Comprar</button>
+    <div class="producto-badge proximamente">PRÓXIMAMENTE</div>
+    <img src="https://resizer.glanacion.com/resizer/v2/el-te-de-cedron-y-sus-beneficios-para-la-SAZUKBBYTNGH5J3OCLPEQVLURQ.jpg?auth=db2a01a6799c53e35c478baaa4f9becd059f1afa56e29a142d05eb984bed5588&width=1280&height=854&quality=70&smart=true" alt="Té de Cedrón">
+    <h3>Té de Cedrón</h3>
+    <p>Infusión con aroma cítrico y propiedades digestivas, ideal para momentos de relajación y bienestar digestivo.</p>
+    
+    <div class="producto-precio">$0.50</div>
+    
+    <div class="cantidad-selector">
+      <button class="cantidad-btn" onclick="decrementarCantidad('te-cedron')">-</button>
+      <input type="number" id="te-cedron" class="cantidad-input" value="1" min="1" max="10">
+      <button class="cantidad-btn" onclick="incrementarCantidad('te-cedron')">+</button>
+    </div>
+    
+    <div class="producto-detalles">
+      <div class="producto-caracteristica">
+        <i>✓</i> <span>Propiedades digestivas naturales</span>
+      </div>
+      <div class="producto-caracteristica">
+        <i>✓</i> <span>Aroma cítrico refrescante</span>
+      </div>
+      <div class="producto-caracteristica">
+        <i>✓</i> <span>Efecto relajante inmediato</span>
+      </div>
+    </div>
+    
+    <button class="btn" onclick="agregarAlCarrito('Té de Cedrón', 0.50, 'te-cedron')">
+      Añadir al Carrito - $<span id="precio-te-cedron">0.50</span>
+    </button>
   </div>
 
+  <!-- Té de Hierba Luisa - PRÓXIMAMENTE -->
   <div class="producto">
-    <img src="https://cdn-icons-png.flaticon.com/512/2909/2909761.png" alt="Té Frutal">
-    <h3>Té Frutal Antioxidante</h3>
-    <p>Combinación de frutas tropicales que llenan tu día de sabor y energía.</p>
-    <button class="btn">Comprar</button>
+    <div class="producto-badge proximamente">PRÓXIMAMENTE</div>
+    <img src="https://www.pompadour.es/modules/ph_simpleblog/featured/96.png" alt="Té de Hierba Luisa">
+    <h3>Té de Hierba Luisa</h3>
+    <p>Notas frescas y cítricas que calman el sistema digestivo y aportan una sensación de bienestar general y frescura.</p>
+    
+    <div class="producto-precio">$0.50</div>
+    
+    <div class="cantidad-selector">
+      <button class="cantidad-btn" onclick="decrementarCantidad('te-luisa')">-</button>
+      <input type="number" id="te-luisa" class="cantidad-input" value="1" min="1" max="10">
+      <button class="cantidad-btn" onclick="incrementarCantidad('te-luisa')">+</button>
+    </div>
+    
+    <div class="producto-detalles">
+      <div class="producto-caracteristica">
+        <i>✓</i> <span>Calma digestiva natural</span>
+      </div>
+      <div class="producto-caracteristica">
+        <i>✓</i> <span>Notas cítricas premium</span>
+      </div>
+      <div class="producto-caracteristica">
+        <i>✓</i> <span>Bienestar integral</span>
+      </div>
+    </div>
+    
+    <button class="btn" onclick="agregarAlCarrito('Té de Hierba Luisa', 0.50, 'te-luisa')">
+      Añadir al Carrito - $<span id="precio-te-luisa">0.50</span>
+    </button>
   </div>
 
+  <!-- Té Verde Menta - PRODUCTO DISPONIBLE CON PROMOCIÓN -->
   <div class="producto">
-    <img src="https://cdn-icons-png.flaticon.com/512/415/415682.png" alt="Té Relax">
-    <h3>Té Relax Nocturno</h3>
-    <p>Una mezcla suave que te ayuda a relajarte y dormir mejor 🌙</p>
-    <button class="btn">Comprar</button>
+    <div class="producto-badge">OFERTA ESPECIAL</div>
+    <img src="https://www.occident.com/blog/assets/multimedia/2025/03/beneficios-del-te-de-menta_banner.webp" alt="Té Verde Menta">
+    <h3>Té Verde Menta</h3>
+    <p>Combinación revitalizante de té verde antioxidante con frescura de menta para activar cuerpo y mente de forma natural.</p>
+    
+    <div class="producto-precio">
+      <span class="producto-precio-original">$0.75</span>
+      $0.50
+    </div>
+    <div class="producto-ahorro">¡33% DE DESCUENTO!</div>
+    
+    <div class="cantidad-selector">
+      <button class="cantidad-btn" onclick="decrementarCantidad('te-menta')">-</button>
+      <input type="number" id="te-menta" class="cantidad-input" value="1" min="1" max="10">
+      <button class="cantidad-btn" onclick="incrementarCantidad('te-menta')">+</button>
+    </div>
+    
+    <div class="producto-detalles">
+      <div class="producto-caracteristica">
+        <i>✓</i> <span>Energía 100% natural</span>
+      </div>
+      <div class="producto-caracteristica">
+        <i>✓</i> <span>Antioxidantes premium</span>
+      </div>
+      <div class="producto-caracteristica">
+        <i>✓</i> <span>Frescura de menta orgánica</span>
+      </div>
+    </div>
+    
+    <button class="btn" onclick="agregarAlCarrito('Té Verde Menta', 0.50, 'te-menta')">
+      Añadir al Carrito - $<span id="precio-te-menta">0.50</span>
+    </button>
+    <button class="btn btn-secondary" onclick="comprarAhora('Té Verde Menta', 0.50, 'te-menta')">Comprar Ahora</button>
   </div>
 </section>
+
+<!-- Modal del Carrito Mejorado -->
+<div id="modalCarrito" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-titulo">
+        <span class="carrito-icono-titulo">🛒</span>
+        <h2>Tu Carrito de Compras</h2>
+      </div>
+      <button class="close-btn" onclick="cerrarModal()">
+        <span>&times;</span>
+      </button>
+    </div>
+    
+    <div class="carrito-estado">
+      <div class="carrito-progreso">
+        <div class="progreso-paso activo" id="paso-carrito">
+          <span class="progreso-numero">1</span>
+          <span class="progreso-texto">Carrito</span>
+        </div>
+        <div class="progreso-linea"></div>
+        <div class="progreso-paso" id="paso-pago">
+          <span class="progreso-numero">2</span>
+          <span class="progreso-texto">Pago</span>
+        </div>
+        <div class="progreso-linea"></div>
+        <div class="progreso-paso" id="paso-confirmacion">
+          <span class="progreso-numero">3</span>
+          <span class="progreso-texto">Confirmación</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Paso 1: Carrito -->
+    <div id="paso-carrito-contenido" class="paso-contenido activo">
+      <div id="carritoItems" class="carrito-items">
+        <!-- Los productos se agregarán aquí dinámicamente -->
+      </div>
+      
+      <div class="carrito-resumen">
+        <div class="resumen-linea">
+          <span>Subtotal:</span>
+          <span id="carritoSubtotal">$0.00</span>
+        </div>
+        <div class="resumen-linea">
+          <span>Envío:</span>
+          <span id="carritoEnvio">$0.00</span>
+        </div>
+        <div class="resumen-linea total">
+          <span>Total a Pagar:</span>
+          <span id="carritoTotal">$0.00</span>
+        </div>
+      </div>
+      
+      <div class="carrito-acciones">
+        <button class="btn btn-secundario" onclick="cerrarModal()">
+          Seguir Comprando
+        </button>
+        <button class="btn-continuar" onclick="irAPaso('pago')">
+          <span class="btn-icono">→</span>
+          Continuar al Pago
+          <span class="btn-precio" id="btnPrecioTotal">$0.00</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Paso 2: Pago -->
+    <div id="paso-pago-contenido" class="paso-contenido">
+      <div class="metodos-pago">
+        <h3 class="metodos-pago-titulo">
+          <span class="pago-icono">💳</span>
+          Selecciona tu Método de Pago
+        </h3>
+        
+        <div class="categoria-pago">
+          <h4 class="categoria-titulo">
+            <span class="categoria-icono">🏦</span>
+            Entidades Bancarias
+          </h4>
+          <div class="metodos-pago-grid">
+            <div class="metodo-pago">
+              <input type="radio" id="pago-bancolombia" name="metodo-pago" value="bancolombia">
+              <label for="pago-bancolombia">
+                <div class="metodo-logo">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBn42iUDcU3O-e523BueL4iz-4ZelLw2pP_A&s" alt="Bancolombia">
+                </div>
+                <span>Bancolombia</span>
+              </label>
+            </div>
+            <div class="metodo-pago">
+              <input type="radio" id="pago-davivienda" name="metodo-pago" value="davivienda">
+              <label for="pago-davivienda">
+                <div class="metodo-logo">
+                  <img src="https://clickautos.co/wp-content/uploads/2020/05/LOGO-DAVIVIENDA-300x200.png" alt="Davivienda">
+                </div>
+                <span>Davivienda</span>
+              </label>
+            </div>
+            <div class="metodo-pago">
+              <input type="radio" id="pago-bbva" name="metodo-pago" value="bbva">
+              <label for="pago-bbva">
+                <div class="metodo-logo">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIxlTMO0sxbNkgOqVbDmQqu3f7ASFaGUXcvw&s" alt="BBVA">
+                </div>
+                <span>BBVA</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="categoria-pago">
+          <h4 class="categoria-titulo">
+            <span class="categoria-icono">📱</span>
+            Billeteras Digitales
+          </h4>
+          <div class="metodos-pago-grid">
+            <div class="metodo-pago">
+              <input type="radio" id="pago-nequi" name="metodo-pago" value="nequi">
+              <label for="pago-nequi">
+                <div class="metodo-logo">
+                  <img src="https://i.pinimg.com/564x/c6/a0/46/c6a04605a0cd2729fa647d1958b24110.jpg" alt="Nequi">
+                </div>
+                <span>Nequi</span>
+              </label>
+            </div>
+            <div class="metodo-pago">
+              <input type="radio" id="pago-daviplata" name="metodo-pago" value="daviplata">
+              <label for="pago-daviplata">
+                <div class="metodo-logo">
+                  <img src="https://files.antena2.com/antena2/public/styles/imagen_despliegue/public/downloaded_images/daviplata.jpg.webp" alt="Daviplata">
+                </div>
+                <span>Daviplata</span>
+              </label>
+            </div>
+            <div class="metodo-pago">
+              <input type="radio" id="pago-paypal" name="metodo-pago" value="paypal">
+              <label for="pago-paypal">
+                <div class="metodo-logo">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1280px-PayPal.svg.png" alt="PayPal">
+                </div>
+                <span>PayPal</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="categoria-pago">
+          <h4 class="categoria-titulo">
+            <span class="categoria-icono">💎</span>
+            Otros Métodos
+          </h4>
+          <div class="metodos-pago-grid">
+            <div class="metodo-pago">
+              <input type="radio" id="pago-efecty" name="metodo-pago" value="efecty">
+              <label for="pago-efecty">
+                <div class="metodo-logo">
+                  <img src="https://demcoop.com/wp-content/uploads/2022/08/1200x600wa-1024x512.png" alt="Efecty">
+                </div>
+                <span>Efecty</span>
+              </label>
+            </div>
+            <div class="metodo-pago">
+              <input type="radio" id="pago-visa" name="metodo-pago" value="visa">
+              <label for="pago-visa">
+                <div class="metodo-logo">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1280px-Visa_Inc._logo.svg.png" alt="VISA">
+                </div>
+                <span>VISA</span>
+              </label>
+            </div>
+            <div class="metodo-pago">
+              <input type="radio" id="pago-tarjeta" name="metodo-pago" value="tarjeta">
+              <label for="pago-tarjeta">
+                <div class="metodo-logo">
+                  <img src="https://cdn-icons-png.flaticon.com/512/179/179457.png" alt="Tarjeta Crédito">
+                </div>
+                <span>Tarjeta Crédito</span>
+              </label>
+            </div>
+            <div class="metodo-pago">
+              <input type="radio" id="pago-efectivo" name="metodo-pago" value="efectivo" checked>
+              <label for="pago-efectivo">
+                <div class="metodo-logo">
+                  <img src="https://cdn-icons-png.flaticon.com/512/2331/2331961.png" alt="Contraentrega">
+                </div>
+                <span>Contraentrega</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="carrito-acciones">
+        <button class="btn btn-secundario" onclick="irAPaso('carrito')">
+          ← Volver al Carrito
+        </button>
+        <button class="btn-continuar" onclick="irAPaso('confirmacion')">
+          <span class="btn-icono">→</span>
+          Continuar a Confirmación
+        </button>
+      </div>
+    </div>
+    
+    <!-- Paso 3: Confirmación -->
+    <div id="paso-confirmacion-contenido" class="paso-contenido">
+      <div class="confirmacion-resumen">
+        <div class="confirmacion-icono">
+          <span>✓</span>
+        </div>
+        <h3 class="confirmacion-titulo">¡Ya casi es tuyo!</h3>
+        <p class="confirmacion-descripcion">Revisa tu pedido antes de finalizar la compra</p>
+        
+        <div class="confirmacion-detalles">
+          <div class="confirmacion-productos">
+            <h4>Tu Pedido:</h4>
+            <div id="confirmacionItems" class="confirmacion-items">
+              <!-- Los productos se agregarán aquí dinámicamente -->
+            </div>
+          </div>
+          
+          <div class="confirmacion-resumen-pago">
+            <div class="resumen-linea">
+              <span>Subtotal:</span>
+              <span id="confirmacionSubtotal">$0.00</span>
+            </div>
+            <div class="resumen-linea">
+              <span>Envío:</span>
+              <span id="confirmacionEnvio">$0.00</span>
+            </div>
+            <div class="resumen-linea total">
+              <span>Total a Pagar:</span>
+              <span id="confirmacionTotal">$0.00</span>
+            </div>
+            
+            <div class="metodo-pago-seleccionado">
+              <h4>Método de Pago:</h4>
+              <div id="metodoPagoSeleccionado" class="metodo-pago-info">
+                <!-- El método de pago se mostrará aquí -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="carrito-acciones">
+        <button class="btn btn-secundario" onclick="irAPaso('pago')">
+          ← Cambiar Método de Pago
+        </button>
+        <button class="btn-continuar" onclick="procesarCompra()">
+          <span class="btn-icono">🚀</span>
+          Finalizar Compra
+          <span class="btn-precio" id="btnPrecioFinal">$0.00</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <section class="cta-final">
-  <h2>🌸 Encuentra tu sabor favorito</h2>
-  <p>Hampite te acompaña en cada momento del día.</p>
-  <a href="{{ url_for('register') }}" class="btn large">Unirme a Hampite</a>
+  <div class="container">
+    <h2>🌟 Únete a la Comunidad Hampite</h2>
+    <p>Descubre el bienestar natural con nuestros tés y forma parte de nuestra familia.</p>
+    <a href="{{ url_for('register') }}" class="btn large">Quiero Ser Parte de Hampite</a>
+  </div>
 </section>
+
+<script>
+  // Variables globales
+  let carrito = [];
+  let pasoActual = 'carrito';
+  
+  // Funciones para manejar la cantidad de productos
+  function incrementarCantidad(id) {
+    const input = document.getElementById(id);
+    if (parseInt(input.value) < parseInt(input.max)) {
+      input.value = parseInt(input.value) + 1;
+      actualizarPrecio(id);
+    }
+  }
+  
+  function decrementarCantidad(id) {
+    const input = document.getElementById(id);
+    if (parseInt(input.value) > parseInt(input.min)) {
+      input.value = parseInt(input.value) - 1;
+      actualizarPrecio(id);
+    }
+  }
+  
+  function actualizarPrecio(id) {
+    const input = document.getElementById(id);
+    const cantidad = parseInt(input.value);
+    
+    // Precios base por producto
+    const precios = {
+      'te-cedron': 0.50,
+      'te-luisa': 0.50,
+      'te-menta': 0.50
+    };
+    
+    const precioTotal = (precios[id] * cantidad).toFixed(2);
+    document.getElementById(`precio-${id}`).textContent = precioTotal;
+  }
+  
+  // Funciones para el carrito
+  function agregarAlCarrito(nombre, precio, id) {
+    const input = document.getElementById(id);
+    const cantidad = parseInt(input.value);
+    const total = (precio * cantidad).toFixed(2);
+    
+    // Obtener la imagen del producto
+    const productoElement = input.closest('.producto');
+    const imagenSrc = productoElement.querySelector('img').src;
+    
+    // Verificar si el producto ya está en el carrito
+    const productoExistente = carrito.find(item => item.nombre === nombre);
+    
+    if (productoExistente) {
+      // Si ya existe, actualizar la cantidad y el total
+      productoExistente.cantidad += cantidad;
+      productoExistente.total = (productoExistente.precio * productoExistente.cantidad).toFixed(2);
+    } else {
+      // Si no existe, agregar nuevo producto al carrito
+      const producto = {
+        nombre: nombre,
+        precio: precio,
+        cantidad: cantidad,
+        total: total,
+        imagen: imagenSrc  // Agregar la imagen aquí
+      };
+      
+      carrito.push(producto);
+    }
+    
+    actualizarContadorCarrito();
+    
+    // Mostrar modal del carrito
+    mostrarCarrito();
+    
+    // Mostrar mensaje de confirmación
+    alert(`¡${nombre} agregado al carrito!\nCantidad: ${cantidad}\nTotal: $${total}`);
+  }
+  
+  function comprarAhora(nombre, precio, id) {
+    const input = document.getElementById(id);
+    const cantidad = parseInt(input.value);
+    const total = (precio * cantidad).toFixed(2);
+    
+    // Obtener la imagen del producto
+    const productoElement = input.closest('.producto');
+    const imagenSrc = productoElement.querySelector('img').src;
+    
+    // Limpiar carrito actual y agregar solo este producto
+    carrito = [{
+      nombre: nombre,
+      precio: precio,
+      cantidad: cantidad,
+      total: total,
+      imagen: imagenSrc
+    }];
+    
+    actualizarContadorCarrito();
+    mostrarCarrito();
+    irAPaso('pago'); // Ir directamente al paso de pago
+  }
+  
+  function actualizarContadorCarrito() {
+    const contadorHero = document.getElementById('carritoContadorHero');
+    const totalItems = carrito.reduce((sum, producto) => sum + producto.cantidad, 0);
+    contadorHero.textContent = totalItems;
+  }
+  
+  function mostrarCarrito() {
+    const modal = document.getElementById('modalCarrito');
+    const carritoItems = document.getElementById('carritoItems');
+    const carritoSubtotal = document.getElementById('carritoSubtotal');
+    const carritoEnvio = document.getElementById('carritoEnvio');
+    const carritoTotal = document.getElementById('carritoTotal');
+    const btnPrecioTotal = document.getElementById('btnPrecioTotal');
+    
+    // Limpiar carrito
+    carritoItems.innerHTML = '';
+    
+    if (carrito.length === 0) {
+      carritoItems.innerHTML = `
+        <div class="carrito-vacio">
+          <i>🛒</i>
+          <h3>Tu carrito está vacío</h3>
+          <p>Agrega algunos productos para continuar</p>
+        </div>
+      `;
+      carritoSubtotal.textContent = '$0.00';
+      carritoEnvio.textContent = '$0.00';
+      carritoTotal.textContent = '$0.00';
+      btnPrecioTotal.textContent = '$0.00';
+    } else {
+      let subtotal = 0;
+      
+      carrito.forEach((producto, index) => {
+        subtotal += parseFloat(producto.total);
+        
+        const item = document.createElement('div');
+        item.className = 'carrito-item';
+        item.innerHTML = `
+          <img src="${producto.imagen}" alt="${producto.nombre}" class="carrito-item-imagen">
+          <div class="carrito-item-info">
+            <h4>${producto.nombre}</h4>
+            <div class="carrito-item-detalles">
+              <span class="carrito-item-cantidad">
+                Cantidad: <span class="cantidad-mini">${producto.cantidad}</span>
+              </span>
+              <span>Precio unitario: $${producto.precio}</span>
+            </div>
+          </div>
+          <div class="carrito-item-precio">$${producto.total}</div>
+        `;
+        
+        carritoItems.appendChild(item);
+      });
+      
+      // Calcular envío (gratis para compras mayores a $10)
+      const envio = subtotal >= 10 ? 0 : 2.50;
+      const total = subtotal + envio;
+      
+      carritoSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+      carritoEnvio.textContent = envio === 0 ? 'Gratis' : `$${envio.toFixed(2)}`;
+      carritoTotal.textContent = `$${total.toFixed(2)}`;
+      btnPrecioTotal.textContent = `$${total.toFixed(2)}`;
+    }
+    
+    // Actualizar también los valores en el paso de confirmación
+    actualizarConfirmacion();
+    
+    // Mostrar modal
+    modal.style.display = 'flex';
+  }
+  
+  function cerrarModal() {
+    const modal = document.getElementById('modalCarrito');
+    modal.style.display = 'none';
+  }
+  
+  // Nueva función para reiniciar completamente el carrito
+  function reiniciarCarritoCompleto() {
+    // Limpiar carrito
+    carrito = [];
+    actualizarContadorCarrito();
+    
+    // Limpiar cantidades
+    document.querySelectorAll('.cantidad-input').forEach(input => {
+      input.value = 1;
+      actualizarPrecio(input.id);
+    });
+    
+    // Resetear método de pago a "Contraentrega"
+    document.getElementById('pago-efectivo').checked = true;
+    
+    // Volver al paso 1 (Carrito)
+    irAPaso('carrito');
+    
+    // Cerrar modal
+    cerrarModal();
+  }
+  
+  // Funciones para navegar entre pasos
+  function irAPaso(paso) {
+    // Validaciones antes de cambiar de paso
+    if (paso === 'pago' && carrito.length === 0) {
+      alert('Tu carrito está vacío. Agrega algunos productos antes de continuar.');
+      return;
+    }
+    
+    if (paso === 'confirmacion') {
+      const metodoPagoSeleccionado = document.querySelector('input[name="metodo-pago"]:checked');
+      if (!metodoPagoSeleccionado) {
+        alert('Por favor selecciona un método de pago antes de continuar.');
+        return;
+      }
+      actualizarConfirmacion();
+    }
+    
+    // Ocultar todos los pasos
+    document.querySelectorAll('.paso-contenido').forEach(paso => {
+      paso.classList.remove('activo');
+    });
+    
+    // Desactivar todos los pasos en la barra de progreso
+    document.querySelectorAll('.progreso-paso').forEach(paso => {
+      paso.classList.remove('activo');
+    });
+    
+    // Mostrar el paso seleccionado
+    document.getElementById(`paso-${paso}-contenido`).classList.add('activo');
+    document.getElementById(`paso-${paso}`).classList.add('activo');
+    
+    // Actualizar paso actual
+    pasoActual = paso;
+  }
+  
+  function actualizarConfirmacion() {
+    const confirmacionItems = document.getElementById('confirmacionItems');
+    const confirmacionSubtotal = document.getElementById('confirmacionSubtotal');
+    const confirmacionEnvio = document.getElementById('confirmacionEnvio');
+    const confirmacionTotal = document.getElementById('confirmacionTotal');
+    const metodoPagoSeleccionado = document.getElementById('metodoPagoSeleccionado');
+    const btnPrecioFinal = document.getElementById('btnPrecioFinal');
+    
+    // Actualizar productos en confirmación
+    confirmacionItems.innerHTML = '';
+    
+    if (carrito.length === 0) {
+      confirmacionItems.innerHTML = '<p>No hay productos en el carrito</p>';
+    } else {
+      let subtotal = 0;
+      
+      carrito.forEach(producto => {
+        subtotal += parseFloat(producto.total);
+        
+        const item = document.createElement('div');
+        item.className = 'confirmacion-item';
+        item.innerHTML = `
+          <span>${producto.nombre} x ${producto.cantidad}</span>
+          <span>$${producto.total}</span>
+        `;
+        
+        confirmacionItems.appendChild(item);
+      });
+      
+      // Calcular envío (gratis para compras mayores a $10)
+      const envio = subtotal >= 10 ? 0 : 2.50;
+      const total = subtotal + envio;
+      
+      confirmacionSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+      confirmacionEnvio.textContent = envio === 0 ? 'Gratis' : `$${envio.toFixed(2)}`;
+      confirmacionTotal.textContent = `$${total.toFixed(2)}`;
+      btnPrecioFinal.textContent = `$${total.toFixed(2)}`;
+    }
+    
+    // Actualizar método de pago seleccionado
+    const metodoPago = document.querySelector('input[name="metodo-pago"]:checked');
+    if (metodoPago) {
+      const nombreMetodo = obtenerNombreMetodoPago(metodoPago.value);
+      metodoPagoSeleccionado.innerHTML = `
+        <div class="metodo-pago-info-detalle">
+          <span class="metodo-pago-nombre">${nombreMetodo}</span>
+        </div>
+      `;
+    }
+  }
+  
+  function procesarCompra() {
+    if (carrito.length === 0) {
+      alert('Tu carrito está vacío. Agrega algunos productos antes de comprar.');
+      return;
+    }
+    
+    const metodoPago = document.querySelector('input[name="metodo-pago"]:checked').value;
+    const total = document.getElementById('confirmacionTotal').textContent;
+    
+    // Simular procesamiento de pago
+    alert(`¡Compra realizada con éxito!\n\nTotal: ${total}\nMétodo de pago: ${obtenerNombreMetodoPago(metodoPago)}\n\nGracias por tu compra. Tu pedido será procesado inmediatamente.`);
+    
+    // LIMPIAR COMPLETAMENTE Y REINICIAR
+    reiniciarCarritoCompleto();
+  }
+  
+  function obtenerNombreMetodoPago(metodo) {
+    const metodos = {
+      'bancolombia': 'Bancolombia',
+      'davivienda': 'Davivienda',
+      'bbva': 'BBVA',
+      'nequi': 'Nequi',
+      'daviplata': 'Daviplata',
+      'paypal': 'PayPal',
+      'efecty': 'Efecty',
+      'visa': 'VISA',
+      'tarjeta': 'Tarjeta de Crédito',
+      'efectivo': 'Contraentrega (Efectivo)'
+    };
+    
+    return metodos[metodo] || 'Desconocido';
+  }
+  
+  // Cerrar modal al hacer clic fuera de él
+  window.onclick = function(event) {
+    const modal = document.getElementById('modalCarrito');
+    if (event.target === modal) {
+      cerrarModal();
+    }
+  }
+  
+  // Inicializar precios y contador
+  document.addEventListener('DOMContentLoaded', function() {
+    actualizarPrecio('te-cedron');
+    actualizarPrecio('te-luisa');
+    actualizarPrecio('te-menta');
+    actualizarContadorCarrito();
+    
+    // Agregar evento para cambiar estilos de métodos de pago seleccionados
+    document.querySelectorAll('input[name="metodo-pago"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        // Remover clase activa de todos los métodos
+        document.querySelectorAll('.metodo-pago').forEach(metodo => {
+          metodo.classList.remove('activo');
+        });
+        
+        // Agregar clase activa al método seleccionado
+        if (this.checked) {
+          this.closest('.metodo-pago').classList.add('activo');
+        }
+      });
+    });
+    
+    // Inicializar el método por defecto como activo
+    document.querySelector('input[name="metodo-pago"]:checked')
+      .closest('.metodo-pago')
+      .classList.add('activo');
+  });
+</script>
+
+<style>
+  /* Estilos adicionales para los pasos */
+  .paso-contenido {
+    display: none;
+  }
+  
+  .paso-contenido.activo {
+    display: block;
+  }
+  
+  .btn-secundario {
+    background: transparent;
+    color: #047857;
+    border: 2px solid #047857;
+    padding: 12px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    margin-right: 10px;
+  }
+  
+  .btn-secundario:hover {
+    background: #047857;
+    color: white;
+  }
+  
+  .carrito-acciones {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 30px;
+    background: #f8faf9;
+    border-top: 1px solid #e8f5f0;
+  }
+  
+  /* Estilos para la confirmación */
+  .confirmacion-resumen {
+    padding: 20px 30px;
+  }
+  
+  .confirmacion-icono {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .confirmacion-icono span {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #10b981, #047857);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  .confirmacion-titulo {
+    text-align: center;
+    color: #047857;
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+  }
+  
+  .confirmacion-descripcion {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 30px;
+  }
+  
+  .confirmacion-detalles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .confirmacion-productos h4,
+  .metodo-pago-seleccionado h4 {
+    color: #374151;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+  }
+  
+  .confirmacion-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .confirmacion-resumen-pago {
+    background: #f8faf9;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e8f5f0;
+  }
+  
+  .metodo-pago-info-detalle {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    margin-top: 10px;
+  }
+  
+  .metodo-pago-nombre {
+    font-weight: 600;
+    color: #047857;
+  }
+  
+  /* Estilos para métodos de pago seleccionados */
+  .metodo-pago {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 5px;
+  }
+  
+  .metodo-pago.activo {
+    border-color: #047857;
+    background: linear-gradient(135deg, #f0f7f4, #e8f5f0);
+    box-shadow: 0 4px 12px rgba(4, 120, 87, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  .metodo-pago.activo label {
+    color: #047857;
+    font-weight: 600;
+  }
+  
+  .metodo-pago.activo .metodo-logo {
+    transform: scale(1.05);
+  }
+  
+  .metodo-pago input[type="radio"] {
+    display: none;
+  }
+  
+  .metodo-pago label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    height: 100%;
+  }
+  
+  .metodo-pago label:hover {
+    background: #f8faf9;
+  }
+  
+  .metodo-logo {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .metodo-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  /* Indicador de selección */
+  .metodo-pago.activo::before {
+    content: "✓";
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #047857;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  
+  .metodo-pago {
+    position: relative;
+  }
+  
+  @media (max-width: 768px) {
+    .confirmacion-detalles {
+      grid-template-columns: 1fr;
+    }
+    
+    .carrito-acciones {
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .carrito-acciones button {
+      width: 100%;
+    }
+    
+    .metodo-pago.activo::before {
+      top: -5px;
+      right: -5px;
+      width: 16px;
+      height: 16px;
+      font-size: 10px;
+    }
+  }
+</style>
 
 {% endblock %}

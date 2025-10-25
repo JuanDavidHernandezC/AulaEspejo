@@ -6,11 +6,20 @@
 
 {% block content %}
 
-<!-- HERO DE ABOUT -->
+<!-- HERO DE ABOUT MEJORADO -->
 <section class="about-hero fade-section">
-  <div class="overlay"></div>
+  <!-- Partículas flotantes para toda la página -->
+  <div class="floating-tea">🍃</div>
+  <div class="floating-tea">🌿</div>
+  <div class="floating-tea">✨</div>
+  <div class="floating-tea">🍵</div>
+  <div class="floating-tea">💚</div>
+  <div class="floating-tea">🫖</div>
+  <div class="floating-tea">🌱</div>
+  <div class="floating-tea">⭐</div>
+  
   <div class="about-hero-content">
-    <h1>🌱 Conoce <span class="brand">Hampite</span></h1>
+    <h1>Conoce <span class="brand">Hampite</span></h1>
     <p>Más que té, una experiencia natural de bienestar y sostenibilidad.</p>
   </div>
 </section>
@@ -59,7 +68,7 @@
 
 <!-- VALORES -->
 <section class="values fade-section">
-  <h2>🌿 Nuestros valores</h2>
+  <h2>Nuestros valores</h2>
   <div class="value-cards">
     <div class="value-card">
       <img src="https://cdn-icons-png.flaticon.com/512/477/477406.png" alt="Sostenibilidad">
@@ -81,11 +90,13 @@
   </div>
 </section>
 
-<!-- CTA FINAL -->
+<!-- CTA FINAL MEJORADO -->
 <section class="about-cta fade-section">
-  <h2>🍵 Únete a la comunidad Hampite</h2>
-  <p>Forma parte de nuestro viaje hacia un futuro más verde, consciente y delicioso.</p>
-  <a href="{{ url_for('register') }}" class="btn primary large">Comenzar</a>
+  <div class="about-cta-content">
+    <h2>Únete a la comunidad Hampite</h2>
+    <p>Forma parte de nuestro viaje hacia un futuro más verde, consciente y delicioso.</p>
+    <a href="{{ url_for('register') }}" class="btn primary large">Comenzar</a>
+  </div>
 </section>
 
 {% endblock %}
