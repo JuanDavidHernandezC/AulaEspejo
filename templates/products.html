@@ -1,4 +1,3 @@
-products HTML 
 {% extends "base.html" %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
@@ -16,7 +15,7 @@ products HTML
 </section>
 
 <section class="productos-grid">
-  <!-- Té de Cedrón - PRÓXIMAMENTE -->
+  <!-- Té de Cedrón -->
   <div class="producto">
     <div class="producto-badge proximamente">PRÓXIMAMENTE</div>
     <img src="{{ url_for('static', filename='images/Té_cedron.png') }}" alt="Té de Cedrón">
@@ -89,7 +88,7 @@ products HTML
     </button>
   </div>
 
-  <!-- Té de Hierba Luisa - PRÓXIMAMENTE -->
+  <!-- Té de Hierba Luisa -->
   <div class="producto">
     <div class="producto-badge proximamente">PRÓXIMAMENTE</div>
     <img src="{{ url_for('static', filename='images/Té_manzanilla.png') }}" alt="Té de Hierba Luisa">
@@ -235,7 +234,7 @@ products HTML
     </button>
   </div>
 
-  <!-- Té Verde Menta - PRODUCTO DISPONIBLE CON PROMOCIÓN -->
+  <!-- Té Verde Menta -->
   <div class="producto">
     <div class="producto-badge oferta-especial">OFERTA ESPECIAL</div>
     <img src="{{ url_for('static', filename='images/Té_menta.jpg') }}" alt="Té Verde Menta">
@@ -311,7 +310,7 @@ products HTML
   </div>
 </section>
 
-<!-- Modal del Carrito Mejorado -->
+<!-- Carrito -->
 <div id="modalCarrito" class="modal">
   <div class="modal-content">
     <div class="modal-header">
@@ -346,7 +345,7 @@ products HTML
     <!-- Paso 1: Carrito con Envío Opcional -->
     <div id="paso-carrito-contenido" class="paso-contenido activo">
       <div id="carritoItems" class="carrito-items">
-        <!-- Los productos se agregarán aquí dinámicamente -->
+        <!-- Se agregarán aquí -->
       </div>
       
       <!-- Opción de Envío Opcional -->
@@ -411,7 +410,7 @@ products HTML
       </div>
     </div>
     
-    <!-- Paso 2: Pago -->
+    <!-- Pago -->
     <div id="paso-pago-contenido" class="paso-contenido">
       <div class="metodos-pago">
         <h3 class="metodos-pago-titulo">
@@ -630,7 +629,6 @@ products HTML
 </section>
 
 <script>
-  // Variables globales
   let carrito = [];
   let pasoActual = 'carrito';
   let datosEnvio = {};
@@ -644,7 +642,7 @@ products HTML
   
   // Funciones para el sistema mixto (unidades + cajas)
   function incrementarMixto(producto, tipo) {
-    const input = document.getElementById(${producto}-${tipo}-input);
+    const input = document.getElementById(`${producto}-${tipo}-input`);
     const max = tipo === 'unidades' ? 50 : 20;
     
     if (parseInt(input.value) < max) {
@@ -654,7 +652,7 @@ products HTML
   }
   
   function decrementarMixto(producto, tipo) {
-    const input = document.getElementById(${producto}-${tipo}-input);
+    const input = document.getElementById(`${producto}-${tipo}-input`);
     
     if (parseInt(input.value) > 0) {
       input.value = parseInt(input.value) - 1;
@@ -663,8 +661,8 @@ products HTML
   }
   
   function actualizarPrecioTotalMixto(producto) {
-    const unidades = parseInt(document.getElementById(${producto}-unidades-input).value);
-    const cajas = parseInt(document.getElementById(${producto}-cajas-input).value);
+    const unidades = parseInt(document.getElementById(`${producto}-unidades-input`).value);
+    const cajas = parseInt(document.getElementById(`${producto}-cajas-input`).value);
     
     let totalUnidades = unidades * PRECIO_UNITARIO;
     let totalCajas = 0;
@@ -681,10 +679,10 @@ products HTML
     const total = (totalUnidades + totalCajas).toFixed(2);
     
     // Actualizar display
-    document.getElementById(${producto}-total).textContent = total;
+    document.getElementById(`${producto}-total`).textContent = total;
     
     // Mostrar/ocultar indicador de oferta
-    const ofertaElement = document.getElementById(${producto}-oferta);
+    const ofertaElement = document.getElementById(`${producto}-oferta`);
     if (ofertaAplicada && cajas > 0) {
       ofertaElement.style.display = 'inline';
     } else {
@@ -696,7 +694,7 @@ products HTML
   }
   
   function actualizarResumenCompra(producto, unidades, cajas, ofertaAplicada) {
-    const resumenElement = document.getElementById(${producto}-resumen);
+    const resumenElement = document.getElementById(`${producto}-resumen`);
     
     if (unidades === 0 && cajas === 0) {
       resumenElement.innerHTML = '';
@@ -706,13 +704,13 @@ products HTML
     let resumenHTML = '<div class="resumen-detalle">';
     
     if (unidades > 0) {
-      resumenHTML += <div>${unidades} unidad(es): $${(unidades * PRECIO_UNITARIO).toFixed(2)}</div>;
+      resumenHTML += `<div>${unidades} unidad(es): $${(unidades * PRECIO_UNITARIO).toFixed(2)}</div>`;
     }
     
     if (cajas > 0) {
       const precioCaja = ofertaAplicada ? PRECIO_CAJA_OFERTA : PRECIO_CAJA_NORMAL;
       const textoOferta = ofertaAplicada ? ' <small>(¡Oferta aplicada!)</small>' : '';
-      resumenHTML += <div>${cajas} caja(s) x12: $${(cajas * precioCaja).toFixed(2)}${textoOferta}</div>;
+      resumenHTML += `<div>${cajas} caja(s) x12: $${(cajas * precioCaja).toFixed(2)}${textoOferta}</div>`;
     }
     
     resumenHTML += '</div>';
@@ -720,8 +718,8 @@ products HTML
   }
   
   function agregarMixtoAlCarrito(productoId) {
-    const unidades = parseInt(document.getElementById(${productoId}-unidades-input).value);
-    const cajas = parseInt(document.getElementById(${productoId}-cajas-input).value);
+    const unidades = parseInt(document.getElementById(`${productoId}-unidades-input`).value);
+    const cajas = parseInt(document.getElementById(`${productoId}-cajas-input`).value);
     
     if (unidades === 0 && cajas === 0) {
       alert('Por favor selecciona al menos una unidad o caja para agregar al carrito.');
@@ -729,7 +727,7 @@ products HTML
     }
     
     // Obtener información del producto
-    const productoElement = document.getElementById(${productoId}-unidades-input).closest('.producto');
+    const productoElement = document.getElementById(`${productoId}-unidades-input`).closest('.producto');
     const nombre = productoElement.querySelector('h3').textContent;
     const imagenSrc = productoElement.querySelector('img').src;
     
@@ -773,25 +771,25 @@ products HTML
     mostrarCarrito();
     
     // Mostrar mensaje de confirmación
-    let mensaje = ¡${nombre} agregado al carrito!\n;
-    if (unidades > 0) mensaje += ${unidades} unidad(es)\n;
+    let mensaje = `¡${nombre} agregado al carrito!\n`;
+    if (unidades > 0) mensaje += `${unidades} unidad(es)\n`;
     if (cajas > 0) {
       const ofertaMsg = cajas >= MIN_CAJAS_OFERTA ? ' (¡Oferta aplicada!)' : '';
-      mensaje += ${cajas} caja(s)${ofertaMsg}\n;
+      mensaje += `${cajas} caja(s)${ofertaMsg}\n`;
     }
-    mensaje += Total: $${document.getElementById(${productoId}-total`).textContent}`;
+    mensaje += `Total: $${document.getElementById(`${productoId}-total`).textContent}`;
     
     alert(mensaje);
     
     // Limpiar selección después de agregar
-    document.getElementById(${productoId}-unidades-input).value = 0;
-    document.getElementById(${productoId}-cajas-input).value = 0;
+    document.getElementById(`${productoId}-unidades-input`).value = 0;
+    document.getElementById(`${productoId}-cajas-input`).value = 0;
     actualizarPrecioTotalMixto(productoId);
   }
   
   function comprarMixtoAhora(productoId) {
-    const unidades = parseInt(document.getElementById(${productoId}-unidades-input).value);
-    const cajas = parseInt(document.getElementById(${productoId}-cajas-input).value);
+    const unidades = parseInt(document.getElementById(`${productoId}-unidades-input`).value);
+    const cajas = parseInt(document.getElementById(`${productoId}-cajas-input`).value);
     
     if (unidades === 0 && cajas === 0) {
       alert('Por favor selecciona al menos una unidad o caja para comprar.');
@@ -802,7 +800,7 @@ products HTML
     carrito = [];
     
     // Obtener información del producto
-    const productoElement = document.getElementById(${productoId}-unidades-input).closest('.producto');
+    const productoElement = document.getElementById(`${productoId}-unidades-input`).closest('.producto');
     const nombre = productoElement.querySelector('h3').textContent;
     const imagenSrc = productoElement.querySelector('img').src;
     
@@ -847,8 +845,8 @@ products HTML
     irAPaso('pago');
     
     // Limpiar selección después de comprar
-    document.getElementById(${productoId}-unidades-input).value = 0;
-    document.getElementById(${productoId}-cajas-input).value = 0;
+    document.getElementById(`${productoId}-unidades-input`).value = 0;
+    document.getElementById(`${productoId}-cajas-input`).value = 0;
     actualizarPrecioTotalMixto(productoId);
   }
   
@@ -872,7 +870,7 @@ products HTML
     const carritoTotal = document.getElementById('carritoTotal');
     const btnPrecioTotal = document.getElementById('btnPrecioTotal');
     
-    // Limpiar carrito
+    // Limpiar items actuales
     carritoItems.innerHTML = '';
     
     if (carrito.length === 0) {
@@ -900,12 +898,12 @@ products HTML
         let ofertaInfo = '';
         
         if (producto.tipo === 'cajas') {
-          tipoInfo = <span class="carrito-item-tipo">Caja x12 unidades</span>;
+          tipoInfo = `<span class="carrito-item-tipo">Caja x12 unidades</span>`;
           if (producto.ofertaAplicada) {
-            ofertaInfo = <span class="carrito-item-oferta">¡Oferta aplicada!</span>;
+            ofertaInfo = `<span class="carrito-item-oferta">¡Oferta aplicada!</span>`;
           }
         } else {
-          tipoInfo = <span class="carrito-item-tipo">Unidades sueltas</span>;
+          tipoInfo = `<span class="carrito-item-tipo">Unidades sueltas</span>`;
         }
         
         item.innerHTML = `
@@ -927,17 +925,17 @@ products HTML
         carritoItems.appendChild(item);
       });
       
-      // Calcular envío (gratis para compras mayores a $10)
+      // Calcular envío
       const envio = subtotal >= 10 ? 0 : 2.50;
       const total = subtotal + envio;
       
-      carritoSubtotal.textContent = $${subtotal.toFixed(2)};
-      carritoEnvio.textContent = envio === 0 ? 'Gratis' : $${envio.toFixed(2)};
-      carritoTotal.textContent = $${total.toFixed(2)};
-      btnPrecioTotal.textContent = $${total.toFixed(2)};
+      carritoSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+      carritoEnvio.textContent = envio === 0 ? 'Gratis' : `$${envio.toFixed(2)}`;
+      carritoTotal.textContent = `$${total.toFixed(2)}`;
+      btnPrecioTotal.textContent = `$${total.toFixed(2)}`;
     }
     
-    // Actualizar también los valores en el paso de confirmación
+    // Actualizar confirmación
     actualizarConfirmacion();
     
     // Mostrar modal y asegurarse de que solo se vea la etapa del carrito
@@ -1021,16 +1019,16 @@ products HTML
       paso.classList.remove('activo');
     });
     
-    // Desactivar todos los pasos en la barra de progreso
+    // Desactivar todos los indicadores de progreso
     document.querySelectorAll('.progreso-paso').forEach(paso => {
       paso.classList.remove('activo');
     });
     
-    // Mostrar el paso seleccionado
-    document.getElementById(paso-${paso}-contenido).classList.add('activo');
-    document.getElementById(paso-${paso}).classList.add('activo');
+    // Mostrar paso actual y activar indicador
+    document.getElementById(`paso-${paso}-contenido`).classList.add('activo');
+    document.getElementById(`paso-${paso}`).classList.add('activo');
     
-    // Actualizar paso actual
+    // Actualizar variable de estado
     pasoActual = paso;
   }
   
@@ -1044,7 +1042,7 @@ products HTML
     const datosEnvioInfo = document.getElementById('datosEnvioConfirmacion');
     const btnPrecioFinal = document.getElementById('btnPrecioFinal');
     
-    // Actualizar productos en confirmación
+    // Limpiar items de confirmación
     confirmacionItems.innerHTML = '';
     
     if (carrito.length === 0) {
@@ -1071,15 +1069,15 @@ products HTML
         
         confirmacionItems.appendChild(item);
       });
-      
-      // Calcular envío (gratis para compras mayores a $10)
+
+      // Calcular envío
       const envio = subtotal >= 10 ? 0 : 2.50;
       const total = subtotal + envio;
       
-      confirmacionSubtotal.textContent = $${subtotal.toFixed(2)};
-      confirmacionEnvio.textContent = envio === 0 ? 'Gratis' : $${envio.toFixed(2)};
-      confirmacionTotal.textContent = $${total.toFixed(2)};
-      btnPrecioFinal.textContent = $${total.toFixed(2)};
+      confirmacionSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+      confirmacionEnvio.textContent = envio === 0 ? 'Gratis' : `$${envio.toFixed(2)}`;
+      confirmacionTotal.textContent = `$${total.toFixed(2)}`;
+      btnPrecioFinal.textContent = `$${total.toFixed(2)}`;
     }
     
     // Actualizar método de pago seleccionado
@@ -1099,7 +1097,7 @@ products HTML
       datosEnvioConfirmacion.style.display = 'block';
       let instruccionesHTML = '';
       if (datosEnvio.instrucciones) {
-        instruccionesHTML = <div class="envio-info-linea"><strong>Instrucciones:</strong> ${datosEnvio.instrucciones}</div>;
+        instruccionesHTML = `<div class="envio-info-linea"><strong>Instrucciones:</strong> ${datosEnvio.instrucciones}</div>`;
       }
       
       datosEnvioInfo.innerHTML = `
@@ -1128,13 +1126,13 @@ products HTML
     // Mensaje de confirmación personalizado según si hay envío o no
     let mensajeEnvio = '';
     if (necesitaEnvio && datosEnvio.nombre) {
-      mensajeEnvio = \n\nTu pedido será enviado a:\n${datosEnvio.nombre}\n${datosEnvio.direccion}\n${datosEnvio.ciudad};
+      mensajeEnvio = `\n\nTu pedido será enviado a:\n${datosEnvio.nombre}\n${datosEnvio.direccion}\n${datosEnvio.ciudad}`;
     } else {
       mensajeEnvio = '\n\nRecogerás tu pedido en nuestro punto de venta.';
     }
     
     // Simular procesamiento de pago
-    alert(¡Compra realizada con éxito!\n\nTotal: ${total}\nMétodo de pago: ${obtenerNombreMetodoPago(metodoPago)}${mensajeEnvio}\n\nGracias por tu compra.);
+    alert(`¡Compra realizada con éxito!\n\nTotal: ${total}\nMétodo de pago: ${obtenerNombreMetodoPago(metodoPago)}${mensajeEnvio}\n\nGracias por tu compra.`);
     
     // LIMPIAR COMPLETAMENTE EL CARRITO Y FORMULARIOS DESPUÉS DE LA COMPRA
     carrito = [];
@@ -1153,8 +1151,8 @@ products HTML
     // Limpiar todos los selectores mixtos
     const productos = ['te-cedron', 'te-luisa', 'te-frutos-rojos', 'te-menta'];
     productos.forEach(producto => {
-      document.getElementById(${producto}-unidades-input).value = 0;
-      document.getElementById(${producto}-cajas-input).value = 0;
+      document.getElementById(`${producto}-unidades-input`).value = 0;
+      document.getElementById(`${producto}-cajas-input`).value = 0;
       actualizarPrecioTotalMixto(producto);
     });
     
@@ -1179,7 +1177,7 @@ products HTML
     return metodos[metodo] || 'Desconocido';
   }
   
-  // Cerrar modal al hacer clic fuera de él
+  // Cerrar modal al hacer click fuera
   window.onclick = function(event) {
     const modal = document.getElementById('modalCarrito');
     if (event.target === modal) {
@@ -1197,7 +1195,7 @@ products HTML
     
     actualizarContadorCarrito();
     
-    // Agregar evento para cambiar estilos de métodos de pago seleccionados
+    // Configurar eventos para métodos de pago
     document.querySelectorAll('input[name="metodo-pago"]').forEach(radio => {
       radio.addEventListener('change', function() {
         // Remover clase activa de todos los métodos
@@ -1212,7 +1210,7 @@ products HTML
       });
     });
     
-    // Inicializar el método por defecto como activo
+    // Activar el método de pago por defecto
     document.querySelector('input[name="metodo-pago"]:checked')
       .closest('.metodo-pago')
       .classList.add('activo');
@@ -1572,6 +1570,86 @@ products HTML
     min-width: 120px;
     display: inline-block;
   }
+
+  /* ESTILOS PARA MÉTODOS DE PAGO SELECCIONADOS */
+  .metodo-pago {
+    position: relative;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 5px;
+  }
+  
+  .metodo-pago.activo {
+    border-color: #047857;
+    background: linear-gradient(135deg, #f0f7f4, #e8f5f0);
+    box-shadow: 0 4px 12px rgba(4, 120, 87, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  .metodo-pago.activo label {
+    color: #047857;
+    font-weight: 600;
+  }
+  
+  .metodo-pago.activo .metodo-logo {
+    transform: scale(1.05);
+  }
+  
+  .metodo-pago input[type="radio"] {
+    display: none;
+  }
+  
+  .metodo-pago label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    height: 100%;
+  }
+  
+  .metodo-pago label:hover {
+    background: #f8faf9;
+  }
+  
+  .metodo-logo {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .metodo-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .metodo-pago.activo::before {
+    content: "✓";
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #047857;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
   
   /* Estilos para ocultar pasos no activos */
   .paso-contenido {
@@ -1810,6 +1888,20 @@ products HTML
     
     .confirmacion-titulo {
       font-size: 1.5rem;
+    }
+
+    /* Responsive para métodos de pago */
+    .metodos-pago-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .metodo-pago label {
+      padding: 10px 5px;
+    }
+    
+    .metodo-logo {
+      width: 40px;
+      height: 40px;
     }
   }
 </style>
