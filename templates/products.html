@@ -18,16 +18,57 @@
   <!-- Té de Cedrón -->
   <div class="producto">
     <div class="producto-badge proximamente">PRÓXIMAMENTE</div>
-    <img src="https://resizer.glanacion.com/resizer/v2/el-te-de-cedron-y-sus-beneficios-para-la-SAZUKBBYTNGH5J3OCLPEQVLURQ.jpg?auth=db2a01a6799c53e35c478baaa4f9becd059f1afa56e29a142d05eb984bed5588&width=1280&height=854&quality=70&smart=true" alt="Té de Cedrón">
+    <img src="{{ url_for('static', filename='images/Té_cedron.png') }}" alt="Té de Cedrón">
     <h3>Té de Cedrón</h3>
     <p>Infusión con aroma cítrico y propiedades digestivas, ideal para momentos de relajación y bienestar digestivo.</p>
     
-    <div class="producto-precio">$0.50</div>
+    <div class="producto-precios">
+      <div class="precio-unitario">
+        <span class="precio-etiqueta">Precio unitario:</span>
+        <span class="precio-valor">$0.10</span>
+      </div>
+      <div class="precio-caja">
+        <span class="precio-etiqueta">Caja x12 unidades:</span>
+        <span class="precio-valor">$1.20</span>
+      </div>
+      <div class="precio-oferta">
+        <span class="oferta-badge">¡OFERTA!</span>
+        <span class="precio-etiqueta">2+ cajas c/u:</span>
+        <span class="precio-valor">$1.00</span>
+      </div>
+    </div>
     
-    <div class="cantidad-selector">
-      <button class="cantidad-btn" onclick="decrementarCantidad('te-cedron')">-</button>
-      <input type="number" id="te-cedron" class="cantidad-input" value="1" min="1" max="10">
-      <button class="cantidad-btn" onclick="incrementarCantidad('te-cedron')">+</button>
+    <div class="seleccion-mixta">
+      <div class="seleccion-tipo">
+        <h4>Selecciona tu compra:</h4>
+        <div class="opciones-mixtas">
+          <div class="opcion-mixta">
+            <label>Unidades sueltas:</label>
+            <div class="contador-mixto">
+              <button class="cantidad-btn" onclick="decrementarMixto('te-cedron', 'unidades')">-</button>
+              <input type="number" id="te-cedron-unidades-input" class="cantidad-input" value="0" min="0" max="50">
+              <button class="cantidad-btn" onclick="incrementarMixto('te-cedron', 'unidades')">+</button>
+            </div>
+          </div>
+          <div class="opcion-mixta">
+            <label>Cajas completas:</label>
+            <div class="contador-mixto">
+              <button class="cantidad-btn" onclick="decrementarMixto('te-cedron', 'cajas')">-</button>
+              <input type="number" id="te-cedron-cajas-input" class="cantidad-input" value="0" min="0" max="20">
+              <button class="cantidad-btn" onclick="incrementarMixto('te-cedron', 'cajas')">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="precio-total" id="te-cedron-precio-total">
+      Total: $<span id="te-cedron-total">0.00</span>
+      <span class="oferta-aplicada" id="te-cedron-oferta" style="display: none;">¡Oferta aplicada!</span>
+    </div>
+    
+    <div class="resumen-compra" id="te-cedron-resumen">
+      <!-- Se llenará dinámicamente -->
     </div>
     
     <div class="producto-detalles">
@@ -42,24 +83,65 @@
       </div>
     </div>
     
-    <button class="btn" onclick="agregarAlCarrito('Té de Cedrón', 0.50, 'te-cedron')">
-      Añadir al Carrito - $<span id="precio-te-cedron">0.50</span>
+    <button class="btn" onclick="agregarMixtoAlCarrito('te-cedron')">
+      Añadir al Carrito
     </button>
   </div>
 
   <!-- Té de Hierba Luisa -->
   <div class="producto">
     <div class="producto-badge proximamente">PRÓXIMAMENTE</div>
-    <img src="https://www.pompadour.es/modules/ph_simpleblog/featured/96.png" alt="Té de Hierba Luisa">
+    <img src="{{ url_for('static', filename='images/Té_manzanilla.png') }}" alt="Té de Hierba Luisa">
     <h3>Té de Hierba Luisa</h3>
     <p>Notas frescas y cítricas que calman el sistema digestivo y aportan una sensación de bienestar general y frescura.</p>
     
-    <div class="producto-precio">$0.50</div>
+    <div class="producto-precios">
+      <div class="precio-unitario">
+        <span class="precio-etiqueta">Precio unitario:</span>
+        <span class="precio-valor">$0.10</span>
+      </div>
+      <div class="precio-caja">
+        <span class="precio-etiqueta">Caja x12 unidades:</span>
+        <span class="precio-valor">$1.20</span>
+      </div>
+      <div class="precio-oferta">
+        <span class="oferta-badge">¡OFERTA!</span>
+        <span class="precio-etiqueta">2+ cajas c/u:</span>
+        <span class="precio-valor">$1.00</span>
+      </div>
+    </div>
     
-    <div class="cantidad-selector">
-      <button class="cantidad-btn" onclick="decrementarCantidad('te-luisa')">-</button>
-      <input type="number" id="te-luisa" class="cantidad-input" value="1" min="1" max="10">
-      <button class="cantidad-btn" onclick="incrementarCantidad('te-luisa')">+</button>
+    <div class="seleccion-mixta">
+      <div class="seleccion-tipo">
+        <h4>Selecciona tu compra:</h4>
+        <div class="opciones-mixtas">
+          <div class="opcion-mixta">
+            <label>Unidades sueltas:</label>
+            <div class="contador-mixto">
+              <button class="cantidad-btn" onclick="decrementarMixto('te-luisa', 'unidades')">-</button>
+              <input type="number" id="te-luisa-unidades-input" class="cantidad-input" value="0" min="0" max="50">
+              <button class="cantidad-btn" onclick="incrementarMixto('te-luisa', 'unidades')">+</button>
+            </div>
+          </div>
+          <div class="opcion-mixta">
+            <label>Cajas completas:</label>
+            <div class="contador-mixto">
+              <button class="cantidad-btn" onclick="decrementarMixto('te-luisa', 'cajas')">-</button>
+              <input type="number" id="te-luisa-cajas-input" class="cantidad-input" value="0" min="0" max="20">
+              <button class="cantidad-btn" onclick="incrementarMixto('te-luisa', 'cajas')">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="precio-total" id="te-luisa-precio-total">
+      Total: $<span id="te-luisa-total">0.00</span>
+      <span class="oferta-aplicada" id="te-luisa-oferta" style="display: none;">¡Oferta aplicada!</span>
+    </div>
+    
+    <div class="resumen-compra" id="te-luisa-resumen">
+      <!-- Se llenará dinámicamente -->
     </div>
     
     <div class="producto-detalles">
@@ -74,28 +156,139 @@
       </div>
     </div>
     
-    <button class="btn" onclick="agregarAlCarrito('Té de Hierba Luisa', 0.50, 'te-luisa')">
-      Añadir al Carrito - $<span id="precio-te-luisa">0.50</span>
+    <button class="btn" onclick="agregarMixtoAlCarrito('te-luisa')">
+      Añadir al Carrito
+    </button>
+  </div>
+
+  <!-- Té de Frutos Rojos - NUEVO PRODUCTO -->
+  <div class="producto">
+    <div class="producto-badge proximamente">PRÓXIMAMENTE</div>
+    <img src="{{ url_for('static', filename='images/Té_frutos_rojos.png') }}" alt="Té de Frutos Rojos">
+    <h3>Té de Frutos Rojos</h3>
+    <p>Mezcla vibrante de frutos rojos con alto contenido antioxidante para revitalizar tu día con energía natural.</p>
+    
+    <div class="producto-precios">
+      <div class="precio-unitario">
+        <span class="precio-etiqueta">Precio unitario:</span>
+        <span class="precio-valor">$0.10</span>
+      </div>
+      <div class="precio-caja">
+        <span class="precio-etiqueta">Caja x12 unidades:</span>
+        <span class="precio-valor">$1.20</span>
+      </div>
+      <div class="precio-oferta">
+        <span class="oferta-badge">¡OFERTA!</span>
+        <span class="precio-etiqueta">2+ cajas c/u:</span>
+        <span class="precio-valor">$1.00</span>
+      </div>
+    </div>
+    
+    <div class="seleccion-mixta">
+      <div class="seleccion-tipo">
+        <h4>Selecciona tu compra:</h4>
+        <div class="opciones-mixtas">
+          <div class="opcion-mixta">
+            <label>Unidades sueltas:</label>
+            <div class="contador-mixto">
+              <button class="cantidad-btn" onclick="decrementarMixto('te-frutos-rojos', 'unidades')">-</button>
+              <input type="number" id="te-frutos-rojos-unidades-input" class="cantidad-input" value="0" min="0" max="50">
+              <button class="cantidad-btn" onclick="incrementarMixto('te-frutos-rojos', 'unidades')">+</button>
+            </div>
+          </div>
+          <div class="opcion-mixta">
+            <label>Cajas completas:</label>
+            <div class="contador-mixto">
+              <button class="cantidad-btn" onclick="decrementarMixto('te-frutos-rojos', 'cajas')">-</button>
+              <input type="number" id="te-frutos-rojos-cajas-input" class="cantidad-input" value="0" min="0" max="20">
+              <button class="cantidad-btn" onclick="incrementarMixto('te-frutos-rojos', 'cajas')">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="precio-total" id="te-frutos-rojos-precio-total">
+      Total: $<span id="te-frutos-rojos-total">0.00</span>
+      <span class="oferta-aplicada" id="te-frutos-rojos-oferta" style="display: none;">¡Oferta aplicada!</span>
+    </div>
+    
+    <div class="resumen-compra" id="te-frutos-rojos-resumen">
+      <!-- Se llenará dinámicamente -->
+    </div>
+    
+    <div class="producto-detalles">
+      <div class="producto-caracteristica">
+        <i>✓</i> <span>Antioxidantes naturales</span>
+      </div>
+      <div class="producto-caracteristica">
+        <i>✓</i> <span>Energía revitalizante</span>
+      </div>
+      <div class="producto-caracteristica">
+        <i>✓</i> <span>Sabor frutal intenso</span>
+      </div>
+    </div>
+    
+    <button class="btn" onclick="agregarMixtoAlCarrito('te-frutos-rojos')">
+      Añadir al Carrito
     </button>
   </div>
 
   <!-- Té Verde Menta -->
   <div class="producto">
-    <div class="producto-badge">OFERTA ESPECIAL</div>
+    <div class="producto-badge oferta-especial">OFERTA ESPECIAL</div>
     <img src="{{ url_for('static', filename='images/Té_menta.jpg') }}" alt="Té Verde Menta">
     <h3>Té Verde Menta</h3>
     <p>Combinación revitalizante de té verde antioxidante con frescura de menta para activar cuerpo y mente de forma natural.</p>
     
-    <div class="producto-precio">
-      <span class="producto-precio-original">$0.75</span>
-      $0.50
+    <div class="producto-precios">
+      <div class="precio-unitario">
+        <span class="precio-etiqueta">Precio unitario:</span>
+        <span class="precio-valor">$0.10</span>
+      </div>
+      <div class="precio-caja">
+        <span class="precio-etiqueta">Caja x12 unidades:</span>
+        <span class="precio-valor">$1.20</span>
+      </div>
+      <div class="precio-oferta activa">
+        <span class="oferta-badge">¡OFERTA!</span>
+        <span class="precio-etiqueta">2+ cajas c/u:</span>
+        <span class="precio-valor">$1.00</span>
+        <span class="ahorro">¡Ahorra 16.7%!</span>
+      </div>
     </div>
-    <div class="producto-ahorro">¡33% DE DESCUENTO!</div>
     
-    <div class="cantidad-selector">
-      <button class="cantidad-btn" onclick="decrementarCantidad('te-menta')">-</button>
-      <input type="number" id="te-menta" class="cantidad-input" value="1" min="1" max="10">
-      <button class="cantidad-btn" onclick="incrementarCantidad('te-menta')">+</button>
+    <div class="seleccion-mixta">
+      <div class="seleccion-tipo">
+        <h4>Selecciona tu compra:</h4>
+        <div class="opciones-mixtas">
+          <div class="opcion-mixta">
+            <label>Unidades sueltas:</label>
+            <div class="contador-mixto">
+              <button class="cantidad-btn" onclick="decrementarMixto('te-menta', 'unidades')">-</button>
+              <input type="number" id="te-menta-unidades-input" class="cantidad-input" value="0" min="0" max="50">
+              <button class="cantidad-btn" onclick="incrementarMixto('te-menta', 'unidades')">+</button>
+            </div>
+          </div>
+          <div class="opcion-mixta">
+            <label>Cajas completas:</label>
+            <div class="contador-mixto">
+              <button class="cantidad-btn" onclick="decrementarMixto('te-menta', 'cajas')">-</button>
+              <input type="number" id="te-menta-cajas-input" class="cantidad-input" value="0" min="0" max="20">
+              <button class="cantidad-btn" onclick="incrementarMixto('te-menta', 'cajas')">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="precio-total" id="te-menta-precio-total">
+      Total: $<span id="te-menta-total">0.00</span>
+      <span class="oferta-aplicada" id="te-menta-oferta" style="display: none;">¡Oferta aplicada!</span>
+    </div>
+    
+    <div class="resumen-compra" id="te-menta-resumen">
+      <!-- Se llenará dinámicamente -->
     </div>
     
     <div class="producto-detalles">
@@ -110,10 +303,10 @@
       </div>
     </div>
     
-    <button class="btn" onclick="agregarAlCarrito('Té Verde Menta', 0.50, 'te-menta')">
-      Añadir al Carrito - $<span id="precio-te-menta">0.50</span>
+    <button class="btn" onclick="agregarMixtoAlCarrito('te-menta')">
+      Añadir al Carrito
     </button>
-    <button class="btn btn-secondary" onclick="comprarAhora('Té Verde Menta', 0.50, 'te-menta')">Comprar Ahora</button>
+    <button class="btn btn-terciary" onclick="comprarMixtoAhora('te-menta')">Comprar Ahora</button>
   </div>
 </section>
 
@@ -149,10 +342,51 @@
       </div>
     </div>
     
+<<<<<<< HEAD
     <!-- Carrito -->
+=======
+    <!-- Paso 1: Carrito con Envío Opcional -->
+>>>>>>> 16717201af5b54f3f9ddcbc1df694cf6e076e65e
     <div id="paso-carrito-contenido" class="paso-contenido activo">
       <div id="carritoItems" class="carrito-items">
         <!-- Se agregarán aquí -->
+      </div>
+      
+      <!-- Opción de Envío Opcional -->
+      <div class="opcion-envio">
+        <div class="opcion-envio-header">
+          <input type="checkbox" id="necesita-envio" onchange="toggleFormularioEnvio()">
+          <label for="necesita-envio" class="opcion-envio-label">
+            <span class="envio-icono">🚚</span>
+            Necesito envío a domicilio
+          </label>
+        </div>
+        
+        <div id="formulario-envio" class="formulario-envio" style="display: none;">
+          <div class="formulario-envio-contenido">
+            <h4>Información de Envío</h4>
+            <div class="campo-grupo">
+              <label for="nombre-destinatario">Nombre del Destinatario *</label>
+              <input type="text" id="nombre-destinatario" class="campo-input" placeholder="Ingresa el nombre completo">
+            </div>
+            <div class="campo-grupo">
+              <label for="telefono-destinatario">Teléfono de Contacto *</label>
+              <input type="tel" id="telefono-destinatario" class="campo-input" placeholder="Ingresa tu número de teléfono">
+            </div>
+            <div class="campo-grupo">
+              <label for="direccion-envio">Dirección de Envío *</label>
+              <textarea id="direccion-envio" class="campo-textarea" placeholder="Ingresa la dirección completa para el envío" rows="3"></textarea>
+            </div>
+            <div class="campo-grupo">
+              <label for="ciudad-envio">Ciudad *</label>
+              <input type="text" id="ciudad-envio" class="campo-input" placeholder="Ingresa la ciudad">
+            </div>
+            <div class="campo-grupo">
+              <label for="instrucciones-especiales">Instrucciones Especiales (Opcional)</label>
+              <textarea id="instrucciones-especiales" class="campo-textarea" placeholder="Ej: Llamar antes de llegar, punto de referencia, etc." rows="2"></textarea>
+            </div>
+          </div>
+        </div>
       </div>
       
       <div class="carrito-resumen">
@@ -171,10 +405,8 @@
       </div>
       
       <div class="carrito-acciones">
-        <button class="btn btn-secundario" onclick="cerrarModal()">
-          Seguir Comprando
-        </button>
-        <button class="btn-continuar" onclick="irAPaso('pago')">
+        <!-- SOLO BOTÓN CONTINUAR - ELIMINADO SEGUIR COMPRANDO -->
+        <button class="btn-continuar" onclick="validarYContinuar()">
           <span class="btn-icono">→</span>
           Continuar al Pago
           <span class="btn-precio" id="btnPrecioTotal">$0.00</span>
@@ -319,39 +551,69 @@
       </div>
     </div>
     
+<<<<<<< HEAD
     <!-- Confirmación -->
+=======
+    <!-- Paso 3: Confirmación - MEJORADO -->
+>>>>>>> 16717201af5b54f3f9ddcbc1df694cf6e076e65e
     <div id="paso-confirmacion-contenido" class="paso-contenido">
-      <div class="confirmacion-resumen">
-        <div class="confirmacion-icono">
-          <span>✓</span>
+      <div class="confirmacion-contenido">
+        <div class="confirmacion-header">
+          <div class="confirmacion-icono">
+            <span>✓</span>
+          </div>
+          <div class="confirmacion-texto">
+            <h3 class="confirmacion-titulo">¡Ya casi es tuyo!</h3>
+            <p class="confirmacion-descripcion">Revisa tu pedido antes de finalizar la compra</p>
+          </div>
         </div>
-        <h3 class="confirmacion-titulo">¡Ya casi es tuyo!</h3>
-        <p class="confirmacion-descripcion">Revisa tu pedido antes de finalizar la compra</p>
         
+<<<<<<< HEAD
         <div class="confirmacion-detalles">
           <div class="confirmacion-productos">
             <h4>Tu Pedido:</h4>
             <div id="confirmacionItems" class="confirmacion-items">
               <!-- Se agregarán aquí -->
+=======
+        <div class="confirmacion-grid">
+          <div class="confirmacion-columna confirmacion-productos">
+            <div class="confirmacion-seccion">
+              <h4 class="confirmacion-subtitulo">Tu Pedido</h4>
+              <div id="confirmacionItems" class="confirmacion-items">
+                <!-- Los productos se agregarán aquí dinámicamente -->
+              </div>
+            </div>
+            
+            <div id="datos-envio-confirmacion" class="confirmacion-seccion" style="display: none;">
+              <h4 class="confirmacion-subtitulo">Datos de Envío</h4>
+              <div id="datosEnvioConfirmacion" class="datos-envio-info">
+                <!-- Los datos de envío se mostrarán aquí -->
+              </div>
+>>>>>>> 16717201af5b54f3f9ddcbc1df694cf6e076e65e
             </div>
           </div>
           
-          <div class="confirmacion-resumen-pago">
-            <div class="resumen-linea">
-              <span>Subtotal:</span>
-              <span id="confirmacionSubtotal">$0.00</span>
-            </div>
-            <div class="resumen-linea">
-              <span>Envío:</span>
-              <span id="confirmacionEnvio">$0.00</span>
-            </div>
-            <div class="resumen-linea total">
-              <span>Total a Pagar:</span>
-              <span id="confirmacionTotal">$0.00</span>
+          <div class="confirmacion-columna confirmacion-resumen">
+            <div class="confirmacion-seccion">
+              <h4 class="confirmacion-subtitulo">Resumen del Pedido</h4>
+              <div class="confirmacion-resumen-pago">
+                <div class="resumen-linea">
+                  <span>Subtotal:</span>
+                  <span id="confirmacionSubtotal">$0.00</span>
+                </div>
+                <div class="resumen-linea">
+                  <span>Envío:</span>
+                  <span id="confirmacionEnvio">$0.00</span>
+                </div>
+                <div class="resumen-linea total">
+                  <span>Total a Pagar:</span>
+                  <span id="confirmacionTotal">$0.00</span>
+                </div>
+              </div>
             </div>
             
-            <div class="metodo-pago-seleccionado">
-              <h4>Método de Pago:</h4>
+            <div class="confirmacion-seccion">
+              <h4 class="confirmacion-subtitulo">Método de Pago</h4>
               <div id="metodoPagoSeleccionado" class="metodo-pago-info">
                 <!-- El método de pago se mostrará aquí -->
               </div>
@@ -386,39 +648,85 @@
 
   let carrito = [];
   let pasoActual = 'carrito';
+  let datosEnvio = {};
+  let necesitaEnvio = false;
   
+<<<<<<< HEAD
 
   function incrementarCantidad(id) {
     const input = document.getElementById(id);
     if (parseInt(input.value) < parseInt(input.max)) {
-      input.value = parseInt(input.value) + 1;
-      actualizarPrecio(id);
-    }
-  }
+=======
+  // Precios base
+  const PRECIO_UNITARIO = 0.10;
+  const PRECIO_CAJA_NORMAL = 1.20;
+  const PRECIO_CAJA_OFERTA = 1.00;
+  const MIN_CAJAS_OFERTA = 2;
   
-  function decrementarCantidad(id) {
-    const input = document.getElementById(id);
-    if (parseInt(input.value) > parseInt(input.min)) {
-      input.value = parseInt(input.value) - 1;
-      actualizarPrecio(id);
-    }
-  }
-  
-  function actualizarPrecio(id) {
-    const input = document.getElementById(id);
-    const cantidad = parseInt(input.value);
+  // Funciones para el sistema mixto (unidades + cajas)
+  function incrementarMixto(producto, tipo) {
+    const input = document.getElementById(`${producto}-${tipo}-input`);
+    const max = tipo === 'unidades' ? 50 : 20;
     
+    if (parseInt(input.value) < max) {
+>>>>>>> 16717201af5b54f3f9ddcbc1df694cf6e076e65e
+      input.value = parseInt(input.value) + 1;
+      actualizarPrecioTotalMixto(producto);
+    }
+  }
+  
+  function decrementarMixto(producto, tipo) {
+    const input = document.getElementById(`${producto}-${tipo}-input`);
+    
+    if (parseInt(input.value) > 0) {
+      input.value = parseInt(input.value) - 1;
+      actualizarPrecioTotalMixto(producto);
+    }
+  }
+  
+  function actualizarPrecioTotalMixto(producto) {
+    const unidades = parseInt(document.getElementById(`${producto}-unidades-input`).value);
+    const cajas = parseInt(document.getElementById(`${producto}-cajas-input`).value);
+    
+<<<<<<< HEAD
  
     const precios = {
       'te-cedron': 0.50,
       'te-luisa': 0.50,
       'te-menta': 0.50
     };
+=======
+    let totalUnidades = unidades * PRECIO_UNITARIO;
+    let totalCajas = 0;
+    let ofertaAplicada = false;
+>>>>>>> 16717201af5b54f3f9ddcbc1df694cf6e076e65e
     
-    const precioTotal = (precios[id] * cantidad).toFixed(2);
-    document.getElementById(`precio-${id}`).textContent = precioTotal;
+    // Calcular precio de cajas (con oferta si aplica)
+    if (cajas >= MIN_CAJAS_OFERTA) {
+      totalCajas = cajas * PRECIO_CAJA_OFERTA;
+      ofertaAplicada = true;
+    } else {
+      totalCajas = cajas * PRECIO_CAJA_NORMAL;
+    }
+    
+    const total = (totalUnidades + totalCajas).toFixed(2);
+    
+    // Actualizar display
+    document.getElementById(`${producto}-total`).textContent = total;
+    
+    // Mostrar/ocultar indicador de oferta
+    const ofertaElement = document.getElementById(`${producto}-oferta`);
+    if (ofertaAplicada && cajas > 0) {
+      ofertaElement.style.display = 'inline';
+    } else {
+      ofertaElement.style.display = 'none';
+    }
+    
+    // Actualizar resumen
+    actualizarResumenCompra(producto, unidades, cajas, ofertaAplicada);
   }
   
+<<<<<<< HEAD
 
   function agregarAlCarrito(nombre, precio, id) {
     const input = document.getElementById(id);
@@ -444,25 +752,116 @@
         cantidad: cantidad,
         total: total,
         imagen: imagenSrc  
+=======
+  function actualizarResumenCompra(producto, unidades, cajas, ofertaAplicada) {
+    const resumenElement = document.getElementById(`${producto}-resumen`);
+    
+    if (unidades === 0 && cajas === 0) {
+      resumenElement.innerHTML = '';
+      return;
+    }
+    
+    let resumenHTML = '<div class="resumen-detalle">';
+    
+    if (unidades > 0) {
+      resumenHTML += `<div>${unidades} unidad(es): $${(unidades * PRECIO_UNITARIO).toFixed(2)}</div>`;
+    }
+    
+    if (cajas > 0) {
+      const precioCaja = ofertaAplicada ? PRECIO_CAJA_OFERTA : PRECIO_CAJA_NORMAL;
+      const textoOferta = ofertaAplicada ? ' <small>(¡Oferta aplicada!)</small>' : '';
+      resumenHTML += `<div>${cajas} caja(s) x12: $${(cajas * precioCaja).toFixed(2)}${textoOferta}</div>`;
+    }
+    
+    resumenHTML += '</div>';
+    resumenElement.innerHTML = resumenHTML;
+  }
+  
+  function agregarMixtoAlCarrito(productoId) {
+    const unidades = parseInt(document.getElementById(`${productoId}-unidades-input`).value);
+    const cajas = parseInt(document.getElementById(`${productoId}-cajas-input`).value);
+    
+    if (unidades === 0 && cajas === 0) {
+      alert('Por favor selecciona al menos una unidad o caja para agregar al carrito.');
+      return;
+    }
+    
+    // Obtener información del producto
+    const productoElement = document.getElementById(`${productoId}-unidades-input`).closest('.producto');
+    const nombre = productoElement.querySelector('h3').textContent;
+    const imagenSrc = productoElement.querySelector('img').src;
+    
+    // Agregar unidades al carrito si hay
+    if (unidades > 0) {
+      const totalUnidades = (unidades * PRECIO_UNITARIO).toFixed(2);
+      
+      const productoUnidades = {
+        nombre: nombre,
+        precio: PRECIO_UNITARIO,
+        cantidad: unidades,
+        total: totalUnidades,
+        imagen: imagenSrc,
+        tipo: 'unidades',
+        ofertaAplicada: false
+>>>>>>> 16717201af5b54f3f9ddcbc1df694cf6e076e65e
       };
       
-      carrito.push(producto);
+      carrito.push(productoUnidades);
+    }
+    
+    // Agregar cajas al carrito si hay
+    if (cajas > 0) {
+      const precioCaja = cajas >= MIN_CAJAS_OFERTA ? PRECIO_CAJA_OFERTA : PRECIO_CAJA_NORMAL;
+      const totalCajas = (cajas * precioCaja).toFixed(2);
+      const ofertaAplicada = cajas >= MIN_CAJAS_OFERTA;
+      
+      const productoCajas = {
+        nombre: nombre,
+        precio: precioCaja,
+        cantidad: cajas,
+        total: totalCajas,
+        imagen: imagenSrc,
+        tipo: 'cajas',
+        ofertaAplicada: ofertaAplicada
+      };
+      
+      carrito.push(productoCajas);
     }
     
     actualizarContadorCarrito();
+<<<<<<< HEAD
     
 
     mostrarCarrito();
     
 
     alert(`¡${nombre} agregado al carrito!\nCantidad: ${cantidad}\nTotal: $${total}`);
+=======
+    mostrarCarrito();
+    
+    // Mostrar mensaje de confirmación
+    let mensaje = `¡${nombre} agregado al carrito!\n`;
+    if (unidades > 0) mensaje += `${unidades} unidad(es)\n`;
+    if (cajas > 0) {
+      const ofertaMsg = cajas >= MIN_CAJAS_OFERTA ? ' (¡Oferta aplicada!)' : '';
+      mensaje += `${cajas} caja(s)${ofertaMsg}\n`;
+    }
+    mensaje += `Total: $${document.getElementById(`${productoId}-total`).textContent}`;
+    
+    alert(mensaje);
+    
+    // Limpiar selección después de agregar
+    document.getElementById(`${productoId}-unidades-input`).value = 0;
+    document.getElementById(`${productoId}-cajas-input`).value = 0;
+    actualizarPrecioTotalMixto(productoId);
+>>>>>>> 16717201af5b54f3f9ddcbc1df694cf6e076e65e
   }
   
-  function comprarAhora(nombre, precio, id) {
-    const input = document.getElementById(id);
-    const cantidad = parseInt(input.value);
-    const total = (precio * cantidad).toFixed(2);
+  function comprarMixtoAhora(productoId) {
+    const unidades = parseInt(document.getElementById(`${productoId}-unidades-input`).value);
+    const cajas = parseInt(document.getElementById(`${productoId}-cajas-input`).value);
     
+<<<<<<< HEAD
 
     const productoElement = input.closest('.producto');
     const imagenSrc = productoElement.querySelector('img').src;
@@ -479,11 +878,76 @@
     actualizarContadorCarrito();
     mostrarCarrito();
     irAPaso('pago'); 
+=======
+    if (unidades === 0 && cajas === 0) {
+      alert('Por favor selecciona al menos una unidad o caja para comprar.');
+      return;
+    }
+    
+    // Limpiar carrito actual
+    carrito = [];
+    
+    // Obtener información del producto
+    const productoElement = document.getElementById(`${productoId}-unidades-input`).closest('.producto');
+    const nombre = productoElement.querySelector('h3').textContent;
+    const imagenSrc = productoElement.querySelector('img').src;
+    
+    // Agregar unidades al carrito si hay
+    if (unidades > 0) {
+      const totalUnidades = (unidades * PRECIO_UNITARIO).toFixed(2);
+      
+      const productoUnidades = {
+        nombre: nombre,
+        precio: PRECIO_UNITARIO,
+        cantidad: unidades,
+        total: totalUnidades,
+        imagen: imagenSrc,
+        tipo: 'unidades',
+        ofertaAplicada: false
+      };
+      
+      carrito.push(productoUnidades);
+    }
+    
+    // Agregar cajas al carrito si hay
+    if (cajas > 0) {
+      const precioCaja = cajas >= MIN_CAJAS_OFERTA ? PRECIO_CAJA_OFERTA : PRECIO_CAJA_NORMAL;
+      const totalCajas = (cajas * precioCaja).toFixed(2);
+      const ofertaAplicada = cajas >= MIN_CAJAS_OFERTA;
+      
+      const productoCajas = {
+        nombre: nombre,
+        precio: precioCaja,
+        cantidad: cajas,
+        total: totalCajas,
+        imagen: imagenSrc,
+        tipo: 'cajas',
+        ofertaAplicada: ofertaAplicada
+      };
+      
+      carrito.push(productoCajas);
+    }
+    
+    actualizarContadorCarrito();
+    mostrarCarrito();
+    irAPaso('pago');
+    
+    // Limpiar selección después de comprar
+    document.getElementById(`${productoId}-unidades-input`).value = 0;
+    document.getElementById(`${productoId}-cajas-input`).value = 0;
+    actualizarPrecioTotalMixto(productoId);
+>>>>>>> 16717201af5b54f3f9ddcbc1df694cf6e076e65e
   }
   
+  // Funciones del carrito mejoradas
   function actualizarContadorCarrito() {
     const contadorHero = document.getElementById('carritoContadorHero');
-    const totalItems = carrito.reduce((sum, producto) => sum + producto.cantidad, 0);
+    const totalItems = carrito.reduce((sum, producto) => {
+      if (producto.tipo === 'cajas') {
+        return sum + (producto.cantidad * 12); // Cada caja tiene 12 unidades
+      }
+      return sum + producto.cantidad;
+    }, 0);
     contadorHero.textContent = totalItems;
   }
   
@@ -518,15 +982,30 @@
         
         const item = document.createElement('div');
         item.className = 'carrito-item';
+        
+        let tipoInfo = '';
+        let ofertaInfo = '';
+        
+        if (producto.tipo === 'cajas') {
+          tipoInfo = `<span class="carrito-item-tipo">Caja x12 unidades</span>`;
+          if (producto.ofertaAplicada) {
+            ofertaInfo = `<span class="carrito-item-oferta">¡Oferta aplicada!</span>`;
+          }
+        } else {
+          tipoInfo = `<span class="carrito-item-tipo">Unidades sueltas</span>`;
+        }
+        
         item.innerHTML = `
           <img src="${producto.imagen}" alt="${producto.nombre}" class="carrito-item-imagen">
           <div class="carrito-item-info">
             <h4>${producto.nombre}</h4>
+            ${tipoInfo}
+            ${ofertaInfo}
             <div class="carrito-item-detalles">
               <span class="carrito-item-cantidad">
-                Cantidad: <span class="cantidad-mini">${producto.cantidad}</span>
+                Cantidad: <span class="cantidad-mini">${producto.cantidad} ${producto.tipo === 'cajas' ? 'caja(s)' : 'unidad(es)'}</span>
               </span>
-              <span>Precio unitario: $${producto.precio}</span>
+              <span>Precio ${producto.tipo === 'cajas' ? 'por caja' : 'unitario'}: $${parseFloat(producto.precio).toFixed(2)}</span>
             </div>
           </div>
           <div class="carrito-item-precio">$${producto.total}</div>
@@ -548,8 +1027,13 @@
 
     actualizarConfirmacion();
     
+<<<<<<< HEAD
 
+=======
+    // Mostrar modal y asegurarse de que solo se vea la etapa del carrito
+>>>>>>> 16717201af5b54f3f9ddcbc1df694cf6e076e65e
     modal.style.display = 'flex';
+    irAPaso('carrito');
   }
   
   function cerrarModal() {
@@ -557,6 +1041,7 @@
     modal.style.display = 'none';
   }
   
+<<<<<<< HEAD
 
   function reiniciarCarritoCompleto() {
 
@@ -577,9 +1062,58 @@
     
 
     cerrarModal();
+=======
+  // Funciones para el formulario de envío opcional
+  function toggleFormularioEnvio() {
+    const checkbox = document.getElementById('necesita-envio');
+    const formulario = document.getElementById('formulario-envio');
+    
+    necesitaEnvio = checkbox.checked;
+    
+    if (necesitaEnvio) {
+      formulario.style.display = 'block';
+    } else {
+      formulario.style.display = 'none';
+      // Limpiar datos de envío si se deselecciona
+      datosEnvio = {};
+    }
+>>>>>>> 16717201af5b54f3f9ddcbc1df694cf6e076e65e
   }
   
   // Funciones para navegar entre pasos
+  function validarYContinuar() {
+    if (carrito.length === 0) {
+      alert('Tu carrito está vacío. Agrega algunos productos antes de continuar.');
+      return;
+    }
+    
+    // Validar datos de envío solo si se seleccionó la opción
+    if (necesitaEnvio) {
+      const nombre = document.getElementById('nombre-destinatario').value.trim();
+      const telefono = document.getElementById('telefono-destinatario').value.trim();
+      const direccion = document.getElementById('direccion-envio').value.trim();
+      const ciudad = document.getElementById('ciudad-envio').value.trim();
+      
+      if (!nombre || !telefono || !direccion || !ciudad) {
+        alert('Por favor completa todos los campos obligatorios (*) en los datos de envío.');
+        return;
+      }
+      
+      // Guardar datos de envío
+      datosEnvio = {
+        nombre: nombre,
+        telefono: telefono,
+        direccion: direccion,
+        ciudad: ciudad,
+        instrucciones: document.getElementById('instrucciones-especiales').value.trim()
+      };
+    } else {
+      datosEnvio = {};
+    }
+    
+    irAPaso('pago');
+  }
+  
   function irAPaso(paso) {
 
     if (paso === 'pago' && carrito.length === 0) {
@@ -620,13 +1154,15 @@
     const confirmacionEnvio = document.getElementById('confirmacionEnvio');
     const confirmacionTotal = document.getElementById('confirmacionTotal');
     const metodoPagoSeleccionado = document.getElementById('metodoPagoSeleccionado');
+    const datosEnvioConfirmacion = document.getElementById('datos-envio-confirmacion');
+    const datosEnvioInfo = document.getElementById('datosEnvioConfirmacion');
     const btnPrecioFinal = document.getElementById('btnPrecioFinal');
     
 
     confirmacionItems.innerHTML = '';
     
     if (carrito.length === 0) {
-      confirmacionItems.innerHTML = '<p>No hay productos en el carrito</p>';
+      confirmacionItems.innerHTML = '<div class="confirmacion-item vacio">No hay productos en el carrito</div>';
     } else {
       let subtotal = 0;
       
@@ -635,9 +1171,16 @@
         
         const item = document.createElement('div');
         item.className = 'confirmacion-item';
+        
+        let tipoDesc = producto.tipo === 'cajas' ? ' (Caja x12)' : ' (Unidades)';
+        let ofertaDesc = producto.ofertaAplicada ? ' - ¡Oferta!' : '';
+        
         item.innerHTML = `
-          <span>${producto.nombre} x ${producto.cantidad}</span>
-          <span>$${producto.total}</span>
+          <div class="confirmacion-item-info">
+            <span class="confirmacion-item-nombre">${producto.nombre}${tipoDesc}</span>
+            <span class="confirmacion-item-cantidad">x ${producto.cantidad}${ofertaDesc}</span>
+          </div>
+          <span class="confirmacion-item-precio">$${producto.total}</span>
         `;
         
         confirmacionItems.appendChild(item);
@@ -659,9 +1202,31 @@
       const nombreMetodo = obtenerNombreMetodoPago(metodoPago.value);
       metodoPagoSeleccionado.innerHTML = `
         <div class="metodo-pago-info-detalle">
+          <span class="metodo-pago-icono">💳</span>
           <span class="metodo-pago-nombre">${nombreMetodo}</span>
         </div>
       `;
+    }
+    
+    // Actualizar datos de envío si existen
+    if (necesitaEnvio && datosEnvio.nombre) {
+      datosEnvioConfirmacion.style.display = 'block';
+      let instruccionesHTML = '';
+      if (datosEnvio.instrucciones) {
+        instruccionesHTML = `<div class="envio-info-linea"><strong>Instrucciones:</strong> ${datosEnvio.instrucciones}</div>`;
+      }
+      
+      datosEnvioInfo.innerHTML = `
+        <div class="datos-envio-info-detalle">
+          <div class="envio-info-linea"><strong>Destinatario:</strong> ${datosEnvio.nombre}</div>
+          <div class="envio-info-linea"><strong>Teléfono:</strong> ${datosEnvio.telefono}</div>
+          <div class="envio-info-linea"><strong>Dirección:</strong> ${datosEnvio.direccion}</div>
+          <div class="envio-info-linea"><strong>Ciudad:</strong> ${datosEnvio.ciudad}</div>
+          ${instruccionesHTML}
+        </div>
+      `;
+    } else {
+      datosEnvioConfirmacion.style.display = 'none';
     }
   }
   
@@ -674,11 +1239,49 @@
     const metodoPago = document.querySelector('input[name="metodo-pago"]:checked').value;
     const total = document.getElementById('confirmacionTotal').textContent;
     
+<<<<<<< HEAD
 
     alert(`¡Compra realizada con éxito!\n\nTotal: ${total}\nMétodo de pago: ${obtenerNombreMetodoPago(metodoPago)}\n\nGracias por tu compra. Tu pedido será procesado inmediatamente.`);
     
 
     reiniciarCarritoCompleto();
+=======
+    // Mensaje de confirmación personalizado según si hay envío o no
+    let mensajeEnvio = '';
+    if (necesitaEnvio && datosEnvio.nombre) {
+      mensajeEnvio = `\n\nTu pedido será enviado a:\n${datosEnvio.nombre}\n${datosEnvio.direccion}\n${datosEnvio.ciudad}`;
+    } else {
+      mensajeEnvio = '\n\nRecogerás tu pedido en nuestro punto de venta.';
+    }
+    
+    // Simular procesamiento de pago
+    alert(`¡Compra realizada con éxito!\n\nTotal: ${total}\nMétodo de pago: ${obtenerNombreMetodoPago(metodoPago)}${mensajeEnvio}\n\nGracias por tu compra.`);
+    
+    // LIMPIAR COMPLETAMENTE EL CARRITO Y FORMULARIOS DESPUÉS DE LA COMPRA
+    carrito = [];
+    datosEnvio = {};
+    necesitaEnvio = false;
+    
+    // Limpiar formularios
+    document.getElementById('necesita-envio').checked = false;
+    document.getElementById('formulario-envio').style.display = 'none';
+    document.getElementById('nombre-destinatario').value = '';
+    document.getElementById('telefono-destinatario').value = '';
+    document.getElementById('direccion-envio').value = '';
+    document.getElementById('ciudad-envio').value = '';
+    document.getElementById('instrucciones-especiales').value = '';
+    
+    // Limpiar todos los selectores mixtos
+    const productos = ['te-cedron', 'te-luisa', 'te-frutos-rojos', 'te-menta'];
+    productos.forEach(producto => {
+      document.getElementById(`${producto}-unidades-input`).value = 0;
+      document.getElementById(`${producto}-cajas-input`).value = 0;
+      actualizarPrecioTotalMixto(producto);
+    });
+    
+    actualizarContadorCarrito();
+    cerrarModal();
+>>>>>>> 16717201af5b54f3f9ddcbc1df694cf6e076e65e
   }
   
   function obtenerNombreMetodoPago(metodo) {
@@ -706,11 +1309,18 @@
     }
   }
   
+<<<<<<< HEAD
 
+=======
+  // Inicializar cuando el DOM esté listo
+>>>>>>> 16717201af5b54f3f9ddcbc1df694cf6e076e65e
   document.addEventListener('DOMContentLoaded', function() {
-    actualizarPrecio('te-cedron');
-    actualizarPrecio('te-luisa');
-    actualizarPrecio('te-menta');
+    // Inicializar precios para todos los productos
+    const productos = ['te-cedron', 'te-luisa', 'te-frutos-rojos', 'te-menta'];
+    productos.forEach(producto => {
+      actualizarPrecioTotalMixto(producto);
+    });
+    
     actualizarContadorCarrito();
     
 
@@ -736,7 +1346,364 @@
 </script>
 
 <style>
+<<<<<<< HEAD
 
+=======
+  /* Estilos para el sistema mixto */
+  .seleccion-mixta {
+    margin: 15px 0;
+  }
+  
+  .seleccion-tipo h4 {
+    margin-bottom: 10px;
+    color: #374151;
+    font-size: 1rem;
+  }
+  
+  .opciones-mixtas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .opcion-mixta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #f8faf9;
+    border-radius: 8px;
+    border: 1px solid #e8f5f0;
+  }
+  
+  .opcion-mixta label {
+    font-weight: 500;
+    color: #374151;
+    flex: 1;
+  }
+  
+  .contador-mixto {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .resumen-compra {
+    margin: 10px 0;
+    padding: 10px;
+    background: #f0f7f4;
+    border-radius: 8px;
+    border: 1px solid #d1fae5;
+  }
+  
+  .resumen-detalle {
+    font-size: 0.9rem;
+    color: #047857;
+  }
+  
+  .resumen-detalle div {
+    margin: 4px 0;
+  }
+  
+  .resumen-detalle small {
+    color: #f59e0b;
+    font-weight: 600;
+  }
+  
+  /* Estilos para la opción de envío opcional */
+  .opcion-envio {
+    margin: 20px 0;
+    padding: 0;
+  }
+  
+  .opcion-envio-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    background: #f8faf9;
+    border-radius: 8px;
+    border: 1px solid #e8f5f0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .opcion-envio-header:hover {
+    background: #f0f7f4;
+  }
+  
+  .opcion-envio-header input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #047857;
+  }
+  
+  .opcion-envio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    margin: 0;
+  }
+  
+  .envio-icono {
+    font-size: 1.2rem;
+  }
+  
+  .formulario-envio {
+    margin-top: 15px;
+    padding: 20px;
+    background: #f8faf9;
+    border-radius: 8px;
+    border: 1px solid #e8f5f0;
+    animation: slideDown 0.3s ease;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .formulario-envio-contenido h4 {
+    margin-bottom: 15px;
+    color: #374151;
+    font-size: 1.1rem;
+  }
+  
+  .formulario-envio-contenido {
+    display: grid;
+    gap: 15px;
+  }
+  
+  .campo-grupo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .campo-grupo label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #374151;
+  }
+  
+  .campo-input, .campo-textarea {
+    padding: 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .campo-input:focus, .campo-textarea:focus {
+    outline: none;
+    border-color: #047857;
+  }
+  
+  .campo-textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  /* ESTILOS MEJORADOS PARA LA ETAPA DE CONFIRMACIÓN */
+  .confirmacion-contenido {
+    padding: 20px 0;
+  }
+  
+  .confirmacion-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 0 20px;
+  }
+  
+  .confirmacion-icono {
+    width: 60px;
+    height: 60px;
+    background: #10b981;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .confirmacion-texto {
+    flex: 1;
+  }
+  
+  .confirmacion-titulo {
+    font-size: 1.8rem;
+    color: #047857;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  
+  .confirmacion-descripcion {
+    color: #6b7280;
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  
+  .confirmacion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 0 20px;
+  }
+  
+  .confirmacion-columna {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .confirmacion-seccion {
+    background: #f8faf9;
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid #e8f5f0;
+  }
+  
+  .confirmacion-subtitulo {
+    font-size: 1.3rem;
+    color: #374151;
+    margin-bottom: 20px;
+    font-weight: 600;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 10px;
+  }
+  
+  .confirmacion-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .confirmacion-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+  }
+  
+  .confirmacion-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .confirmacion-item.vacio {
+    text-align: center;
+    color: #6b7280;
+    font-style: italic;
+  }
+  
+  .confirmacion-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .confirmacion-item-nombre {
+    font-weight: 600;
+    color: #374151;
+  }
+  
+  .confirmacion-item-cantidad {
+    font-size: 0.9rem;
+    color: #6b7280;
+  }
+  
+  .confirmacion-item-precio {
+    font-weight: 700;
+    color: #047857;
+    font-size: 1.1rem;
+  }
+  
+  .confirmacion-resumen-pago {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .resumen-linea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .resumen-linea.total {
+    border-top: 2px solid #047857;
+    border-bottom: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #047857;
+    margin-top: 10px;
+    padding-top: 15px;
+  }
+  
+  .metodo-pago-info-detalle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .metodo-pago-icono {
+    font-size: 1.5rem;
+  }
+  
+  .metodo-pago-nombre {
+    font-weight: 600;
+    color: #374151;
+    font-size: 1.1rem;
+  }
+  
+  .datos-envio-info-detalle {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .envio-info-linea {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  
+  .envio-info-linea:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+  
+  .envio-info-linea strong {
+    color: #374151;
+    min-width: 120px;
+    display: inline-block;
+  }
+  
+  /* Estilos para ocultar pasos no activos */
+>>>>>>> 16717201af5b54f3f9ddcbc1df694cf6e076e65e
   .paso-contenido {
     display: none;
   }
@@ -745,18 +1712,179 @@
     display: block;
   }
   
+  /* Estilos para botones de acciones del carrito */
+  .carrito-acciones {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .btn-continuar {
+    background: #047857;
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(4, 120, 87, 0.3);
+  }
+  
+  .btn-continuar:hover {
+    background: #065f46;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(4, 120, 87, 0.4);
+  }
+  
+  .btn-continuar:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .btn-icono {
+    font-size: 1.2rem;
+  }
+  
+  .btn-precio {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+  }
+  
   .btn-secundario {
-    background: transparent;
+    background: #6b7280;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 15px;
+  }
+  
+  .btn-secundario:hover {
+    background: #4b5563;
+  }
+  
+  /* Estilos existentes que se mantienen */
+  .precio-total {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
     color: #047857;
+    margin: 15px 0;
+    padding: 10px;
+    background: #f0f7f4;
+    border-radius: 8px;
+  }
+  
+  .precio-oferta {
+    margin-top: 10px;
+    padding: 10px;
+    background: #fff7ed;
+    border-radius: 8px;
+    border: 1px solid #fed7aa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .precio-oferta.activa {
+    background: #fffbeb;
+    border-color: #fcd34d;
+  }
+  
+  .oferta-badge {
+    background: #f59e0b;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+  
+  .ahorro {
+    color: #f59e0b;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .oferta-aplicada {
+    background: #10b981;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-left: 10px;
+  }
+  
+  .carrito-item-oferta {
+    background: #f59e0b;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-left: 8px;
+  }
+  
+  .cantidad-btn {
+    width: 35px;
+    height: 35px;
     border: 2px solid #047857;
+    background: white;
+    color: #047857;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+  .cantidad-btn:hover {
+    background: #047857;
+    color: white;
+  }
+  
+  .cantidad-input {
+    width: 50px;
+    height: 35px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  
+  .btn-terciary {
+    background: #f59e0b;
+    color: white;
+    border: none;
     padding: 12px 24px;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 600;
-    margin-right: 10px;
+    margin-top: 8px;
+    width: 100%;
   }
   
+<<<<<<< HEAD
   .btn-secundario:hover {
     background: #047857;
     color: white;
@@ -928,28 +2056,64 @@
   
   .metodo-pago {
     position: relative;
+=======
+  .btn-terciary:hover {
+    background: #d97706;
+>>>>>>> 16717201af5b54f3f9ddcbc1df694cf6e076e65e
   }
   
   @media (max-width: 768px) {
-    .confirmacion-detalles {
+    .opcion-mixta {
+      flex-direction: column;
+      gap: 8px;
+      align-items: stretch;
+    }
+    
+    .opcion-mixta label {
+      text-align: center;
+    }
+    
+    .contador-mixto {
+      justify-content: center;
+    }
+    
+    .formulario-envio-contenido {
       grid-template-columns: 1fr;
     }
     
     .carrito-acciones {
       flex-direction: column;
-      gap: 10px;
+      gap: 15px;
     }
     
-    .carrito-acciones button {
-      width: 100%;
+    .btn-secundario {
+      margin-right: 0;
+      order: 2;
     }
     
-    .metodo-pago.activo::before {
-      top: -5px;
-      right: -5px;
-      width: 16px;
-      height: 16px;
-      font-size: 10px;
+    .btn-continuar {
+      order: 1;
+    }
+    
+    /* Responsive para confirmación */
+    .confirmacion-header {
+      flex-direction: column;
+      text-align: center;
+      gap: 15px;
+    }
+    
+    .confirmacion-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 0 10px;
+    }
+    
+    .confirmacion-seccion {
+      padding: 20px;
+    }
+    
+    .confirmacion-titulo {
+      font-size: 1.5rem;
     }
   }
 </style>
