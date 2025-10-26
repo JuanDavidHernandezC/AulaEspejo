@@ -25,8 +25,16 @@
         </div>
 
         <div class="col-md-6 mb-3">
-          <label>Efecto deseado</label>
-          <input type="text" name="efecto" class="form-control" placeholder="Ej: relajante, energizante" required>
+          <label for="efecto">Efecto deseado</label>
+          <select name="efecto" id="efecto" class="form-control" required>
+            <option value="" disabled selected>Selecciona un efecto</option>
+            <option value="relajante">🌙 Relajante</option>
+            <option value="energizante">⚡ Energizante</option>
+            <option value="refrescante">🍃 Refrescante</option>
+            <option value="antiinflamatorio">🌼 Antiinflamatorio</option>
+            <option value="digestivo">🍋 Digestivo</option>
+          </select>
+          <small class="text-muted">Elige el efecto que buscas en tu té.</small>
         </div>
 
         <div class="col-md-6 mb-3">
