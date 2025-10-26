@@ -1,3 +1,4 @@
+products HTML 
 {% extends "base.html" %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
@@ -15,7 +16,7 @@
 </section>
 
 <section class="productos-grid">
-  <!-- Té de Cedrón -->
+  <!-- Té de Cedrón - PRÓXIMAMENTE -->
   <div class="producto">
     <div class="producto-badge proximamente">PRÓXIMAMENTE</div>
     <img src="{{ url_for('static', filename='images/Té_cedron.png') }}" alt="Té de Cedrón">
@@ -88,7 +89,7 @@
     </button>
   </div>
 
-  <!-- Té de Hierba Luisa -->
+  <!-- Té de Hierba Luisa - PRÓXIMAMENTE -->
   <div class="producto">
     <div class="producto-badge proximamente">PRÓXIMAMENTE</div>
     <img src="{{ url_for('static', filename='images/Té_manzanilla.png') }}" alt="Té de Hierba Luisa">
@@ -141,7 +142,7 @@
     </div>
     
     <div class="resumen-compra" id="te-luisa-resumen">
-    
+      <!-- Se llenará dinámicamente -->
     </div>
     
     <div class="producto-detalles">
@@ -161,7 +162,7 @@
     </button>
   </div>
 
-  <!-- Té de Frutos Rojos -->
+  <!-- Té de Frutos Rojos - NUEVO PRODUCTO -->
   <div class="producto">
     <div class="producto-badge proximamente">PRÓXIMAMENTE</div>
     <img src="{{ url_for('static', filename='images/Té_frutos_rojos.png') }}" alt="Té de Frutos Rojos">
@@ -214,7 +215,7 @@
     </div>
     
     <div class="resumen-compra" id="te-frutos-rojos-resumen">
-
+      <!-- Se llenará dinámicamente -->
     </div>
     
     <div class="producto-detalles">
@@ -234,7 +235,7 @@
     </button>
   </div>
 
-  <!-- Té Verde Menta -->
+  <!-- Té Verde Menta - PRODUCTO DISPONIBLE CON PROMOCIÓN -->
   <div class="producto">
     <div class="producto-badge oferta-especial">OFERTA ESPECIAL</div>
     <img src="{{ url_for('static', filename='images/Té_menta.jpg') }}" alt="Té Verde Menta">
@@ -288,7 +289,7 @@
     </div>
     
     <div class="resumen-compra" id="te-menta-resumen">
-
+      <!-- Se llenará dinámicamente -->
     </div>
     
     <div class="producto-detalles">
@@ -310,7 +311,7 @@
   </div>
 </section>
 
-<!-- Carrito -->
+<!-- Modal del Carrito Mejorado -->
 <div id="modalCarrito" class="modal">
   <div class="modal-content">
     <div class="modal-header">
@@ -342,10 +343,10 @@
       </div>
     </div>
     
-    <!-- Carrito -->
+    <!-- Paso 1: Carrito con Envío Opcional -->
     <div id="paso-carrito-contenido" class="paso-contenido activo">
       <div id="carritoItems" class="carrito-items">
-        <!-- Se agregarán aquí -->
+        <!-- Los productos se agregarán aquí dinámicamente -->
       </div>
       
       <!-- Opción de Envío Opcional -->
@@ -401,7 +402,7 @@
       </div>
       
       <div class="carrito-acciones">
-        <!-- Boton continuar -->
+        <!-- SOLO BOTÓN CONTINUAR - ELIMINADO SEGUIR COMPRANDO -->
         <button class="btn-continuar" onclick="validarYContinuar()">
           <span class="btn-icono">→</span>
           Continuar al Pago
@@ -410,7 +411,7 @@
       </div>
     </div>
     
-    <!-- Pago -->
+    <!-- Paso 2: Pago -->
     <div id="paso-pago-contenido" class="paso-contenido">
       <div class="metodos-pago">
         <h3 class="metodos-pago-titulo">
@@ -547,7 +548,7 @@
       </div>
     </div>
     
-    <!-- Confirmación -->
+    <!-- Paso 3: Confirmación - MEJORADO -->
     <div id="paso-confirmacion-contenido" class="paso-contenido">
       <div class="confirmacion-contenido">
         <div class="confirmacion-header">
@@ -560,11 +561,20 @@
           </div>
         </div>
         
-        <div class="confirmacion-detalles">
-          <div class="confirmacion-productos">
-            <h4>Tu Pedido:</h4>
-            <div id="confirmacionItems" class="confirmacion-items">
-              
+        <div class="confirmacion-grid">
+          <div class="confirmacion-columna confirmacion-productos">
+            <div class="confirmacion-seccion">
+              <h4 class="confirmacion-subtitulo">Tu Pedido</h4>
+              <div id="confirmacionItems" class="confirmacion-items">
+                <!-- Los productos se agregarán aquí dinámicamente -->
+              </div>
+            </div>
+            
+            <div id="datos-envio-confirmacion" class="confirmacion-seccion" style="display: none;">
+              <h4 class="confirmacion-subtitulo">Datos de Envío</h4>
+              <div id="datosEnvioConfirmacion" class="datos-envio-info">
+                <!-- Los datos de envío se mostrarán aquí -->
+              </div>
             </div>
           </div>
           
@@ -590,7 +600,7 @@
             <div class="confirmacion-seccion">
               <h4 class="confirmacion-subtitulo">Método de Pago</h4>
               <div id="metodoPagoSeleccionado" class="metodo-pago-info">
-               
+                <!-- El método de pago se mostrará aquí -->
               </div>
             </div>
           </div>
@@ -620,23 +630,31 @@
 </section>
 
 <script>
-
+  // Variables globales
   let carrito = [];
   let pasoActual = 'carrito';
   let datosEnvio = {};
   let necesitaEnvio = false;
   
-
-  function incrementarCantidad(id) {
-    const input = document.getElementById(id);
-    if (parseInt(input.value) < parseInt(input.max)) {
+  // Precios base
+  const PRECIO_UNITARIO = 0.10;
+  const PRECIO_CAJA_NORMAL = 1.20;
+  const PRECIO_CAJA_OFERTA = 1.00;
+  const MIN_CAJAS_OFERTA = 2;
+  
+  // Funciones para el sistema mixto (unidades + cajas)
+  function incrementarMixto(producto, tipo) {
+    const input = document.getElementById(${producto}-${tipo}-input);
+    const max = tipo === 'unidades' ? 50 : 20;
+    
+    if (parseInt(input.value) < max) {
       input.value = parseInt(input.value) + 1;
       actualizarPrecioTotalMixto(producto);
     }
   }
   
   function decrementarMixto(producto, tipo) {
-    const input = document.getElementById(`${producto}-${tipo}-input`);
+    const input = document.getElementById(${producto}-${tipo}-input);
     
     if (parseInt(input.value) > 0) {
       input.value = parseInt(input.value) - 1;
@@ -645,17 +663,14 @@
   }
   
   function actualizarPrecioTotalMixto(producto) {
-    const unidades = parseInt(document.getElementById(`${producto}-unidades-input`).value);
-    const cajas = parseInt(document.getElementById(`${producto}-cajas-input`).value);
+    const unidades = parseInt(document.getElementById(${producto}-unidades-input).value);
+    const cajas = parseInt(document.getElementById(${producto}-cajas-input).value);
     
- 
-    const precios = {
-      'te-cedron': 0.50,
-      'te-luisa': 0.50,
-      'te-menta': 0.50
-    };
+    let totalUnidades = unidades * PRECIO_UNITARIO;
+    let totalCajas = 0;
+    let ofertaAplicada = false;
     
-    // Calcular precio de cajas 
+    // Calcular precio de cajas (con oferta si aplica)
     if (cajas >= MIN_CAJAS_OFERTA) {
       totalCajas = cajas * PRECIO_CAJA_OFERTA;
       ofertaAplicada = true;
@@ -666,10 +681,10 @@
     const total = (totalUnidades + totalCajas).toFixed(2);
     
     // Actualizar display
-    document.getElementById(`${producto}-total`).textContent = total;
+    document.getElementById(${producto}-total).textContent = total;
     
     // Mostrar/ocultar indicador de oferta
-    const ofertaElement = document.getElementById(`${producto}-oferta`);
+    const ofertaElement = document.getElementById(${producto}-oferta);
     if (ofertaAplicada && cajas > 0) {
       ofertaElement.style.display = 'inline';
     } else {
@@ -680,31 +695,56 @@
     actualizarResumenCompra(producto, unidades, cajas, ofertaAplicada);
   }
   
-
-  function agregarAlCarrito(nombre, precio, id) {
-    const input = document.getElementById(id);
-    const cantidad = parseInt(input.value);
-    const total = (precio * cantidad).toFixed(2);
+  function actualizarResumenCompra(producto, unidades, cajas, ofertaAplicada) {
+    const resumenElement = document.getElementById(${producto}-resumen);
     
-
-    const productoElement = input.closest('.producto');
+    if (unidades === 0 && cajas === 0) {
+      resumenElement.innerHTML = '';
+      return;
+    }
+    
+    let resumenHTML = '<div class="resumen-detalle">';
+    
+    if (unidades > 0) {
+      resumenHTML += <div>${unidades} unidad(es): $${(unidades * PRECIO_UNITARIO).toFixed(2)}</div>;
+    }
+    
+    if (cajas > 0) {
+      const precioCaja = ofertaAplicada ? PRECIO_CAJA_OFERTA : PRECIO_CAJA_NORMAL;
+      const textoOferta = ofertaAplicada ? ' <small>(¡Oferta aplicada!)</small>' : '';
+      resumenHTML += <div>${cajas} caja(s) x12: $${(cajas * precioCaja).toFixed(2)}${textoOferta}</div>;
+    }
+    
+    resumenHTML += '</div>';
+    resumenElement.innerHTML = resumenHTML;
+  }
+  
+  function agregarMixtoAlCarrito(productoId) {
+    const unidades = parseInt(document.getElementById(${productoId}-unidades-input).value);
+    const cajas = parseInt(document.getElementById(${productoId}-cajas-input).value);
+    
+    if (unidades === 0 && cajas === 0) {
+      alert('Por favor selecciona al menos una unidad o caja para agregar al carrito.');
+      return;
+    }
+    
+    // Obtener información del producto
+    const productoElement = document.getElementById(${productoId}-unidades-input).closest('.producto');
+    const nombre = productoElement.querySelector('h3').textContent;
     const imagenSrc = productoElement.querySelector('img').src;
     
-
-    const productoExistente = carrito.find(item => item.nombre === nombre);
-    
-    if (productoExistente) {
-
-      productoExistente.cantidad += cantidad;
-      productoExistente.total = (productoExistente.precio * productoExistente.cantidad).toFixed(2);
-    } else {
-
-      const producto = {
+    // Agregar unidades al carrito si hay
+    if (unidades > 0) {
+      const totalUnidades = (unidades * PRECIO_UNITARIO).toFixed(2);
+      
+      const productoUnidades = {
         nombre: nombre,
-        precio: precio,
-        cantidad: cantidad,
-        total: total,
-        imagen: imagenSrc  
+        precio: PRECIO_UNITARIO,
+        cantidad: unidades,
+        total: totalUnidades,
+        imagen: imagenSrc,
+        tipo: 'unidades',
+        ofertaAplicada: false
       };
       
       carrito.push(productoUnidades);
@@ -730,42 +770,94 @@
     }
     
     actualizarContadorCarrito();
-    
-
     mostrarCarrito();
     
-
-    alert(`¡${nombre} agregado al carrito!\nCantidad: ${cantidad}\nTotal: $${total}`);
+    // Mostrar mensaje de confirmación
+    let mensaje = ¡${nombre} agregado al carrito!\n;
+    if (unidades > 0) mensaje += ${unidades} unidad(es)\n;
+    if (cajas > 0) {
+      const ofertaMsg = cajas >= MIN_CAJAS_OFERTA ? ' (¡Oferta aplicada!)' : '';
+      mensaje += ${cajas} caja(s)${ofertaMsg}\n;
+    }
+    mensaje += Total: $${document.getElementById(${productoId}-total`).textContent}`;
+    
+    alert(mensaje);
+    
+    // Limpiar selección después de agregar
+    document.getElementById(${productoId}-unidades-input).value = 0;
+    document.getElementById(${productoId}-cajas-input).value = 0;
+    actualizarPrecioTotalMixto(productoId);
   }
   
   function comprarMixtoAhora(productoId) {
-    const unidades = parseInt(document.getElementById(`${productoId}-unidades-input`).value);
-    const cajas = parseInt(document.getElementById(`${productoId}-cajas-input`).value);
+    const unidades = parseInt(document.getElementById(${productoId}-unidades-input).value);
+    const cajas = parseInt(document.getElementById(${productoId}-cajas-input).value);
     
-
-    const productoElement = input.closest('.producto');
+    if (unidades === 0 && cajas === 0) {
+      alert('Por favor selecciona al menos una unidad o caja para comprar.');
+      return;
+    }
+    
+    // Limpiar carrito actual
+    carrito = [];
+    
+    // Obtener información del producto
+    const productoElement = document.getElementById(${productoId}-unidades-input).closest('.producto');
+    const nombre = productoElement.querySelector('h3').textContent;
     const imagenSrc = productoElement.querySelector('img').src;
     
-
-    carrito = [{
-      nombre: nombre,
-      precio: precio,
-      cantidad: cantidad,
-      total: total,
-      imagen: imagenSrc
-    }];
+    // Agregar unidades al carrito si hay
+    if (unidades > 0) {
+      const totalUnidades = (unidades * PRECIO_UNITARIO).toFixed(2);
+      
+      const productoUnidades = {
+        nombre: nombre,
+        precio: PRECIO_UNITARIO,
+        cantidad: unidades,
+        total: totalUnidades,
+        imagen: imagenSrc,
+        tipo: 'unidades',
+        ofertaAplicada: false
+      };
+      
+      carrito.push(productoUnidades);
+    }
+    
+    // Agregar cajas al carrito si hay
+    if (cajas > 0) {
+      const precioCaja = cajas >= MIN_CAJAS_OFERTA ? PRECIO_CAJA_OFERTA : PRECIO_CAJA_NORMAL;
+      const totalCajas = (cajas * precioCaja).toFixed(2);
+      const ofertaAplicada = cajas >= MIN_CAJAS_OFERTA;
+      
+      const productoCajas = {
+        nombre: nombre,
+        precio: precioCaja,
+        cantidad: cajas,
+        total: totalCajas,
+        imagen: imagenSrc,
+        tipo: 'cajas',
+        ofertaAplicada: ofertaAplicada
+      };
+      
+      carrito.push(productoCajas);
+    }
     
     actualizarContadorCarrito();
     mostrarCarrito();
-    irAPaso('pago'); 
+    irAPaso('pago');
+    
+    // Limpiar selección después de comprar
+    document.getElementById(${productoId}-unidades-input).value = 0;
+    document.getElementById(${productoId}-cajas-input).value = 0;
+    actualizarPrecioTotalMixto(productoId);
   }
   
-  // Funciones del carrito 
+  // Funciones del carrito mejoradas
   function actualizarContadorCarrito() {
     const contadorHero = document.getElementById('carritoContadorHero');
     const totalItems = carrito.reduce((sum, producto) => {
       if (producto.tipo === 'cajas') {
-        return sum + (producto.cantidad * 12); 
+        return sum + (producto.cantidad * 12); // Cada caja tiene 12 unidades
       }
       return sum + producto.cantidad;
     }, 0);
@@ -780,7 +872,7 @@
     const carritoTotal = document.getElementById('carritoTotal');
     const btnPrecioTotal = document.getElementById('btnPrecioTotal');
     
-
+    // Limpiar carrito
     carritoItems.innerHTML = '';
     
     if (carrito.length === 0) {
@@ -808,12 +900,12 @@
         let ofertaInfo = '';
         
         if (producto.tipo === 'cajas') {
-          tipoInfo = `<span class="carrito-item-tipo">Caja x12 unidades</span>`;
+          tipoInfo = <span class="carrito-item-tipo">Caja x12 unidades</span>;
           if (producto.ofertaAplicada) {
-            ofertaInfo = `<span class="carrito-item-oferta">¡Oferta aplicada!</span>`;
+            ofertaInfo = <span class="carrito-item-oferta">¡Oferta aplicada!</span>;
           }
         } else {
-          tipoInfo = `<span class="carrito-item-tipo">Unidades sueltas</span>`;
+          tipoInfo = <span class="carrito-item-tipo">Unidades sueltas</span>;
         }
         
         item.innerHTML = `
@@ -835,19 +927,20 @@
         carritoItems.appendChild(item);
       });
       
-
+      // Calcular envío (gratis para compras mayores a $10)
       const envio = subtotal >= 10 ? 0 : 2.50;
       const total = subtotal + envio;
       
-      carritoSubtotal.textContent = `$${subtotal.toFixed(2)}`;
-      carritoEnvio.textContent = envio === 0 ? 'Gratis' : `$${envio.toFixed(2)}`;
-      carritoTotal.textContent = `$${total.toFixed(2)}`;
-      btnPrecioTotal.textContent = `$${total.toFixed(2)}`;
+      carritoSubtotal.textContent = $${subtotal.toFixed(2)};
+      carritoEnvio.textContent = envio === 0 ? 'Gratis' : $${envio.toFixed(2)};
+      carritoTotal.textContent = $${total.toFixed(2)};
+      btnPrecioTotal.textContent = $${total.toFixed(2)};
     }
     
-
+    // Actualizar también los valores en el paso de confirmación
     actualizarConfirmacion();
     
+    // Mostrar modal y asegurarse de que solo se vea la etapa del carrito
     modal.style.display = 'flex';
     irAPaso('carrito');
   }
@@ -857,26 +950,20 @@
     modal.style.display = 'none';
   }
   
-
-  function reiniciarCarritoCompleto() {
-
-    carrito = [];
-    actualizarContadorCarrito();
+  // Funciones para el formulario de envío opcional
+  function toggleFormularioEnvio() {
+    const checkbox = document.getElementById('necesita-envio');
+    const formulario = document.getElementById('formulario-envio');
     
-
-    document.querySelectorAll('.cantidad-input').forEach(input => {
-      input.value = 1;
-      actualizarPrecio(input.id);
-    });
+    necesitaEnvio = checkbox.checked;
     
-
-    document.getElementById('pago-efectivo').checked = true;
-    
-
-    irAPaso('carrito');
-    
-
-    cerrarModal();
+    if (necesitaEnvio) {
+      formulario.style.display = 'block';
+    } else {
+      formulario.style.display = 'none';
+      // Limpiar datos de envío si se deselecciona
+      datosEnvio = {};
+    }
   }
   
   // Funciones para navegar entre pasos
@@ -914,7 +1001,7 @@
   }
   
   function irAPaso(paso) {
-
+    // Validaciones antes de cambiar de paso
     if (paso === 'pago' && carrito.length === 0) {
       alert('Tu carrito está vacío. Agrega algunos productos antes de continuar.');
       return;
@@ -929,21 +1016,21 @@
       actualizarConfirmacion();
     }
     
-
+    // Ocultar todos los pasos
     document.querySelectorAll('.paso-contenido').forEach(paso => {
       paso.classList.remove('activo');
     });
     
-
+    // Desactivar todos los pasos en la barra de progreso
     document.querySelectorAll('.progreso-paso').forEach(paso => {
       paso.classList.remove('activo');
     });
     
-
-    document.getElementById(`paso-${paso}-contenido`).classList.add('activo');
-    document.getElementById(`paso-${paso}`).classList.add('activo');
+    // Mostrar el paso seleccionado
+    document.getElementById(paso-${paso}-contenido).classList.add('activo');
+    document.getElementById(paso-${paso}).classList.add('activo');
     
-
+    // Actualizar paso actual
     pasoActual = paso;
   }
   
@@ -957,7 +1044,7 @@
     const datosEnvioInfo = document.getElementById('datosEnvioConfirmacion');
     const btnPrecioFinal = document.getElementById('btnPrecioFinal');
     
-
+    // Actualizar productos en confirmación
     confirmacionItems.innerHTML = '';
     
     if (carrito.length === 0) {
@@ -984,18 +1071,18 @@
         
         confirmacionItems.appendChild(item);
       });
-
-      // Calcular envío
+      
+      // Calcular envío (gratis para compras mayores a $10)
       const envio = subtotal >= 10 ? 0 : 2.50;
       const total = subtotal + envio;
       
-      confirmacionSubtotal.textContent = `$${subtotal.toFixed(2)}`;
-      confirmacionEnvio.textContent = envio === 0 ? 'Gratis' : `$${envio.toFixed(2)}`;
-      confirmacionTotal.textContent = `$${total.toFixed(2)}`;
-      btnPrecioFinal.textContent = `$${total.toFixed(2)}`;
+      confirmacionSubtotal.textContent = $${subtotal.toFixed(2)};
+      confirmacionEnvio.textContent = envio === 0 ? 'Gratis' : $${envio.toFixed(2)};
+      confirmacionTotal.textContent = $${total.toFixed(2)};
+      btnPrecioFinal.textContent = $${total.toFixed(2)};
     }
     
-
+    // Actualizar método de pago seleccionado
     const metodoPago = document.querySelector('input[name="metodo-pago"]:checked');
     if (metodoPago) {
       const nombreMetodo = obtenerNombreMetodoPago(metodoPago.value);
@@ -1012,7 +1099,7 @@
       datosEnvioConfirmacion.style.display = 'block';
       let instruccionesHTML = '';
       if (datosEnvio.instrucciones) {
-        instruccionesHTML = `<div class="envio-info-linea"><strong>Instrucciones:</strong> ${datosEnvio.instrucciones}</div>`;
+        instruccionesHTML = <div class="envio-info-linea"><strong>Instrucciones:</strong> ${datosEnvio.instrucciones}</div>;
       }
       
       datosEnvioInfo.innerHTML = `
@@ -1038,11 +1125,41 @@
     const metodoPago = document.querySelector('input[name="metodo-pago"]:checked').value;
     const total = document.getElementById('confirmacionTotal').textContent;
     
-
-    alert(`¡Compra realizada con éxito!\n\nTotal: ${total}\nMétodo de pago: ${obtenerNombreMetodoPago(metodoPago)}\n\nGracias por tu compra. Tu pedido será procesado inmediatamente.`);
+    // Mensaje de confirmación personalizado según si hay envío o no
+    let mensajeEnvio = '';
+    if (necesitaEnvio && datosEnvio.nombre) {
+      mensajeEnvio = \n\nTu pedido será enviado a:\n${datosEnvio.nombre}\n${datosEnvio.direccion}\n${datosEnvio.ciudad};
+    } else {
+      mensajeEnvio = '\n\nRecogerás tu pedido en nuestro punto de venta.';
+    }
     
-
-    reiniciarCarritoCompleto();
+    // Simular procesamiento de pago
+    alert(¡Compra realizada con éxito!\n\nTotal: ${total}\nMétodo de pago: ${obtenerNombreMetodoPago(metodoPago)}${mensajeEnvio}\n\nGracias por tu compra.);
+    
+    // LIMPIAR COMPLETAMENTE EL CARRITO Y FORMULARIOS DESPUÉS DE LA COMPRA
+    carrito = [];
+    datosEnvio = {};
+    necesitaEnvio = false;
+    
+    // Limpiar formularios
+    document.getElementById('necesita-envio').checked = false;
+    document.getElementById('formulario-envio').style.display = 'none';
+    document.getElementById('nombre-destinatario').value = '';
+    document.getElementById('telefono-destinatario').value = '';
+    document.getElementById('direccion-envio').value = '';
+    document.getElementById('ciudad-envio').value = '';
+    document.getElementById('instrucciones-especiales').value = '';
+    
+    // Limpiar todos los selectores mixtos
+    const productos = ['te-cedron', 'te-luisa', 'te-frutos-rojos', 'te-menta'];
+    productos.forEach(producto => {
+      document.getElementById(${producto}-unidades-input).value = 0;
+      document.getElementById(${producto}-cajas-input).value = 0;
+      actualizarPrecioTotalMixto(producto);
+    });
+    
+    actualizarContadorCarrito();
+    cerrarModal();
   }
   
   function obtenerNombreMetodoPago(metodo) {
@@ -1062,7 +1179,7 @@
     return metodos[metodo] || 'Desconocido';
   }
   
-
+  // Cerrar modal al hacer clic fuera de él
   window.onclick = function(event) {
     const modal = document.getElementById('modalCarrito');
     if (event.target === modal) {
@@ -1070,6 +1187,7 @@
     }
   }
   
+  // Inicializar cuando el DOM esté listo
   document.addEventListener('DOMContentLoaded', function() {
     // Inicializar precios para todos los productos
     const productos = ['te-cedron', 'te-luisa', 'te-frutos-rojos', 'te-menta'];
@@ -1079,22 +1197,22 @@
     
     actualizarContadorCarrito();
     
-
+    // Agregar evento para cambiar estilos de métodos de pago seleccionados
     document.querySelectorAll('input[name="metodo-pago"]').forEach(radio => {
       radio.addEventListener('change', function() {
-
+        // Remover clase activa de todos los métodos
         document.querySelectorAll('.metodo-pago').forEach(metodo => {
           metodo.classList.remove('activo');
         });
         
-
+        // Agregar clase activa al método seleccionado
         if (this.checked) {
           this.closest('.metodo-pago').classList.add('activo');
         }
       });
     });
     
-    
+    // Inicializar el método por defecto como activo
     document.querySelector('input[name="metodo-pago"]:checked')
       .closest('.metodo-pago')
       .classList.add('activo');
@@ -1102,6 +1220,360 @@
 </script>
 
 <style>
+  /* Estilos para el sistema mixto */
+  .seleccion-mixta {
+    margin: 15px 0;
+  }
+  
+  .seleccion-tipo h4 {
+    margin-bottom: 10px;
+    color: #374151;
+    font-size: 1rem;
+  }
+  
+  .opciones-mixtas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .opcion-mixta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #f8faf9;
+    border-radius: 8px;
+    border: 1px solid #e8f5f0;
+  }
+  
+  .opcion-mixta label {
+    font-weight: 500;
+    color: #374151;
+    flex: 1;
+  }
+  
+  .contador-mixto {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .resumen-compra {
+    margin: 10px 0;
+    padding: 10px;
+    background: #f0f7f4;
+    border-radius: 8px;
+    border: 1px solid #d1fae5;
+  }
+  
+  .resumen-detalle {
+    font-size: 0.9rem;
+    color: #047857;
+  }
+  
+  .resumen-detalle div {
+    margin: 4px 0;
+  }
+  
+  .resumen-detalle small {
+    color: #f59e0b;
+    font-weight: 600;
+  }
+  
+  /* Estilos para la opción de envío opcional */
+  .opcion-envio {
+    margin: 20px 0;
+    padding: 0;
+  }
+  
+  .opcion-envio-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    background: #f8faf9;
+    border-radius: 8px;
+    border: 1px solid #e8f5f0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .opcion-envio-header:hover {
+    background: #f0f7f4;
+  }
+  
+  .opcion-envio-header input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #047857;
+  }
+  
+  .opcion-envio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    margin: 0;
+  }
+  
+  .envio-icono {
+    font-size: 1.2rem;
+  }
+  
+  .formulario-envio {
+    margin-top: 15px;
+    padding: 20px;
+    background: #f8faf9;
+    border-radius: 8px;
+    border: 1px solid #e8f5f0;
+    animation: slideDown 0.3s ease;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .formulario-envio-contenido h4 {
+    margin-bottom: 15px;
+    color: #374151;
+    font-size: 1.1rem;
+  }
+  
+  .formulario-envio-contenido {
+    display: grid;
+    gap: 15px;
+  }
+  
+  .campo-grupo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .campo-grupo label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #374151;
+  }
+  
+  .campo-input, .campo-textarea {
+    padding: 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .campo-input:focus, .campo-textarea:focus {
+    outline: none;
+    border-color: #047857;
+  }
+  
+  .campo-textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  /* ESTILOS MEJORADOS PARA LA ETAPA DE CONFIRMACIÓN */
+  .confirmacion-contenido {
+    padding: 20px 0;
+  }
+  
+  .confirmacion-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 0 20px;
+  }
+  
+  .confirmacion-icono {
+    width: 60px;
+    height: 60px;
+    background: #10b981;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .confirmacion-texto {
+    flex: 1;
+  }
+  
+  .confirmacion-titulo {
+    font-size: 1.8rem;
+    color: #047857;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  
+  .confirmacion-descripcion {
+    color: #6b7280;
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  
+  .confirmacion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 0 20px;
+  }
+  
+  .confirmacion-columna {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .confirmacion-seccion {
+    background: #f8faf9;
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid #e8f5f0;
+  }
+  
+  .confirmacion-subtitulo {
+    font-size: 1.3rem;
+    color: #374151;
+    margin-bottom: 20px;
+    font-weight: 600;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 10px;
+  }
+  
+  .confirmacion-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .confirmacion-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+  }
+  
+  .confirmacion-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .confirmacion-item.vacio {
+    text-align: center;
+    color: #6b7280;
+    font-style: italic;
+  }
+  
+  .confirmacion-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .confirmacion-item-nombre {
+    font-weight: 600;
+    color: #374151;
+  }
+  
+  .confirmacion-item-cantidad {
+    font-size: 0.9rem;
+    color: #6b7280;
+  }
+  
+  .confirmacion-item-precio {
+    font-weight: 700;
+    color: #047857;
+    font-size: 1.1rem;
+  }
+  
+  .confirmacion-resumen-pago {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .resumen-linea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .resumen-linea.total {
+    border-top: 2px solid #047857;
+    border-bottom: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #047857;
+    margin-top: 10px;
+    padding-top: 15px;
+  }
+  
+  .metodo-pago-info-detalle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .metodo-pago-icono {
+    font-size: 1.5rem;
+  }
+  
+  .metodo-pago-nombre {
+    font-weight: 600;
+    color: #374151;
+    font-size: 1.1rem;
+  }
+  
+  .datos-envio-info-detalle {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .envio-info-linea {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  
+  .envio-info-linea:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+  
+  .envio-info-linea strong {
+    color: #374151;
+    min-width: 120px;
+    display: inline-block;
+  }
+  
+  /* Estilos para ocultar pasos no activos */
   .paso-contenido {
     display: none;
   }
@@ -1282,177 +1754,8 @@
     width: 100%;
   }
   
-  .btn-secundario:hover {
-    background: #047857;
-    color: white;
-  }
-  
-  .carrito-acciones {
-    display: flex;
-    justify-content: space-between;
-    padding: 25px 30px;
-    background: #f8faf9;
-    border-top: 1px solid #e8f5f0;
-  }
-  
-
-  .confirmacion-resumen {
-    padding: 20px 30px;
-  }
-  
-  .confirmacion-icono {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .confirmacion-icono span {
-    display: inline-block;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #10b981, #047857);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    font-weight: bold;
-  }
-  
-  .confirmacion-titulo {
-    text-align: center;
-    color: #047857;
-    margin-bottom: 10px;
-    font-size: 1.6rem;
-  }
-  
-  .confirmacion-descripcion {
-    text-align: center;
-    color: #6b7280;
-    margin-bottom: 30px;
-  }
-  
-  .confirmacion-detalles {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-  }
-  
-  .confirmacion-productos h4,
-  .metodo-pago-seleccionado h4 {
-    color: #374151;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-  }
-  
-  .confirmacion-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #e5e7eb;
-  }
-  
-  .confirmacion-resumen-pago {
-    background: #f8faf9;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #e8f5f0;
-  }
-  
-  .metodo-pago-info-detalle {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
-    margin-top: 10px;
-  }
-  
-  .metodo-pago-nombre {
-    font-weight: 600;
-    color: #047857;
-  }
-  
-  
-  .metodo-pago {
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    border-radius: 12px;
-    padding: 5px;
-  }
-  
-  .metodo-pago.activo {
-    border-color: #047857;
-    background: linear-gradient(135deg, #f0f7f4, #e8f5f0);
-    box-shadow: 0 4px 12px rgba(4, 120, 87, 0.15);
-    transform: translateY(-2px);
-  }
-  
-  .metodo-pago.activo label {
-    color: #047857;
-    font-weight: 600;
-  }
-  
-  .metodo-pago.activo .metodo-logo {
-    transform: scale(1.05);
-  }
-  
-  .metodo-pago input[type="radio"] {
-    display: none;
-  }
-  
-  .metodo-pago label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-    height: 100%;
-  }
-  
-  .metodo-pago label:hover {
-    background: #f8faf9;
-  }
-  
-  .metodo-logo {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 8px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .metodo-logo img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-  }
-  
-
-  .metodo-pago.activo::before {
-    content: "✓";
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: #047857;
-    color: white;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  }
-  
-  .metodo-pago {
-    position: relative;
+  .btn-terciary:hover {
+    background: #d97706;
   }
   
   @media (max-width: 768px) {
