@@ -68,7 +68,7 @@
     </div>
     
     <div class="resumen-compra" id="te-cedron-resumen">
-      <!-- Se llenará dinámicamente -->
+      
     </div>
     
     <div class="producto-detalles">
@@ -141,7 +141,7 @@
     </div>
     
     <div class="resumen-compra" id="te-luisa-resumen">
-      <!-- Se llenará dinámicamente -->
+      
     </div>
     
     <div class="producto-detalles">
@@ -161,7 +161,7 @@
     </button>
   </div>
 
-  <!-- Té de Frutos Rojos - NUEVO PRODUCTO -->
+  <!-- Té de Frutos Rojos -->
   <div class="producto">
     <div class="producto-badge proximamente">PRÓXIMAMENTE</div>
     <img src="{{ url_for('static', filename='images/Té_frutos_rojos.png') }}" alt="Té de Frutos Rojos">
@@ -342,10 +342,10 @@
       </div>
     </div>
     
-    <!-- Paso 1: Carrito con Envío Opcional -->
+    <!-- Paso 1 -->
     <div id="paso-carrito-contenido" class="paso-contenido activo">
       <div id="carritoItems" class="carrito-items">
-        <!-- Se agregarán aquí -->
+        
       </div>
       
       <!-- Opción de Envío Opcional -->
@@ -401,7 +401,7 @@
       </div>
       
       <div class="carrito-acciones">
-        <!-- SOLO BOTÓN CONTINUAR - ELIMINADO SEGUIR COMPRANDO -->
+        
         <button class="btn-continuar" onclick="validarYContinuar()">
           <span class="btn-icono">→</span>
           Continuar al Pago
@@ -547,7 +547,7 @@
       </div>
     </div>
     
-    <!-- Paso 3: Confirmación - MEJORADO -->
+    <!-- Paso 3 -->
     <div id="paso-confirmacion-contenido" class="paso-contenido">
       <div class="confirmacion-contenido">
         <div class="confirmacion-header">
@@ -565,14 +565,14 @@
             <div class="confirmacion-seccion">
               <h4 class="confirmacion-subtitulo">Tu Pedido</h4>
               <div id="confirmacionItems" class="confirmacion-items">
-                <!-- Los productos se agregarán aquí dinámicamente -->
+                
               </div>
             </div>
             
             <div id="datos-envio-confirmacion" class="confirmacion-seccion" style="display: none;">
               <h4 class="confirmacion-subtitulo">Datos de Envío</h4>
               <div id="datosEnvioConfirmacion" class="datos-envio-info">
-                <!-- Los datos de envío se mostrarán aquí -->
+                
               </div>
             </div>
           </div>
@@ -599,7 +599,7 @@
             <div class="confirmacion-seccion">
               <h4 class="confirmacion-subtitulo">Método de Pago</h4>
               <div id="metodoPagoSeleccionado" class="metodo-pago-info">
-                <!-- El método de pago se mostrará aquí -->
+                
               </div>
             </div>
           </div>
@@ -640,7 +640,7 @@
   const PRECIO_CAJA_OFERTA = 1.00;
   const MIN_CAJAS_OFERTA = 2;
   
-  // Funciones para el sistema mixto (unidades + cajas)
+  // Funciones para el sistema mixto 
   function incrementarMixto(producto, tipo) {
     const input = document.getElementById(`${producto}-${tipo}-input`);
     const max = tipo === 'unidades' ? 50 : 20;
@@ -668,7 +668,7 @@
     let totalCajas = 0;
     let ofertaAplicada = false;
     
-    // Calcular precio de cajas (con oferta si aplica)
+    // Calcular precio de cajas 
     if (cajas >= MIN_CAJAS_OFERTA) {
       totalCajas = cajas * PRECIO_CAJA_OFERTA;
       ofertaAplicada = true;
@@ -1123,7 +1123,7 @@
     const metodoPago = document.querySelector('input[name="metodo-pago"]:checked').value;
     const total = document.getElementById('confirmacionTotal').textContent;
     
-    // Mensaje de confirmación personalizado según si hay envío o no
+    // Mensaje de confirmación personalizado 
     let mensajeEnvio = '';
     if (necesitaEnvio && datosEnvio.nombre) {
       mensajeEnvio = `\n\nTu pedido será enviado a:\n${datosEnvio.nombre}\n${datosEnvio.direccion}\n${datosEnvio.ciudad}`;
@@ -1131,10 +1131,8 @@
       mensajeEnvio = '\n\nRecogerás tu pedido en nuestro punto de venta.';
     }
     
-    // Simular procesamiento de pago
     alert(`¡Compra realizada con éxito!\n\nTotal: ${total}\nMétodo de pago: ${obtenerNombreMetodoPago(metodoPago)}${mensajeEnvio}\n\nGracias por tu compra.`);
     
-    // LIMPIAR COMPLETAMENTE EL CARRITO Y FORMULARIOS DESPUÉS DE LA COMPRA
     carrito = [];
     datosEnvio = {};
     necesitaEnvio = false;
@@ -1185,7 +1183,7 @@
     }
   }
   
-  // Inicializar cuando el DOM esté listo
+  // Inicializar 
   document.addEventListener('DOMContentLoaded', function() {
     // Inicializar precios para todos los productos
     const productos = ['te-cedron', 'te-luisa', 'te-frutos-rojos', 'te-menta'];
@@ -1381,7 +1379,6 @@
     min-height: 80px;
   }
   
-  /* ESTILOS MEJORADOS PARA LA ETAPA DE CONFIRMACIÓN */
   .confirmacion-contenido {
     padding: 20px 0;
   }
