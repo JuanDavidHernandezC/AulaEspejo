@@ -41,6 +41,23 @@
     .product-card.coming-soon .product-overlay {
       display: none;
     }
+    
+    /* Asegurar que las imágenes se muestren completas */
+    .product-image {
+      position: relative;
+      overflow: hidden;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
   </style>
 {% endblock %}
 
@@ -119,6 +136,7 @@
   </div>
 </section>
 
+<!-- SECCIÓN DE PRESENTACIÓN CON NUEVA IMAGEN -->
 <section class="about">
   <div class="container">
     <div class="about-content">
@@ -161,6 +179,7 @@
   </div>
 </section>
 
+<!-- PRODUCTOS DESTACADOS - IMÁGENES CORREGIDAS DEFINITIVAMENTE -->
 <section class="featured-products">
   <div class="container">
     <div class="section-header">
@@ -168,14 +187,10 @@
       <p class="section-subtitle">Descubre nuestros blends exclusivos diseñados para cada momento del día</p>
     </div>
     <div class="product-grid">
-<<<<<<< HEAD
-      <div class="product-card">
-=======
-      <!-- Té de Cedrón - NUEVO PRODUCTO CON ETIQUETA PRÓXIMAMENTE -->
+      <!-- Té de Cedrón - CON IMAGEN LOCAL -->
       <div class="product-card coming-soon">
->>>>>>> c8014c39135bf9f1a04040c63b5c9b988ef5f510
         <div class="product-image">
-          <img src="https://resizer.glanacion.com/resizer/v2/el-te-de-cedron-y-sus-beneficios-para-la-SAZUKBBYTNGH5J3OCLPEQVLURQ.jpg?auth=db2a01a6799c53e35c478baaa4f9becd059f1afa56e29a142d05eb984bed5588&width=1280&height=854&quality=70&smart=true" alt="Té de Cedrón Hampite">
+          <img src="{{ url_for('static', filename='images/Té_cedron.png') }}" alt="Té de Cedrón Hampite">
           <div class="coming-soon-badge">PRÓXIMAMENTE</div>
           <div class="product-overlay">
             <a href="{{ url_for('products') }}" class="btn product-btn">Ver detalles</a>
@@ -192,37 +207,50 @@
         </div>
       </div>
       
-<<<<<<< HEAD
-      <div class="product-card">
-=======
-      <!-- Té de Hierba Luisa - NUEVO PRODUCTO CON ETIQUETA PRÓXIMAMENTE -->
+      <!-- Té de Frutos Rojos - CON IMAGEN LOCAL -->
       <div class="product-card coming-soon">
->>>>>>> c8014c39135bf9f1a04040c63b5c9b988ef5f510
         <div class="product-image">
-          <img src="https://www.pompadour.es/modules/ph_simpleblog/featured/96.png" alt="Té de Hierba Luisa Hampite">
+          <img src="{{ url_for('static', filename='images/Té_frutos_rojos.png') }}" alt="Té de Frutos Rojos Hampite">
           <div class="coming-soon-badge">PRÓXIMAMENTE</div>
           <div class="product-overlay">
             <a href="{{ url_for('products') }}" class="btn product-btn">Ver detalles</a>
           </div>
         </div>
         <div class="product-info">
-          <span class="product-category">Bienestar & Frescura</span>
-          <h3 class="product-name">Té de Hierba Luisa</h3>
-          <p class="product-description">Notas frescas y cítricas que calman el sistema digestivo y aportan una sensación de bienestar general.</p>
+          <span class="product-category">Antioxidante & Vitalidad</span>
+          <h3 class="product-name">Té de Frutos Rojos</h3>
+          <p class="product-description">Mezcla vibrante de frutos rojos con alto contenido antioxidante para revitalizar tu día.</p>
           <div class="product-features">
-            <span class="feature">Frescura</span>
-            <span class="feature">Bienestar</span>
+            <span class="feature">Antioxidante</span>
+            <span class="feature">Vitalidad</span>
           </div>
         </div>
       </div>
       
-<<<<<<< HEAD
-=======
+      <!-- NUEVO: Té de Manzanilla - CON IMAGEN LOCAL -->
+      <div class="product-card coming-soon">
+        <div class="product-image">
+          <img src="{{ url_for('static', filename='images/Té_manzanilla.png') }}" alt="Té de Manzanilla Hampite">
+          <div class="coming-soon-badge">PRÓXIMAMENTE</div>
+          <div class="product-overlay">
+            <a href="{{ url_for('products') }}" class="btn product-btn">Ver detalles</a>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Relajación & Sueño</span>
+          <h3 class="product-name">Té de Manzanilla</h3>
+          <p class="product-description">Infusión suave y calmante perfecta para relajarse antes de dormir o en momentos de estrés.</p>
+          <div class="product-features">
+            <span class="feature">Relajante</span>
+            <span class="feature">Calmante</span>
+          </div>
+        </div>
+      </div>
+      
       <!-- Té Verde Menta - PRODUCTO DISPONIBLE -->
->>>>>>> c8014c39135bf9f1a04040c63b5c9b988ef5f510
       <div class="product-card">
         <div class="product-image">
-         <img src="{{ url_for('static', filename='images/Té_menta.jpg') }}" alt="Té Verde Menta">
+          <img src="{{ url_for('static', filename='images/Té_menta.jpg') }}" alt="Té Verde Menta">
           <div class="product-overlay">
             <a href="{{ url_for('products') }}" class="btn product-btn">Ver detalles</a>
           </div>
