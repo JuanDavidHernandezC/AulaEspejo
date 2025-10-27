@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: hampite-app
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: MYSQL_URL
+        value: mysql+pymysql://root:bWFXHQRYZAlTvBnQCSRqkatyfYdSorML@mysql.railway.internal:3306/railway
+      - key: SECRET_KEY
+        value: tu-clave-secreta-muy-segura-2025
