@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 import pymysql
 import pandas as pd
+import os  # ← AÑADE ESTA IMPORTACIÓN
 
 from models.recomendador_te import recomendar_te
 from models.segmentador_clientes import predecir_segmento
@@ -11,8 +12,8 @@ from models.segmentador_clientes import predecir_segmento
 pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'Contraseña2025'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@localhost/hampite'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'Contraseña2025') 
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('MYSQL_URL', 'mysql+pymysql://root@localhost/hampite')  
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
