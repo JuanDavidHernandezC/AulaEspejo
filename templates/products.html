@@ -948,7 +948,6 @@
     modal.style.display = 'none';
   }
   
-  // Funciones para el formulario de envío opcional
   function toggleFormularioEnvio() {
     const checkbox = document.getElementById('necesita-envio');
     const formulario = document.getElementById('formulario-envio');
@@ -1114,66 +1113,131 @@
     }
   }
   
-  function procesarCompra() {
+function procesarCompra() {
     if (carrito.length === 0) {
-      alert('Tu carrito está vacío. Agrega algunos productos antes de comprar.');
-      return;
+        alert('Tu carrito está vacío. Agrega algunos productos antes de comprar.');
+        return;
     }
     
     const metodoPago = document.querySelector('input[name="metodo-pago"]:checked').value;
     const total = document.getElementById('confirmacionTotal').textContent;
     
-    // Mensaje de confirmación personalizado 
-    let mensajeEnvio = '';
-    if (necesitaEnvio && datosEnvio.nombre) {
-      mensajeEnvio = `\n\nTu pedido será enviado a:\n${datosEnvio.nombre}\n${datosEnvio.direccion}\n${datosEnvio.ciudad}`;
-    } else {
-      mensajeEnvio = '\n\nRecogerás tu pedido en nuestro punto de venta.';
+    // Preparar mensaje para WhatsApp
+    const mensajeWhatsApp = prepararMensajeWhatsApp(metodoPago, total);
+    
+    // Mostrar confirmación y enviar a WhatsApp
+    const mensajeFinal = `¡Compra realizada con éxito!\n\nTotal: ${total}\nMétodo de pago: ${obtenerNombreMetodoPago(metodoPago)}\n\nSe abrirá WhatsApp para que envíes tu pedido.`;
+    
+    alert(mensajeFinal);
+    
+    // Enviar a WhatsApp
+    enviarAWhatsApp(mensajeWhatsApp);
+    
+    // Limpiar todo después de la compra
+    limpiarDespuesDeCompra();
+}
+
+    function prepararMensajeWhatsApp(metodoPago, total) {
+        let mensaje = "¡NUEVO PEDIDO HAMPITE! 🍵\n\n";
+        
+        // Información de productos
+        mensaje += "📦 *PRODUCTOS SOLICITADOS:*\n";
+        carrito.forEach((producto, index) => {
+            let tipoProducto = producto.tipo === 'cajas' ? 'Caja(s) x12 unidades' : 'Unidad(es) sueltas';
+            let ofertaInfo = producto.ofertaAplicada ? ' 🎯 ¡OFERTA APLICADA!' : '';
+            mensaje += `➤ ${producto.nombre}\n`;
+            mensaje += `   📊 ${producto.cantidad} ${tipoProducto}${ofertaInfo}\n`;
+            mensaje += `   💰 $${producto.total}\n\n`;
+        });
+        
+        // Resumen de precios
+        const subtotal = carrito.reduce((sum, producto) => sum + parseFloat(producto.total), 0);
+        const envio = subtotal >= 10 ? 0 : 2.50;
+        
+        mensaje += "💰 *RESUMEN DE PAGO:*\n";
+        mensaje += `📊 Subtotal: $${subtotal.toFixed(2)}\n`;
+        mensaje += `🚚 Envío: ${envio === 0 ? 'GRATIS' : `$${envio.toFixed(2)}`}\n`;
+        mensaje += `💵 *TOTAL: ${total}*\n\n`;
+        
+        // Método de pago
+        mensaje += `💳 *MÉTODO DE PAGO ELEGIDO:* ${obtenerNombreMetodoPago(metodoPago)}\n\n`;
+        
+        // Información de envío si existe
+        if (necesitaEnvio && datosEnvio.nombre) {
+            mensaje += "🏠 *DATOS DE ENVÍO:*\n";
+            mensaje += `👤 *Destinatario:* ${datosEnvio.nombre}\n`;
+            mensaje += `📞 *Teléfono:* ${datosEnvio.telefono}\n`;
+            mensaje += `📍 *Dirección:* ${datosEnvio.direccion}\n`;
+            mensaje += `🏙️ *Ciudad:* ${datosEnvio.ciudad}\n`;
+            if (datosEnvio.instrucciones) {
+                mensaje += `📝 *Instrucciones:* ${datosEnvio.instrucciones}\n`;
+            }
+            mensaje += "\n";
+        } else {
+            mensaje += "🏪 *RETIRO EN TIENDA*\nEl cliente recogerá en nuestro punto de venta.\n\n";
+        }
+        
+        // Información adicional
+        mensaje += "⏰ *INFORMACIÓN DEL PEDIDO:*\n";
+        mensaje += "🛒 Pedido realizado a través de la página web Hampite\n";
+        mensaje += `📅 Fecha: ${new Date().toLocaleString('es-CO')}\n`;
+        mensaje += `🆔 ID Pedido: #${Date.now().toString().slice(-6)}`;
+        
+        return mensaje;
     }
-    
-    alert(`¡Compra realizada con éxito!\n\nTotal: ${total}\nMétodo de pago: ${obtenerNombreMetodoPago(metodoPago)}${mensajeEnvio}\n\nGracias por tu compra.`);
-    
-    carrito = [];
-    datosEnvio = {};
-    necesitaEnvio = false;
-    
-    // Limpiar formularios
-    document.getElementById('necesita-envio').checked = false;
-    document.getElementById('formulario-envio').style.display = 'none';
-    document.getElementById('nombre-destinatario').value = '';
-    document.getElementById('telefono-destinatario').value = '';
-    document.getElementById('direccion-envio').value = '';
-    document.getElementById('ciudad-envio').value = '';
-    document.getElementById('instrucciones-especiales').value = '';
-    
-    // Limpiar todos los selectores mixtos
-    const productos = ['te-cedron', 'te-luisa', 'te-frutos-rojos', 'te-menta'];
-    productos.forEach(producto => {
-      document.getElementById(`${producto}-unidades-input`).value = 0;
-      document.getElementById(`${producto}-cajas-input`).value = 0;
-      actualizarPrecioTotalMixto(producto);
-    });
-    
-    actualizarContadorCarrito();
-    cerrarModal();
-  }
-  
-  function obtenerNombreMetodoPago(metodo) {
-    const metodos = {
-      'bancolombia': 'Bancolombia',
-      'davivienda': 'Davivienda',
-      'bbva': 'BBVA',
-      'nequi': 'Nequi',
-      'daviplata': 'Daviplata',
-      'paypal': 'PayPal',
-      'efecty': 'Efecty',
-      'visa': 'VISA',
-      'tarjeta': 'Tarjeta de Crédito',
-      'efectivo': 'Contraentrega (Efectivo)'
-    };
-    
-    return metodos[metodo] || 'Desconocido';
-  }
+
+    function enviarAWhatsApp(mensaje) {
+        const numeroWhatsApp = "573115179554"; 
+        
+        const mensajeCodificado = encodeURIComponent(mensaje);
+
+        const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+
+        window.open(urlWhatsApp, '_blank');
+    }
+
+    function limpiarDespuesDeCompra() {
+        carrito = [];
+        datosEnvio = {};
+        necesitaEnvio = false;
+        
+        // Limpiar formularios
+        document.getElementById('necesita-envio').checked = false;
+        document.getElementById('formulario-envio').style.display = 'none';
+        document.getElementById('nombre-destinatario').value = '';
+        document.getElementById('telefono-destinatario').value = '';
+        document.getElementById('direccion-envio').value = '';
+        document.getElementById('ciudad-envio').value = '';
+        document.getElementById('instrucciones-especiales').value = '';
+        
+        // Limpiar todos los selectores mixtos
+        const productos = ['te-cedron', 'te-luisa', 'te-frutos-rojos', 'te-menta'];
+        productos.forEach(producto => {
+            document.getElementById(`${producto}-unidades-input`).value = 0;
+            document.getElementById(`${producto}-cajas-input`).value = 0;
+            actualizarPrecioTotalMixto(producto);
+        });
+        
+        actualizarContadorCarrito();
+        cerrarModal();
+    }
+
+    function obtenerNombreMetodoPago(metodo) {
+        const metodos = {
+            'bancolombia': 'Bancolombia',
+            'davivienda': 'Davivienda',
+            'bbva': 'BBVA',
+            'nequi': 'Nequi',
+            'daviplata': 'Daviplata',
+            'paypal': 'PayPal',
+            'efecty': 'Efecty',
+            'visa': 'VISA',
+            'tarjeta': 'Tarjeta de Crédito',
+            'efectivo': 'Contraentrega (Efectivo)'
+        };
+        
+        return metodos[metodo] || 'Desconocido';
+    }
   
   // Cerrar modal al hacer click fuera
   window.onclick = function(event) {
@@ -1213,6 +1277,8 @@
       .closest('.metodo-pago')
       .classList.add('activo');
   });
+
+
 </script>
 
 <style>

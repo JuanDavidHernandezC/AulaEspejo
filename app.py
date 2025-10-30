@@ -4,8 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 import pymysql
 import pandas as pd
-import os  # ← AÑADE ESTA IMPORTACIÓN
-
+import os  
 from models.recomendador_te import recomendar_te
 from models.segmentador_clientes import predecir_segmento
 
