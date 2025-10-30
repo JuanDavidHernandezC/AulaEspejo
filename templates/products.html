@@ -2,6 +2,9 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
 
+<!-- Canvas oculto para generar la imagen de la factura -->
+<canvas id="facturaCanvas" style="display: none; position: fixed; top: -1000px; left: -1000px;"></canvas>
+
 <section class="productos-hero">
   <div class="hero-content">
     <h1>Nuestros Productos</h1>
@@ -412,125 +415,64 @@
     
     <!-- Pago -->
     <div id="paso-pago-contenido" class="paso-contenido">
-      <div class="metodos-pago">
-        <h3 class="metodos-pago-titulo">
-          <span class="pago-icono">💳</span>
-          Selecciona tu Método de Pago
-        </h3>
-        
-        <div class="categoria-pago">
-          <h4 class="categoria-titulo">
-            <span class="categoria-icono">🏦</span>
-            Entidades Bancarias
-          </h4>
-          <div class="metodos-pago-grid">
-            <div class="metodo-pago">
-              <input type="radio" id="pago-bancolombia" name="metodo-pago" value="bancolombia">
-              <label for="pago-bancolombia">
-                <div class="metodo-logo">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBn42iUDcU3O-e523BueL4iz-4ZelLw2pP_A&s" alt="Bancolombia">
-                </div>
-                <span>Bancolombia</span>
-              </label>
-            </div>
-            <div class="metodo-pago">
-              <input type="radio" id="pago-davivienda" name="metodo-pago" value="davivienda">
-              <label for="pago-davivienda">
-                <div class="metodo-logo">
-                  <img src="https://clickautos.co/wp-content/uploads/2020/05/LOGO-DAVIVIENDA-300x200.png" alt="Davivienda">
-                </div>
-                <span>Davivienda</span>
-              </label>
-            </div>
-            <div class="metodo-pago">
-              <input type="radio" id="pago-bbva" name="metodo-pago" value="bbva">
-              <label for="pago-bbva">
-                <div class="metodo-logo">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIxlTMO0sxbNkgOqVbDmQqu3f7ASFaGUXcvw&s" alt="BBVA">
-                </div>
-                <span>BBVA</span>
-              </label>
+      <div class="pago-contenido">
+        <div class="recibo-digital">
+          <div class="recibo-header">
+            <h3 class="recibo-titulo">
+              <span class="recibo-icono">🧾</span>
+              Recibo Digital Hampite
+            </h3>
+            <div class="recibo-codigo">
+              <span class="codigo-label">Código de Pedido:</span>
+              <span class="codigo-valor" id="codigoPedido"></span>
             </div>
           </div>
-        </div>
-        
-        <div class="categoria-pago">
-          <h4 class="categoria-titulo">
-            <span class="categoria-icono">📱</span>
-            Billeteras Digitales
-          </h4>
-          <div class="metodos-pago-grid">
-            <div class="metodo-pago">
-              <input type="radio" id="pago-nequi" name="metodo-pago" value="nequi">
-              <label for="pago-nequi">
-                <div class="metodo-logo">
-                  <img src="https://i.pinimg.com/564x/c6/a0/46/c6a04605a0cd2729fa647d1958b24110.jpg" alt="Nequi">
+          
+          <div class="recibo-info">
+            <div class="recibo-seccion">
+              <h4 class="recibo-subtitulo">Información del Pedido</h4>
+              <div id="reciboProductos" class="recibo-productos">
+                <!-- Se llenará dinámicamente -->
+              </div>
+              <div class="recibo-resumen">
+                <div class="recibo-linea">
+                  <span>Subtotal:</span>
+                  <span id="reciboSubtotal">$0.00</span>
                 </div>
-                <span>Nequi</span>
-              </label>
+                <div class="recibo-linea">
+                  <span>Envío:</span>
+                  <span id="reciboEnvio">$0.00</span>
+                </div>
+                <div class="recibo-linea total">
+                  <span>Total:</span>
+                  <span id="reciboTotal">$0.00</span>
+                </div>
+              </div>
             </div>
-            <div class="metodo-pago">
-              <input type="radio" id="pago-daviplata" name="metodo-pago" value="daviplata">
-              <label for="pago-daviplata">
-                <div class="metodo-logo">
-                  <img src="https://files.antena2.com/antena2/public/styles/imagen_despliegue/public/downloaded_images/daviplata.jpg.webp" alt="Daviplata">
-                </div>
-                <span>Daviplata</span>
-              </label>
-            </div>
-            <div class="metodo-pago">
-              <input type="radio" id="pago-paypal" name="metodo-pago" value="paypal">
-              <label for="pago-paypal">
-                <div class="metodo-logo">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1280px-PayPal.svg.png" alt="PayPal">
-                </div>
-                <span>PayPal</span>
-              </label>
+            
+            <div id="reciboEnvioInfo" class="recibo-seccion" style="display: none;">
+              <h4 class="recibo-subtitulo">Información de Envío</h4>
+              <div id="datosEnvioRecibo" class="datos-envio-recibo">
+                <!-- Se llenará dinámicamente -->
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="categoria-pago">
-          <h4 class="categoria-titulo">
-            <span class="categoria-icono">💎</span>
-            Otros Métodos
-          </h4>
-          <div class="metodos-pago-grid">
-            <div class="metodo-pago">
-              <input type="radio" id="pago-efecty" name="metodo-pago" value="efecty">
-              <label for="pago-efecty">
-                <div class="metodo-logo">
-                  <img src="https://demcoop.com/wp-content/uploads/2022/08/1200x600wa-1024x512.png" alt="Efecty">
-                </div>
-                <span>Efecty</span>
-              </label>
-            </div>
-            <div class="metodo-pago">
-              <input type="radio" id="pago-visa" name="metodo-pago" value="visa">
-              <label for="pago-visa">
-                <div class="metodo-logo">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1280px-Visa_Inc._logo.svg.png" alt="VISA">
-                </div>
-                <span>VISA</span>
-              </label>
-            </div>
-            <div class="metodo-pago">
-              <input type="radio" id="pago-tarjeta" name="metodo-pago" value="tarjeta">
-              <label for="pago-tarjeta">
-                <div class="metodo-logo">
-                  <img src="https://cdn-icons-png.flaticon.com/512/179/179457.png" alt="Tarjeta Crédito">
-                </div>
-                <span>Tarjeta Crédito</span>
-              </label>
-            </div>
-            <div class="metodo-pago">
-              <input type="radio" id="pago-efectivo" name="metodo-pago" value="efectivo" checked>
-              <label for="pago-efectivo">
-                <div class="metodo-logo">
-                  <img src="https://cdn-icons-png.flaticon.com/512/2331/2331961.png" alt="Contraentrega">
-                </div>
-                <span>Contraentrega</span>
-              </label>
+          
+          <div class="pago-instructions">
+            <h4 class="pago-titulo">
+              <span class="pago-icono">💳</span>
+              Instrucciones de Pago
+            </h4>
+            <div class="pago-descripcion">
+              <p>Para completar tu compra, realiza el pago al siguiente número:</p>
+              <div class="numero-pago">
+                <span class="numero-icono">📱</span>
+                <span class="numero-valor">+57 312 7511921</span>
+              </div>
+              <div class="pago-nota">
+                <p><strong>Importante:</strong> Incluye tu código de pedido en la descripción del pago para identificarlo rápidamente.</p>
+                <p>Una vez realizado el pago, continúa al siguiente paso para finalizar tu compra.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -597,9 +539,32 @@
             </div>
             
             <div class="confirmacion-seccion">
-              <h4 class="confirmacion-subtitulo">Método de Pago</h4>
-              <div id="metodoPagoSeleccionado" class="metodo-pago-info">
-                
+              <h4 class="confirmacion-subtitulo">Información de Pago</h4>
+              <div class="pago-confirmacion-info">
+                <div class="pago-confirmacion-linea">
+                  <span class="pago-confirmacion-label">Método:</span>
+                  <span class="pago-confirmacion-valor">Transferencia a +57 312 7511921</span>
+                </div>
+                <div class="pago-confirmacion-linea">
+                  <span class="pago-confirmacion-label">Código de Pedido:</span>
+                  <span class="pago-confirmacion-valor codigo" id="codigoPedidoConfirmacion"></span>
+                </div>
+                <div class="pago-confirmacion-nota">
+                  <p>Recuerda incluir tu código de pedido al realizar el pago.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nuevo botón para descargar recibo electrónico -->
+            <div class="confirmacion-seccion">
+              <h4 class="confirmacion-subtitulo">Recibo Electrónico</h4>
+              <div class="descarga-recibo">
+                <p>Descarga tu recibo electrónico para tener un registro de tu compra:</p>
+                <button class="btn-descargar-recibo" onclick="descargarReciboElectronico()">
+                  <span class="descarga-icono">📥</span>
+                  Descargar Recibo Electrónico
+                </button>
+                <p class="descarga-nota"><small>Puedes enviar este recibo por WhatsApp junto con tu comprobante de pago</small></p>
               </div>
             </div>
           </div>
@@ -608,7 +573,7 @@
       
       <div class="carrito-acciones">
         <button class="btn btn-secundario" onclick="irAPaso('pago')">
-          ← Cambiar Método de Pago
+          ← Cambiar Información
         </button>
         <button class="btn-continuar" onclick="procesarCompra()">
           <span class="btn-icono">🚀</span>
@@ -633,6 +598,7 @@
   let pasoActual = 'carrito';
   let datosEnvio = {};
   let necesitaEnvio = false;
+  let codigoPedido = '';
   
   // Precios base
   const PRECIO_UNITARIO = 0.10;
@@ -640,6 +606,319 @@
   const PRECIO_CAJA_OFERTA = 1.00;
   const MIN_CAJAS_OFERTA = 2;
   
+  // NUEVA FUNCIÓN PARA DESCARGAR RECIBO ELECTRÓNICO
+  function descargarReciboElectronico() {
+    if (carrito.length === 0) {
+      alert('No hay productos en el carrito para generar el recibo.');
+      return;
+    }
+    
+    alert('Generando tu recibo electrónico...');
+    
+    generarFacturaComoImagen()
+      .then(imagenDataURL => {
+        // Crear enlace de descarga
+        const link = document.createElement('a');
+        link.download = `recibo-hampite-${codigoPedido}.jpg`;
+        link.href = imagenDataURL;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        alert('¡Recibo descargado exitosamente!');
+      })
+      .catch(error => {
+        console.error('Error al generar el recibo:', error);
+        alert('Error al generar el recibo. Por favor, intenta nuevamente.');
+      });
+  }
+
+  // FUNCIÓN PROCESAR COMPRA MEJORADA
+  function procesarCompra() {
+    if (carrito.length === 0) {
+      alert('Tu carrito está vacío. Agrega algunos productos antes de comprar.');
+      return;
+    }
+    
+    const total = document.getElementById('confirmacionTotal').textContent;
+    
+    // Preparar mensaje para WhatsApp
+    const mensajeWhatsApp = prepararMensajeWhatsApp(total);
+    
+    // Mostrar confirmación
+    const mensajeFinal = `¡Compra realizada con éxito!\n\nTotal: ${total}\nCódigo de Pedido: ${codigoPedido}\n\nSe abrirá WhatsApp para que envíes tu pedido.`;
+    
+    alert(mensajeFinal);
+    
+    // Enviar a WhatsApp (como antes)
+    enviarAWhatsApp(mensajeWhatsApp);
+    
+    // Limpiar todo después de la compra
+    limpiarDespuesDeCompra();
+  }
+
+  // FUNCIÓN MEJORADA PARA GENERAR FACTURA COMO IMAGEN
+  function generarFacturaComoImagen() {
+    return new Promise((resolve, reject) => {
+      try {
+        const canvas = document.getElementById('facturaCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Configurar dimensiones del canvas
+        const width = 600;
+        const height = 900;
+        canvas.width = width;
+        canvas.height = height;
+        
+        // Fondo blanco
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, width, height);
+        
+        // Colores mejorados
+        const colorPrimario = '#047857';
+        const colorSecundario = '#065f46';
+        const colorAcento = '#f59e0b';
+        const colorTexto = '#1f2937';
+        const colorTextoClaro = '#6b7280';
+        const colorFondo = '#f8faf9';
+        
+        // Función para dibujar texto con wrap mejorado
+        function dibujarTexto(texto, x, y, maxWidth, lineHeight, alinear = 'left', font = '14px Arial', color = colorTexto) {
+          const palabras = texto.split(' ');
+          let linea = '';
+          let lineY = y;
+          
+          ctx.textAlign = alinear;
+          ctx.textBaseline = 'top';
+          ctx.font = font;
+          ctx.fillStyle = color;
+          
+          for(let i = 0; i < palabras.length; i++) {
+            const testLine = linea + palabras[i] + ' ';
+            const metrics = ctx.measureText(testLine);
+            const testWidth = metrics.width;
+            
+            if (testWidth > maxWidth && i > 0) {
+              ctx.fillText(linea, x, lineY);
+              linea = palabras[i] + ' ';
+              lineY += lineHeight;
+            } else {
+              linea = testLine;
+            }
+          }
+          ctx.fillText(linea, x, lineY);
+          return lineY + lineHeight;
+        }
+        
+        // Encabezado mejorado
+        ctx.fillStyle = colorPrimario;
+        ctx.fillRect(0, 0, width, 140);
+        
+        // Logo/Icono
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 32px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('🍵 HAMPITE', width / 2, 40);
+        
+        ctx.font = '18px Arial';
+        ctx.fillText('Tés Naturales Instantáneos', width / 2, 70);
+        
+        ctx.font = 'bold 24px Arial';
+        ctx.fillText('RECIBO ELECTRÓNICO', width / 2, 100);
+        
+        // Código de pedido mejorado
+        ctx.fillStyle = colorAcento;
+        ctx.font = 'bold 16px Arial';
+        ctx.textAlign = 'right';
+        ctx.fillText(`Código: ${codigoPedido}`, width - 25, 160);
+        
+        // Información del pedido
+        let yPos = 200;
+        ctx.fillStyle = colorTexto;
+        ctx.font = 'bold 20px Arial';
+        ctx.textAlign = 'left';
+        ctx.fillText('INFORMACIÓN DEL PEDIDO', 25, yPos);
+        
+        yPos += 35;
+        ctx.fillStyle = colorTextoClaro;
+        ctx.font = '14px Arial';
+        ctx.fillText(`Fecha: ${new Date().toLocaleString('es-CO', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        })}`, 25, yPos);
+        
+        yPos += 25;
+        if (necesitaEnvio && datosEnvio.nombre) {
+          ctx.fillText(`Cliente: ${datosEnvio.nombre}`, 25, yPos);
+          yPos += 20;
+          ctx.fillText(`Teléfono: ${datosEnvio.telefono}`, 25, yPos);
+        } else {
+          ctx.fillText('Cliente: Retiro en tienda', 25, yPos);
+        }
+        
+        // Línea separadora
+        yPos += 30;
+        ctx.strokeStyle = '#e5e7eb';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(25, yPos);
+        ctx.lineTo(width - 25, yPos);
+        ctx.stroke();
+        
+        // Productos con diseño mejorado
+        yPos += 40;
+        ctx.fillStyle = colorTexto;
+        ctx.font = 'bold 18px Arial';
+        ctx.textAlign = 'left';
+        ctx.fillText('PRODUCTOS SOLICITADOS', 25, yPos);
+        
+        yPos += 35;
+        ctx.fillStyle = colorTextoClaro;
+        ctx.font = '13px Arial';
+        
+        let subtotal = 0;
+        carrito.forEach((producto, index) => {
+          // Fondo alternado para productos
+          if (index % 2 === 0) {
+            ctx.fillStyle = colorFondo;
+            ctx.fillRect(25, yPos - 5, width - 50, 25);
+          }
+          
+          ctx.fillStyle = colorTexto;
+          const nombre = producto.nombre;
+          const tipo = producto.tipo === 'cajas' ? 'Caja x12 unidades' : 'Unidades sueltas';
+          const cantidad = producto.cantidad;
+          const precio = producto.total;
+          const oferta = producto.ofertaAplicada ? ' 🎯' : '';
+          
+          const textoProducto = `• ${nombre} - ${cantidad} ${tipo}${oferta}`;
+          yPos = dibujarTexto(textoProducto, 30, yPos, width - 120, 18);
+          
+          ctx.fillStyle = colorPrimario;
+          ctx.font = 'bold 13px Arial';
+          ctx.textAlign = 'right';
+          ctx.fillText(`$${precio}`, width - 30, yPos - 18);
+          
+          ctx.fillStyle = colorTextoClaro;
+          ctx.font = '13px Arial';
+          ctx.textAlign = 'left';
+          
+          subtotal += parseFloat(producto.total);
+          
+          // Espacio entre productos
+          yPos += 8;
+        });
+        
+        // Totales con diseño mejorado
+        const envio = subtotal >= 10 ? 0 : 2.50;
+        const total = subtotal + envio;
+        
+        yPos += 20;
+        ctx.strokeStyle = '#e5e7eb';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(25, yPos);
+        ctx.lineTo(width - 25, yPos);
+        ctx.stroke();
+        
+        yPos += 30;
+        ctx.fillStyle = colorTexto;
+        ctx.font = '15px Arial';
+        ctx.textAlign = 'left';
+        ctx.fillText('Subtotal:', 25, yPos);
+        ctx.textAlign = 'right';
+        ctx.fillText(`$${subtotal.toFixed(2)}`, width - 25, yPos);
+        
+        yPos += 22;
+        ctx.textAlign = 'left';
+        ctx.fillText('Envío:', 25, yPos);
+        ctx.textAlign = 'right';
+        ctx.fillText(envio === 0 ? 'GRATIS' : `$${envio.toFixed(2)}`, width - 25, yPos);
+        
+        yPos += 30;
+        ctx.fillStyle = colorPrimario;
+        ctx.font = 'bold 20px Arial';
+        ctx.textAlign = 'left';
+        ctx.fillText('TOTAL A PAGAR:', 25, yPos);
+        ctx.textAlign = 'right';
+        ctx.fillText(`$${total.toFixed(2)}`, width - 25, yPos);
+        
+        // Información de pago mejorada
+        yPos += 50;
+        ctx.fillStyle = colorTexto;
+        ctx.font = 'bold 18px Arial';
+        ctx.textAlign = 'left';
+        ctx.fillText('INFORMACIÓN DE PAGO', 25, yPos);
+        
+        yPos += 35;
+        ctx.fillStyle = colorTextoClaro;
+        ctx.font = '14px Arial';
+        yPos = dibujarTexto('Método: Transferencia Bancaria', 25, yPos, width - 50, 18);
+        yPos = dibujarTexto('Número: +57 312 7511921', 25, yPos, width - 50, 18);
+        yPos = dibujarTexto('Referencia: ' + codigoPedido, 25, yPos, width - 50, 18);
+        
+        yPos += 15;
+        ctx.font = 'bold 13px Arial';
+        ctx.fillStyle = colorAcento;
+        yPos = dibujarTexto('⚠️ Incluye el código en la descripción del pago', 25, yPos, width - 50, 16);
+        
+        // Información de envío si existe
+        if (necesitaEnvio && datosEnvio.nombre) {
+          yPos += 40;
+          ctx.fillStyle = colorTexto;
+          ctx.font = 'bold 18px Arial';
+          ctx.textAlign = 'left';
+          ctx.fillText('INFORMACIÓN DE ENVÍO', 25, yPos);
+          
+          yPos += 35;
+          ctx.fillStyle = colorTextoClaro;
+          ctx.font = '14px Arial';
+          yPos = dibujarTexto(`Destinatario: ${datosEnvio.nombre}`, 25, yPos, width - 50, 18);
+          yPos = dibujarTexto(`Teléfono: ${datosEnvio.telefono}`, 25, yPos, width - 50, 18);
+          yPos = dibujarTexto(`Dirección: ${datosEnvio.direccion}`, 25, yPos, width - 50, 18);
+          yPos = dibujarTexto(`Ciudad: ${datosEnvio.ciudad}`, 25, yPos, width - 50, 18);
+          if (datosEnvio.instrucciones) {
+            yPos = dibujarTexto(`Instrucciones: ${datosEnvio.instrucciones}`, 25, yPos, width - 50, 18);
+          }
+        }
+        
+        // Pie de página mejorado
+        yPos += 50;
+        ctx.strokeStyle = '#e5e7eb';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(25, yPos);
+        ctx.lineTo(width - 25, yPos);
+        ctx.stroke();
+        
+        yPos += 25;
+        ctx.fillStyle = colorPrimario;
+        ctx.font = 'bold 16px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('¡Gracias por tu compra! 🍃', width / 2, yPos);
+        
+        yPos += 22;
+        ctx.fillStyle = colorTextoClaro;
+        ctx.font = '14px Arial';
+        ctx.fillText('Para consultas contáctanos por WhatsApp', width / 2, yPos);
+        
+        yPos += 20;
+        ctx.font = '13px Arial';
+        ctx.fillText('Hampite - Tés Naturales Instantáneos', width / 2, yPos);
+        
+        // Convertir a Data URL
+        const dataURL = canvas.toDataURL('image/jpeg', 0.95);
+        resolve(dataURL);
+        
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
   // Funciones para el sistema mixto 
   function incrementarMixto(producto, tipo) {
     const input = document.getElementById(`${producto}-${tipo}-input`);
@@ -994,7 +1273,92 @@
       datosEnvio = {};
     }
     
+    // Generar código de pedido único
+    codigoPedido = generarCodigoPedido();
+    
+    // Actualizar recibo digital
+    actualizarReciboDigital();
+    
     irAPaso('pago');
+  }
+  
+  function generarCodigoPedido() {
+    const timestamp = Date.now().toString();
+    const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+    return 'HMP' + timestamp.slice(-6) + random;
+  }
+  
+  function actualizarReciboDigital() {
+    const reciboProductos = document.getElementById('reciboProductos');
+    const reciboSubtotal = document.getElementById('reciboSubtotal');
+    const reciboEnvio = document.getElementById('reciboEnvio');
+    const reciboTotal = document.getElementById('reciboTotal');
+    const reciboEnvioInfo = document.getElementById('reciboEnvioInfo');
+    const datosEnvioRecibo = document.getElementById('datosEnvioRecibo');
+    const codigoPedidoElement = document.getElementById('codigoPedido');
+    const codigoPedidoConfirmacion = document.getElementById('codigoPedidoConfirmacion');
+    
+    // Actualizar código de pedido
+    codigoPedidoElement.textContent = codigoPedido;
+    codigoPedidoConfirmacion.textContent = codigoPedido;
+    
+    // Limpiar productos del recibo
+    reciboProductos.innerHTML = '';
+    
+    if (carrito.length === 0) {
+      reciboProductos.innerHTML = '<div class="recibo-item vacio">No hay productos en el carrito</div>';
+    } else {
+      let subtotal = 0;
+      
+      carrito.forEach(producto => {
+        subtotal += parseFloat(producto.total);
+        
+        const item = document.createElement('div');
+        item.className = 'recibo-item';
+        
+        let tipoDesc = producto.tipo === 'cajas' ? ' (Caja x12)' : ' (Unidades)';
+        let ofertaDesc = producto.ofertaAplicada ? ' - ¡Oferta!' : '';
+        
+        item.innerHTML = `
+          <div class="recibo-item-info">
+            <span class="recibo-item-nombre">${producto.nombre}${tipoDesc}</span>
+            <span class="recibo-item-cantidad">x ${producto.cantidad}${ofertaDesc}</span>
+          </div>
+          <span class="recibo-item-precio">$${producto.total}</span>
+        `;
+        
+        reciboProductos.appendChild(item);
+      });
+      
+      // Calcular envío
+      const envio = subtotal >= 10 ? 0 : 2.50;
+      const total = subtotal + envio;
+      
+      reciboSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+      reciboEnvio.textContent = envio === 0 ? 'Gratis' : `$${envio.toFixed(2)}`;
+      reciboTotal.textContent = `$${total.toFixed(2)}`;
+    }
+    
+    // Actualizar información de envío si existe
+    if (necesitaEnvio && datosEnvio.nombre) {
+      reciboEnvioInfo.style.display = 'block';
+      let instruccionesHTML = '';
+      if (datosEnvio.instrucciones) {
+        instruccionesHTML = `<div class="envio-info-linea"><strong>Instrucciones:</strong> ${datosEnvio.instrucciones}</div>`;
+      }
+      
+      datosEnvioRecibo.innerHTML = `
+        <div class="datos-envio-info-detalle">
+          <div class="envio-info-linea"><strong>Destinatario:</strong> ${datosEnvio.nombre}</div>
+          <div class="envio-info-linea"><strong>Teléfono:</strong> ${datosEnvio.telefono}</div>
+          <div class="envio-info-linea"><strong>Dirección:</strong> ${datosEnvio.direccion}</div>
+          <div class="envio-info-linea"><strong>Ciudad:</strong> ${datosEnvio.ciudad}</div>
+          ${instruccionesHTML}
+        </div>
+      `;
+    } else {
+      reciboEnvioInfo.style.display = 'none';
+    }
   }
   
   function irAPaso(paso) {
@@ -1005,11 +1369,6 @@
     }
     
     if (paso === 'confirmacion') {
-      const metodoPagoSeleccionado = document.querySelector('input[name="metodo-pago"]:checked');
-      if (!metodoPagoSeleccionado) {
-        alert('Por favor selecciona un método de pago antes de continuar.');
-        return;
-      }
       actualizarConfirmacion();
     }
     
@@ -1036,7 +1395,6 @@
     const confirmacionSubtotal = document.getElementById('confirmacionSubtotal');
     const confirmacionEnvio = document.getElementById('confirmacionEnvio');
     const confirmacionTotal = document.getElementById('confirmacionTotal');
-    const metodoPagoSeleccionado = document.getElementById('metodoPagoSeleccionado');
     const datosEnvioConfirmacion = document.getElementById('datos-envio-confirmacion');
     const datosEnvioInfo = document.getElementById('datosEnvioConfirmacion');
     const btnPrecioFinal = document.getElementById('btnPrecioFinal');
@@ -1079,18 +1437,6 @@
       btnPrecioFinal.textContent = `$${total.toFixed(2)}`;
     }
     
-    // Actualizar método de pago seleccionado
-    const metodoPago = document.querySelector('input[name="metodo-pago"]:checked');
-    if (metodoPago) {
-      const nombreMetodo = obtenerNombreMetodoPago(metodoPago.value);
-      metodoPagoSeleccionado.innerHTML = `
-        <div class="metodo-pago-info-detalle">
-          <span class="metodo-pago-icono">💳</span>
-          <span class="metodo-pago-nombre">${nombreMetodo}</span>
-        </div>
-      `;
-    }
-    
     // Actualizar datos de envío si existen
     if (necesitaEnvio && datosEnvio.nombre) {
       datosEnvioConfirmacion.style.display = 'block';
@@ -1112,132 +1458,94 @@
       datosEnvioConfirmacion.style.display = 'none';
     }
   }
-  
-function procesarCompra() {
-    if (carrito.length === 0) {
-        alert('Tu carrito está vacío. Agrega algunos productos antes de comprar.');
-        return;
-    }
-    
-    const metodoPago = document.querySelector('input[name="metodo-pago"]:checked').value;
-    const total = document.getElementById('confirmacionTotal').textContent;
-    
-    // Preparar mensaje para WhatsApp
-    const mensajeWhatsApp = prepararMensajeWhatsApp(metodoPago, total);
-    
-    // Mostrar confirmación y enviar a WhatsApp
-    const mensajeFinal = `¡Compra realizada con éxito!\n\nTotal: ${total}\nMétodo de pago: ${obtenerNombreMetodoPago(metodoPago)}\n\nSe abrirá WhatsApp para que envíes tu pedido.`;
-    
-    alert(mensajeFinal);
-    
-    // Enviar a WhatsApp
-    enviarAWhatsApp(mensajeWhatsApp);
-    
-    // Limpiar todo después de la compra
-    limpiarDespuesDeCompra();
-}
 
-    function prepararMensajeWhatsApp(metodoPago, total) {
-        let mensaje = "¡NUEVO PEDIDO HAMPITE! 🍵\n\n";
-        
-        // Información de productos
-        mensaje += "📦 *PRODUCTOS SOLICITADOS:*\n";
-        carrito.forEach((producto, index) => {
-            let tipoProducto = producto.tipo === 'cajas' ? 'Caja(s) x12 unidades' : 'Unidad(es) sueltas';
-            let ofertaInfo = producto.ofertaAplicada ? ' 🎯 ¡OFERTA APLICADA!' : '';
-            mensaje += `➤ ${producto.nombre}\n`;
-            mensaje += `   📊 ${producto.cantidad} ${tipoProducto}${ofertaInfo}\n`;
-            mensaje += `   💰 $${producto.total}\n\n`;
-        });
-        
-        // Resumen de precios
-        const subtotal = carrito.reduce((sum, producto) => sum + parseFloat(producto.total), 0);
-        const envio = subtotal >= 10 ? 0 : 2.50;
-        
-        mensaje += "💰 *RESUMEN DE PAGO:*\n";
-        mensaje += `📊 Subtotal: $${subtotal.toFixed(2)}\n`;
-        mensaje += `🚚 Envío: ${envio === 0 ? 'GRATIS' : `$${envio.toFixed(2)}`}\n`;
-        mensaje += `💵 *TOTAL: ${total}*\n\n`;
-        
-        // Método de pago
-        mensaje += `💳 *MÉTODO DE PAGO ELEGIDO:* ${obtenerNombreMetodoPago(metodoPago)}\n\n`;
-        
-        // Información de envío si existe
-        if (necesitaEnvio && datosEnvio.nombre) {
-            mensaje += "🏠 *DATOS DE ENVÍO:*\n";
-            mensaje += `👤 *Destinatario:* ${datosEnvio.nombre}\n`;
-            mensaje += `📞 *Teléfono:* ${datosEnvio.telefono}\n`;
-            mensaje += `📍 *Dirección:* ${datosEnvio.direccion}\n`;
-            mensaje += `🏙️ *Ciudad:* ${datosEnvio.ciudad}\n`;
-            if (datosEnvio.instrucciones) {
-                mensaje += `📝 *Instrucciones:* ${datosEnvio.instrucciones}\n`;
-            }
-            mensaje += "\n";
-        } else {
-            mensaje += "🏪 *RETIRO EN TIENDA*\nEl cliente recogerá en nuestro punto de venta.\n\n";
-        }
-        
-        // Información adicional
-        mensaje += "⏰ *INFORMACIÓN DEL PEDIDO:*\n";
-        mensaje += "🛒 Pedido realizado a través de la página web Hampite\n";
-        mensaje += `📅 Fecha: ${new Date().toLocaleString('es-CO')}\n`;
-        mensaje += `🆔 ID Pedido: #${Date.now().toString().slice(-6)}`;
-        
-        return mensaje;
-    }
+  function prepararMensajeWhatsApp(total) {
+      let mensaje = "¡NUEVO PEDIDO HAMPITE! 🍵\n\n";
+      
+      // Código de pedido
+      mensaje += `🆔 *CÓDIGO DE PEDIDO:* ${codigoPedido}\n\n`;
+      
+      // Información de productos
+      mensaje += "📦 *PRODUCTOS SOLICITADOS:*\n";
+      carrito.forEach((producto, index) => {
+          let tipoProducto = producto.tipo === 'cajas' ? 'Caja(s) x12 unidades' : 'Unidad(es) sueltas';
+          let ofertaInfo = producto.ofertaAplicada ? ' 🎯 ¡OFERTA APLICADA!' : '';
+          mensaje += `➤ ${producto.nombre}\n`;
+          mensaje += `   📊 ${producto.cantidad} ${tipoProducto}${ofertaInfo}\n`;
+          mensaje += `   💰 $${producto.total}\n\n`;
+      });
+      
+      // Resumen de precios
+      const subtotal = carrito.reduce((sum, producto) => sum + parseFloat(producto.total), 0);
+      const envio = subtotal >= 10 ? 0 : 2.50;
+      
+      mensaje += "💰 *RESUMEN DE PAGO:*\n";
+      mensaje += `📊 Subtotal: $${subtotal.toFixed(2)}\n`;
+      mensaje += `🚚 Envío: ${envio === 0 ? 'GRATIS' : `$${envio.toFixed(2)}`}\n`;
+      mensaje += `💵 *TOTAL: ${total}*\n\n`;
+      
+      // Método de pago
+      mensaje += `💳 *MÉTODO DE PAGO:* Transferencia a +57 312 7511921\n\n`;
+      
+      // Información de envío si existe
+      if (necesitaEnvio && datosEnvio.nombre) {
+          mensaje += "🏠 *DATOS DE ENVÍO:*\n";
+          mensaje += `👤 *Destinatario:* ${datosEnvio.nombre}\n`;
+          mensaje += `📞 *Teléfono:* ${datosEnvio.telefono}\n`;
+          mensaje += `📍 *Dirección:* ${datosEnvio.direccion}\n`;
+          mensaje += `🏙️ *Ciudad:* ${datosEnvio.ciudad}\n`;
+          if (datosEnvio.instrucciones) {
+              mensaje += `📝 *Instrucciones:* ${datosEnvio.instrucciones}\n`;
+          }
+          mensaje += "\n";
+      } else {
+          mensaje += "🏪 *RETIRO EN TIENDA*\nEl cliente recogerá en nuestro punto de venta.\n\n";
+      }
+      
+      // Información adicional
+      mensaje += "⏰ *INFORMACIÓN DEL PEDIDO:*\n";
+      mensaje += "🛒 Pedido realizado a través de la página web Hampite\n";
+      mensaje += `📅 Fecha: ${new Date().toLocaleString('es-CO')}`;
+      
+      return mensaje;
+  }
 
-    function enviarAWhatsApp(mensaje) {
-        const numeroWhatsApp = "573115179554"; 
-        
-        const mensajeCodificado = encodeURIComponent(mensaje);
+  function enviarAWhatsApp(mensaje) {
+      const numeroWhatsApp = "573127511921"; 
+      
+      const mensajeCodificado = encodeURIComponent(mensaje);
 
-        const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+      const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
 
-        window.open(urlWhatsApp, '_blank');
-    }
+      window.open(urlWhatsApp, '_blank');
+  }
 
-    function limpiarDespuesDeCompra() {
-        carrito = [];
-        datosEnvio = {};
-        necesitaEnvio = false;
-        
-        // Limpiar formularios
-        document.getElementById('necesita-envio').checked = false;
-        document.getElementById('formulario-envio').style.display = 'none';
-        document.getElementById('nombre-destinatario').value = '';
-        document.getElementById('telefono-destinatario').value = '';
-        document.getElementById('direccion-envio').value = '';
-        document.getElementById('ciudad-envio').value = '';
-        document.getElementById('instrucciones-especiales').value = '';
-        
-        // Limpiar todos los selectores mixtos
-        const productos = ['te-cedron', 'te-luisa', 'te-frutos-rojos', 'te-menta'];
-        productos.forEach(producto => {
-            document.getElementById(`${producto}-unidades-input`).value = 0;
-            document.getElementById(`${producto}-cajas-input`).value = 0;
-            actualizarPrecioTotalMixto(producto);
-        });
-        
-        actualizarContadorCarrito();
-        cerrarModal();
-    }
-
-    function obtenerNombreMetodoPago(metodo) {
-        const metodos = {
-            'bancolombia': 'Bancolombia',
-            'davivienda': 'Davivienda',
-            'bbva': 'BBVA',
-            'nequi': 'Nequi',
-            'daviplata': 'Daviplata',
-            'paypal': 'PayPal',
-            'efecty': 'Efecty',
-            'visa': 'VISA',
-            'tarjeta': 'Tarjeta de Crédito',
-            'efectivo': 'Contraentrega (Efectivo)'
-        };
-        
-        return metodos[metodo] || 'Desconocido';
-    }
+  function limpiarDespuesDeCompra() {
+      carrito = [];
+      datosEnvio = {};
+      necesitaEnvio = false;
+      codigoPedido = '';
+      
+      // Limpiar formularios
+      document.getElementById('necesita-envio').checked = false;
+      document.getElementById('formulario-envio').style.display = 'none';
+      document.getElementById('nombre-destinatario').value = '';
+      document.getElementById('telefono-destinatario').value = '';
+      document.getElementById('direccion-envio').value = '';
+      document.getElementById('ciudad-envio').value = '';
+      document.getElementById('instrucciones-especiales').value = '';
+      
+      // Limpiar todos los selectores mixtos
+      const productos = ['te-cedron', 'te-luisa', 'te-frutos-rojos', 'te-menta'];
+      productos.forEach(producto => {
+          document.getElementById(`${producto}-unidades-input`).value = 0;
+          document.getElementById(`${producto}-cajas-input`).value = 0;
+          actualizarPrecioTotalMixto(producto);
+      });
+      
+      actualizarContadorCarrito();
+      cerrarModal();
+  }
   
   // Cerrar modal al hacer click fuera
   window.onclick = function(event) {
@@ -1256,29 +1564,7 @@ function procesarCompra() {
     });
     
     actualizarContadorCarrito();
-    
-    // Configurar eventos para métodos de pago
-    document.querySelectorAll('input[name="metodo-pago"]').forEach(radio => {
-      radio.addEventListener('change', function() {
-        // Remover clase activa de todos los métodos
-        document.querySelectorAll('.metodo-pago').forEach(metodo => {
-          metodo.classList.remove('activo');
-        });
-        
-        // Agregar clase activa al método seleccionado
-        if (this.checked) {
-          this.closest('.metodo-pago').classList.add('activo');
-        }
-      });
-    });
-    
-    // Activar el método de pago por defecto
-    document.querySelector('input[name="metodo-pago"]:checked')
-      .closest('.metodo-pago')
-      .classList.add('activo');
   });
-
-
 </script>
 
 <style>
@@ -1445,6 +1731,206 @@ function procesarCompra() {
     min-height: 80px;
   }
   
+  /* Estilos para el recibo digital */
+  .recibo-digital {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .recibo-header {
+    background: linear-gradient(135deg, #047857, #065f46);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .recibo-titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .recibo-icono {
+    font-size: 1.8rem;
+  }
+  
+  .recibo-codigo {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  
+  .codigo-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+  
+  .codigo-valor {
+    font-size: 1.1rem;
+    margin-left: 8px;
+    letter-spacing: 1px;
+  }
+  
+  .recibo-info {
+    padding: 20px;
+  }
+  
+  .recibo-seccion {
+    margin-bottom: 25px;
+  }
+  
+  .recibo-subtitulo {
+    font-size: 1.2rem;
+    color: #374151;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e5e7eb;
+  }
+  
+  .recibo-productos {
+    margin-bottom: 15px;
+  }
+  
+  .recibo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  
+  .recibo-item:last-child {
+    border-bottom: none;
+  }
+  
+  .recibo-item.vacio {
+    text-align: center;
+    color: #6b7280;
+    font-style: italic;
+  }
+  
+  .recibo-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .recibo-item-nombre {
+    font-weight: 600;
+    color: #374151;
+  }
+  
+  .recibo-item-cantidad {
+    font-size: 0.9rem;
+    color: #6b7280;
+  }
+  
+  .recibo-item-precio {
+    font-weight: 700;
+    color: #047857;
+  }
+  
+  .recibo-resumen {
+    background: #f8faf9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e8f5f0;
+  }
+  
+  .recibo-linea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+  }
+  
+  .recibo-linea.total {
+    border-top: 2px solid #047857;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #047857;
+    margin-top: 8px;
+    padding-top: 12px;
+  }
+  
+  .datos-envio-recibo {
+    background: #f8faf9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e8f5f0;
+  }
+  
+  /* Estilos para instrucciones de pago */
+  .pago-instructions {
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .pago-titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    color: #92400e;
+  }
+  
+  .pago-icono {
+    font-size: 1.5rem;
+  }
+  
+  .pago-descripcion p {
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  
+  .numero-pago {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 2px solid #f59e0b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  
+  .numero-icono {
+    font-size: 1.3rem;
+  }
+  
+  .numero-valor {
+    color: #047857;
+  }
+  
+  .pago-nota {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #f59e0b;
+  }
+  
+  .pago-nota p {
+    margin-bottom: 8px;
+  }
+  
+  .pago-nota p:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Estilos para confirmación */
   .confirmacion-contenido {
     padding: 20px 0;
   }
@@ -1590,24 +2076,51 @@ function procesarCompra() {
     padding-top: 15px;
   }
   
-  .metodo-pago-info-detalle {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 15px;
+  .pago-confirmacion-info {
     background: white;
+    padding: 20px;
     border-radius: 8px;
     border: 1px solid #e5e7eb;
   }
   
-  .metodo-pago-icono {
-    font-size: 1.5rem;
+  .pago-confirmacion-linea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f3f4f6;
   }
   
-  .metodo-pago-nombre {
+  .pago-confirmacion-linea:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+  
+  .pago-confirmacion-label {
     font-weight: 600;
     color: #374151;
-    font-size: 1.1rem;
+  }
+  
+  .pago-confirmacion-valor {
+    color: #047857;
+    font-weight: 500;
+  }
+  
+  .pago-confirmacion-valor.codigo {
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: #f0f7f4;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  
+  .pago-confirmacion-nota {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #f3f4f6;
+    font-size: 0.9rem;
+    color: #6b7280;
   }
   
   .datos-envio-info-detalle {
@@ -1634,86 +2147,53 @@ function procesarCompra() {
     display: inline-block;
   }
 
-  /* ESTILOS PARA MÉTODOS DE PAGO SELECCIONADOS */
-  .metodo-pago {
-    position: relative;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    border-radius: 12px;
-    padding: 5px;
-  }
-  
-  .metodo-pago.activo {
-    border-color: #047857;
+  /* NUEVOS ESTILOS PARA BOTÓN DE DESCARGA DE RECIBO */
+  .descarga-recibo {
+    text-align: center;
+    padding: 20px;
     background: linear-gradient(135deg, #f0f7f4, #e8f5f0);
-    box-shadow: 0 4px 12px rgba(4, 120, 87, 0.15);
-    transform: translateY(-2px);
+    border-radius: 12px;
+    border: 2px dashed #047857;
   }
   
-  .metodo-pago.activo label {
-    color: #047857;
+  .descarga-recibo p {
+    margin-bottom: 15px;
+    color: #374151;
+    font-size: 1rem;
+  }
+  
+  .btn-descargar-recibo {
+    background: linear-gradient(135deg, #047857, #065f46);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50px;
     font-weight: 600;
-  }
-  
-  .metodo-pago.activo .metodo-logo {
-    transform: scale(1.05);
-  }
-  
-  .metodo-pago input[type="radio"] {
-    display: none;
-  }
-  
-  .metodo-pago label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px 10px;
-    border-radius: 8px;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    text-align: center;
-    height: 100%;
-  }
-  
-  .metodo-pago label:hover {
-    background: #f8faf9;
-  }
-  
-  .metodo-logo {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 8px;
-    transition: all 0.3s ease;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(4, 120, 87, 0.3);
   }
   
-  .metodo-logo img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+  .btn-descargar-recibo:hover {
+    background: linear-gradient(135deg, #065f46, #054c34);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(4, 120, 87, 0.4);
   }
   
-  .metodo-pago.activo::before {
-    content: "✓";
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: #047857;
-    color: white;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    z-index: 1;
+  .descarga-icono {
+    font-size: 1.2rem;
   }
   
+  .descarga-nota {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: #6b7280;
+  }
+
   /* Estilos para ocultar pasos no activos */
   .paso-contenido {
     display: none;
@@ -1932,6 +2412,18 @@ function procesarCompra() {
       order: 1;
     }
     
+    /* Responsive para recibo digital */
+    .recibo-header {
+      flex-direction: column;
+      gap: 15px;
+      text-align: center;
+    }
+    
+    .recibo-codigo {
+      width: 100%;
+      text-align: center;
+    }
+    
     /* Responsive para confirmación */
     .confirmacion-header {
       flex-direction: column;
@@ -1952,19 +2444,20 @@ function procesarCompra() {
     .confirmacion-titulo {
       font-size: 1.5rem;
     }
-
-    /* Responsive para métodos de pago */
-    .metodos-pago-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
+    
+    .pago-confirmacion-linea {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
     }
     
-    .metodo-pago label {
-      padding: 10px 5px;
+    .descarga-recibo {
+      padding: 15px;
     }
     
-    .metodo-logo {
-      width: 40px;
-      height: 40px;
+    .btn-descargar-recibo {
+      padding: 12px 20px;
+      font-size: 0.9rem;
     }
   }
 </style>
